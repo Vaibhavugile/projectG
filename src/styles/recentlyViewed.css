@@ -1,0 +1,307 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+.recently-viewed{
+  padding:18px 12px;
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+.recently-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:16px;
+}
+
+.recently-header h2{
+  font-family:'Montserrat',sans-serif;
+
+  font-size:18px;
+  font-weight:800;
+
+  color:#1f1f1f;
+
+  letter-spacing:-0.3px;
+}
+
+.recently-header span{
+  font-size:11px;
+  font-weight:600;
+
+  color:#d50000;
+}
+
+/* ==========================
+   SCROLL
+========================== */
+
+.recently-scroll{
+  display:flex;
+  gap:14px;
+
+  overflow-x:auto;
+
+  scroll-behavior:smooth;
+
+  scrollbar-width:none;
+
+  padding-bottom:4px;
+}
+
+.recently-scroll::-webkit-scrollbar{
+  display:none;
+}
+
+/* ==========================
+   CARD
+========================== */
+
+.recent-card{
+  position:relative;
+
+  flex:none;
+
+  width:170px;
+
+  padding:14px;
+
+  border-radius:22px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff,
+      #faf7f7
+    );
+
+  border:1px solid #f1e6e6;
+
+  box-shadow:
+    0 8px 24px rgba(0,0,0,.06);
+
+  overflow:hidden;
+
+  transition:.25s ease;
+}
+
+.recent-card::before{
+  content:"";
+
+  position:absolute;
+
+  top:-40px;
+  right:-40px;
+
+  width:90px;
+  height:90px;
+
+  border-radius:50%;
+
+  background:
+    rgba(213,0,0,.04);
+}
+
+.recent-card:hover{
+  transform:translateY(-4px);
+}
+
+.recent-card:active{
+  transform:scale(.97);
+}
+
+/* ==========================
+   ACTIVE CARD
+========================== */
+
+.recent-card.active{
+  background:
+    linear-gradient(
+      135deg,
+      #ff1744 0%,
+      #d50000 60%,
+      #950000 100%
+    );
+
+  color:#fff;
+
+  border:none;
+
+  box-shadow:
+    0 14px 35px rgba(213,0,0,.25);
+}
+
+.recent-card.active::before{
+  background:
+    rgba(255,255,255,.08);
+
+  width:130px;
+  height:130px;
+}
+
+/* ==========================
+   TOP
+========================== */
+
+.recent-card-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+
+  margin-bottom:14px;
+}
+
+.recent-card-top h3{
+  font-family:'Montserrat',sans-serif;
+
+  font-size:12px;
+  font-weight:800;
+
+  line-height:1.2;
+
+  color:inherit;
+}
+
+/* ==========================
+   STATUS
+========================== */
+
+.recent-status{
+  padding:4px 8px;
+
+  border-radius:999px;
+
+  font-size:8px;
+  font-weight:700;
+
+  background:#e7fff0;
+
+  color:#12a150;
+
+  white-space:nowrap;
+}
+
+.recent-card.active .recent-status{
+  background:
+    rgba(255,255,255,.15);
+
+  color:#fff;
+}
+
+/* ==========================
+   JODI
+========================== */
+
+.recent-jodi{
+  text-align:center;
+
+  font-family:'Montserrat',sans-serif;
+
+  font-size:42px;
+  font-weight:900;
+
+  line-height:1;
+
+  color:#d50000;
+
+  margin-bottom:14px;
+}
+
+.recent-card.active .recent-jodi{
+  color:#ffd700;
+
+  text-shadow:
+    0 0 8px rgba(255,215,0,.2);
+}
+
+/* ==========================
+   VALUES
+========================== */
+
+.recent-values{
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:8px;
+}
+
+.recent-values div{
+  text-align:center;
+
+  padding:8px;
+
+  border-radius:12px;
+
+  background:
+    rgba(0,0,0,.03);
+}
+
+.recent-card.active .recent-values div{
+  background:
+    rgba(255,255,255,.08);
+}
+
+.recent-values small{
+  display:block;
+
+  margin-bottom:4px;
+
+  font-size:9px;
+  font-weight:500;
+
+  color:#888;
+}
+
+.recent-card.active .recent-values small{
+  color:
+    rgba(255,255,255,.72);
+}
+
+.recent-values strong{
+  font-size:16px;
+  font-weight:800;
+
+  color:#222;
+}
+
+.recent-card.active .recent-values strong{
+  color:#fff;
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width:768px){
+
+  .recent-card{
+    width:165px;
+  }
+
+  .recent-jodi{
+    font-size:30px;
+  }
+}
+
+/* ==========================
+   DESKTOP
+========================== */
+
+@media (min-width:1024px){
+
+  .recently-viewed{
+    padding:24px 0;
+  }
+
+  .recent-card{
+    width:190px;
+  }
+
+  .recent-jodi{
+    font-size:40px;
+  }
+}
