@@ -1,0 +1,567 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+/* ====================================
+   PAGE
+==================================== */
+
+.panel-chart-page{
+  padding:20px 8px 40px;
+  max-width:1400px;
+  margin:auto;
+}
+
+/* ====================================
+   HERO
+==================================== */
+
+.panel-hero{
+  margin-bottom:22px;
+}
+
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:8px 14px;
+
+  border-radius:999px;
+
+  background:#fff3f3;
+
+  color:#d50000;
+
+  font-size:11px;
+  font-weight:800;
+
+  margin-bottom:12px;
+}
+
+.panel-hero h1{
+  margin:0;
+
+  font-family:'Montserrat',sans-serif;
+
+  font-size:30px;
+  font-weight:900;
+
+  color:#d50000;
+
+  line-height:1.1;
+}
+
+.panel-hero p{
+  margin-top:8px;
+
+  color:#777;
+
+  font-size:13px;
+
+  line-height:1.7;
+}
+
+/* ====================================
+   YEAR TABS
+==================================== */
+
+.year-tabs{
+  display:flex;
+  gap:10px;
+
+  overflow-x:auto;
+
+  margin-bottom:18px;
+
+  scrollbar-width:none;
+}
+
+.year-tabs::-webkit-scrollbar{
+  display:none;
+}
+
+.year-btn{
+  flex:none;
+
+  height:42px;
+
+  padding:0 18px;
+
+  border:none;
+
+  border-radius:14px;
+
+  background:#fff;
+
+  color:#555;
+
+  font-size:13px;
+  font-weight:800;
+
+  font-family:'Poppins',sans-serif;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.05);
+}
+
+.year-btn.active{
+  background:
+    linear-gradient(
+      135deg,
+      #ff1744,
+      #d50000
+    );
+
+  color:#fff;
+}
+
+/* ====================================
+   PANEL TABLE
+==================================== */
+
+.panel-table{
+  width:100%;
+
+  background:#fff;
+
+  border-radius:20px;
+
+  overflow:hidden;
+
+  border:2px solid #e7b563;
+
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.05);
+}
+
+/* ====================================
+   HEADER
+==================================== */
+
+.panel-head{
+  display:grid;
+
+  grid-template-columns:
+    65px repeat(7,1fr);
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffd54f,
+      #ffbf00
+    );
+
+  border-bottom:
+    2px solid #d7a300;
+}
+
+.panel-head div{
+  text-align:center;
+
+  padding:10px 2px;
+
+  font-size:9px;
+  font-weight:900;
+
+  color:#222;
+
+  border-right:
+    1px solid rgba(0,0,0,.08);
+}
+
+.panel-head div:last-child{
+  border-right:none;
+}
+
+/* ====================================
+   ROW
+==================================== */
+
+.panel-row{
+  display:grid;
+
+  grid-template-columns:
+    65px repeat(7,1fr);
+
+  border-bottom:
+    1px solid #e7c68c;
+}
+
+.panel-row:last-child{
+  border-bottom:none;
+}
+
+/* ====================================
+   WEEK RANGE
+==================================== */
+
+.week-range{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  background:#fff8ef;
+
+  padding:4px;
+
+  font-size:7px;
+  font-weight:800;
+
+  line-height:1.25;
+
+  border-right:
+    1px solid #e7c68c;
+}
+
+/* ====================================
+   PANEL CELL
+==================================== */
+
+.panel-box{
+  min-height:58px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  background:#fff7e8;
+
+  border-right:
+    1px solid #e7c68c;
+
+  transition:.2s ease;
+}
+
+.panel-box:last-child{
+  border-right:none;
+}
+
+.panel-box:hover{
+  background:#fff1d2;
+}
+
+/* ====================================
+   OPEN
+==================================== */
+
+.panel-open{
+  font-size:8px;
+  font-weight:900;
+
+  color:#2563eb;
+
+  line-height:1;
+}
+
+/* ====================================
+   JODI
+==================================== */
+
+.panel-jodi{
+  margin:2px 0;
+
+  font-size:16px;
+  font-weight:900;
+
+  color:#d50000;
+
+  font-family:'Montserrat',sans-serif;
+
+  line-height:1;
+}
+
+/* ====================================
+   CLOSE
+==================================== */
+
+.panel-close{
+  font-size:8px;
+  font-weight:900;
+
+  color:#16a34a;
+
+  line-height:1;
+}
+
+/* ====================================
+   STATS
+==================================== */
+
+.panel-stats{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:10px;
+
+  margin-top:20px;
+}
+
+.stat-card{
+  background:#fff;
+
+  border-radius:18px;
+
+  padding:16px;
+
+  text-align:center;
+
+  box-shadow:
+    0 8px 18px rgba(0,0,0,.05);
+}
+
+.stat-card span{
+  display:block;
+
+  margin-bottom:6px;
+
+  font-size:10px;
+  font-weight:700;
+
+  color:#999;
+}
+
+.stat-card strong{
+  font-size:22px;
+  font-weight:900;
+
+  color:#d50000;
+
+  font-family:'Montserrat',sans-serif;
+}
+
+/* ====================================
+   SEO CONTENT
+==================================== */
+
+.seo-chart-content{
+  margin-top:24px;
+
+  background:#fff;
+
+  border-radius:24px;
+
+  padding:20px;
+
+  border:1px solid #f0f0f0;
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,.04);
+}
+
+.seo-chart-content h2{
+  margin:0 0 14px;
+
+  font-size:22px;
+  font-weight:900;
+
+  color:#d50000;
+
+  font-family:'Montserrat',sans-serif;
+}
+
+.seo-chart-content h3{
+  margin-top:18px;
+  margin-bottom:8px;
+
+  font-size:18px;
+  font-weight:800;
+
+  color:#222;
+}
+
+.seo-chart-content p{
+  margin:0;
+
+  color:#666;
+
+  font-size:14px;
+
+  line-height:1.8;
+}
+
+/* ====================================
+   MOBILE
+==================================== */
+
+@media(max-width:768px){
+
+  .panel-chart-page{
+    padding:14px 4px 30px;
+  }
+
+  .panel-hero h1{
+    font-size:24px;
+  }
+
+  .panel-hero p{
+    font-size:12px;
+  }
+
+  .panel-head{
+    grid-template-columns:
+      55px repeat(7,1fr);
+  }
+
+  .panel-row{
+    grid-template-columns:
+      55px repeat(7,1fr);
+  }
+
+  .panel-head div{
+    font-size:8px;
+    padding:8px 1px;
+  }
+
+  .week-range{
+    font-size:6px;
+    padding:2px;
+  }
+
+  .panel-box{
+    min-height:52px;
+  }
+
+  .panel-open{
+    font-size:7px;
+  }
+
+  .panel-jodi{
+    font-size:14px;
+  }
+
+  .panel-close{
+    font-size:7px;
+  }
+
+  .stat-card{
+    padding:12px;
+  }
+
+  .stat-card strong{
+    font-size:18px;
+  }
+
+  .seo-chart-content{
+    padding:16px;
+  }
+
+  .seo-chart-content h2{
+    font-size:20px;
+  }
+
+  .seo-chart-content h3{
+    font-size:16px;
+  }
+
+  .seo-chart-content p{
+    font-size:13px;
+  }
+}
+
+/* ====================================
+   DESKTOP
+==================================== */
+
+@media(min-width:1024px){
+
+  .panel-chart-page{
+    padding:24px 12px 50px;
+  }
+
+  .panel-head{
+    grid-template-columns:
+      120px repeat(7,1fr);
+  }
+
+  .panel-row{
+    grid-template-columns:
+      120px repeat(7,1fr);
+  }
+
+  .week-range{
+    font-size:11px;
+  }
+
+  .panel-box{
+    min-height:90px;
+  }
+
+  .panel-open{
+    font-size:13px;
+  }
+
+  .panel-jodi{
+    font-size:28px;
+  }
+
+  .panel-close{
+    font-size:13px;
+  }
+
+  .panel-head div{
+    font-size:13px;
+  }
+}
+.panel-box{
+  min-height:58px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  background:#fff7e8;
+
+  border-right:1px solid #e7c68c;
+
+  transition:.2s ease;
+
+  padding:4px 0;
+}
+
+.panel-open{
+  font-size:8px;
+  font-weight:900;
+
+  color:#2563eb;
+
+  line-height:1;
+}
+
+.panel-jodi{
+  margin:2px 0;
+
+  font-size:16px;
+  font-weight:900;
+
+  color:#d50000;
+
+  font-family:'Montserrat',sans-serif;
+
+  line-height:1;
+}
+
+.panel-close{
+  font-size:8px;
+  font-weight:900;
+
+  color:#16a34a;
+
+  line-height:1;
+}
+
+.panel-divider{
+  width:16px;
+  height:1px;
+
+  background:
+    rgba(0,0,0,.15);
+
+  margin:2px 0;
+}

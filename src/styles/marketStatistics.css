@@ -1,0 +1,174 @@
+.market-statistics{
+  padding:24px 12px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.stats-header{
+  margin-bottom:20px;
+}
+
+.stats-header h2{
+  margin:0;
+
+  font-size:24px;
+  font-weight:900;
+
+  color:#1f1f1f;
+
+  font-family:'Montserrat',sans-serif;
+}
+
+.stats-header p{
+  margin-top:6px;
+
+  font-size:13px;
+
+  color:#777;
+
+  line-height:1.6;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.stats-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:12px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.stat-card{
+  position:relative;
+
+  overflow:hidden;
+
+  background:#fff;
+
+  border-radius:24px;
+
+  padding:20px 14px;
+
+  text-align:center;
+
+  border:1px solid #f0f0f0;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.05);
+
+  transition:.25s ease;
+}
+
+.stat-card:hover{
+  transform:translateY(-3px);
+}
+
+.stat-card::before{
+  content:"";
+
+  position:absolute;
+
+  top:-40px;
+  right:-40px;
+
+  width:100px;
+  height:100px;
+
+  border-radius:50%;
+
+  background:
+    rgba(213,0,0,.04);
+}
+
+/* =========================
+   ICON
+========================= */
+
+.stat-icon{
+  font-size:28px;
+
+  margin-bottom:12px;
+}
+
+/* =========================
+   NUMBER
+========================= */
+
+.stat-card h3{
+  margin:0;
+
+  font-size:32px;
+  font-weight:900;
+
+  font-family:'Montserrat',sans-serif;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ff2d2d,
+      #d50000
+    );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* =========================
+   LABEL
+========================= */
+
+.stat-card span{
+  display:block;
+
+  margin-top:8px;
+
+  font-size:12px;
+  font-weight:700;
+
+  color:#666;
+
+  letter-spacing:.4px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .stats-header h2{
+    font-size:22px;
+  }
+
+  .stat-card{
+    padding:18px 12px;
+  }
+
+  .stat-card h3{
+    font-size:28px;
+  }
+
+}
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media(min-width:1024px){
+
+  .stats-grid{
+    grid-template-columns:
+      repeat(4,1fr);
+  }
+
+}

@@ -1,0 +1,339 @@
+.popular-markets{
+  padding:20px 12px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.popular-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+
+  margin-bottom:20px;
+}
+
+.popular-header h2{
+  margin:0;
+
+  font-size:24px;
+  font-weight:900;
+
+  color:#1f1f1f;
+
+  font-family:'Montserrat',sans-serif;
+}
+
+.popular-header p{
+  margin-top:5px;
+
+  font-size:12px;
+
+  color:#888;
+
+  line-height:1.5;
+}
+
+.popular-header span{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  min-width:75px;
+  height:32px;
+
+  border-radius:999px;
+
+  background:#fff;
+
+  color:#d50000;
+
+  font-size:11px;
+  font-weight:800;
+
+  box-shadow:
+    0 6px 16px rgba(0,0,0,.05);
+}
+
+/* =========================
+   GRID
+========================= */
+
+.popular-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:14px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.popular-card{
+  position:relative;
+
+  overflow:hidden;
+
+  background:#fff;
+
+  border:none;
+
+  border-radius:22px;
+
+  padding:16px;
+
+  text-align:left;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.05);
+
+  transition:.25s ease;
+}
+
+.popular-card:hover{
+  transform:translateY(-3px);
+}
+
+.popular-card::before{
+  content:"";
+
+  position:absolute;
+
+  top:-40px;
+  right:-40px;
+
+  width:90px;
+  height:90px;
+
+  border-radius:50%;
+
+  background:
+    rgba(213,0,0,.04);
+}
+
+/* =========================
+   TOP
+========================= */
+
+.popular-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+
+  margin-bottom:12px;
+}
+
+.popular-top h3{
+  margin:0;
+
+  font-size:16px;
+  font-weight:900;
+
+  color:#d50000;
+
+  line-height:1.2;
+
+  font-family:'Montserrat',sans-serif;
+}
+
+.popular-arrow{
+  width:34px;
+  height:34px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff1744,
+      #d50000
+    );
+
+  color:#fff;
+
+  font-size:15px;
+  font-weight:800;
+
+  flex-shrink:0;
+}
+
+/* =========================
+   RESULT
+========================= */
+
+.popular-result{
+  font-size:12px;
+  font-weight:700;
+
+  color:#444;
+
+  margin-bottom:10px;
+
+  line-height:1.4;
+}
+
+/* =========================
+   TIMING
+========================= */
+
+.popular-time{
+  display:inline-flex;
+  align-items:center;
+
+  padding:8px 10px;
+
+  border-radius:12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff5f5,
+      #ffe8e8
+    );
+
+  color:#d50000;
+
+  font-size:10px;
+  font-weight:700;
+
+  margin-bottom:14px;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.popular-btn{
+  width:100%;
+
+  height:40px;
+
+  border:none;
+
+  border-radius:14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d50000,
+      #ff1744
+    );
+
+  color:#fff;
+
+  font-size:12px;
+  font-weight:700;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 8px 18px rgba(213,0,0,.18);
+
+  transition:.25s ease;
+}
+
+.popular-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* =========================
+   SEO BLOCK
+========================= */
+
+.popular-seo{
+  margin-top:28px;
+
+  padding:20px;
+
+  background:#fff;
+
+  border-radius:22px;
+
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.04);
+}
+
+.popular-seo h2{
+  margin-top:0;
+  margin-bottom:12px;
+
+  font-size:20px;
+  font-weight:900;
+
+  color:#1f1f1f;
+
+  font-family:'Montserrat',sans-serif;
+}
+
+.popular-seo p{
+  margin:0;
+
+  color:#666;
+
+  font-size:13px;
+
+  line-height:1.8;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .popular-header h2{
+    font-size:20px;
+  }
+
+  .popular-grid{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .popular-card{
+    padding:14px;
+  }
+
+  .popular-top h3{
+    font-size:14px;
+  }
+
+  .popular-time{
+    font-size:9px;
+  }
+
+  .popular-btn{
+    height:38px;
+    font-size:11px;
+  }
+}
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media(min-width:1024px){
+
+  .popular-grid{
+    grid-template-columns:
+      repeat(4,1fr);
+  }
+
+  .popular-header h2{
+    font-size:28px;
+  }
+
+  .popular-top h3{
+    font-size:18px;
+  }
+}

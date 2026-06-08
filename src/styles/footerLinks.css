@@ -1,0 +1,97 @@
+.footer-links{
+  padding:24px 12px;
+}
+
+.footer-links-header{
+  margin-bottom:20px;
+}
+
+.footer-links-header h2{
+  margin:0;
+
+  font-size:24px;
+  font-weight:900;
+
+  color:#1f1f1f;
+
+  font-family:'Montserrat',sans-serif;
+}
+
+.footer-links-header p{
+  margin-top:6px;
+
+  font-size:13px;
+
+  color:#777;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.footer-links-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:10px;
+}
+
+/* =========================
+   LINK CARD
+========================= */
+
+.footer-link-card{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  min-height:54px;
+
+  text-decoration:none;
+
+  background:#fff;
+
+  border-radius:18px;
+
+  padding:12px;
+
+  color:#d50000;
+
+  font-size:13px;
+  font-weight:700;
+
+  text-align:center;
+
+  border:1px solid #f0f0f0;
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.04);
+
+  transition:.25s ease;
+}
+
+.footer-link-card:hover{
+  transform:translateY(-2px);
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff5f5,
+      #ffe8e8
+    );
+}
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media(min-width:1024px){
+
+  .footer-links-grid{
+    grid-template-columns:
+      repeat(4,1fr);
+  }
+
+}

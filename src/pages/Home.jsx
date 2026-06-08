@@ -7,6 +7,17 @@ import RecentWinningBar from "../components/RecentWinningBar";
 import TodaysResultCard from "../components/TodaysResultCard";
 import RecentlyViewed from "../components/RecentlyViewed";
 import LiveMarkets from "../components/LiveMarkets";
+import MarketTimings from "../components/MarketTimings";
+import PopularMarkets from "../components/PopularMarkets";
+import TrendingJodi from "../components/TrendingJodi";
+import JodiChartPreview from "../components/JodiChartPreview";
+import FAQSection from "../components/FAQSection";
+import LatestResultUpdates from "../components/LatestResultUpdates";
+import MarketStatistics from "../components/MarketStatistics";
+import TrendingSearches from "../components/TrendingSearches";
+import PopularResultsToday from "../components/PopularResultsToday";
+import FooterLinks from "../components/FooterLinks";
+import SEOContentBlock from "../components/SEOContentBlock";
 function Home() {
   return (
     <>
@@ -58,6 +69,17 @@ function Home() {
 <TodaysResultCard />
 <RecentlyViewed />
 <LiveMarkets/>
+<MarketTimings/>
+<PopularMarkets/>
+<TrendingJodi/>
+<JodiChartPreview/>
+<FAQSection/>
+<LatestResultUpdates/>
+<MarketStatistics/>
+<TrendingSearches/>
+<PopularResultsToday/>
+<FooterLinks/>
+<SEOContentBlock/>
         {/* Latest Results */}
 
         {/* Live Markets */}

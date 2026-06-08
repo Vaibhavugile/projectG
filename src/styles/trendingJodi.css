@@ -1,0 +1,240 @@
+.trending-jodi{
+  padding:24px 12px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.trending-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+
+  margin-bottom:20px;
+}
+
+.trending-header h2{
+  margin:0;
+
+  font-size:24px;
+  font-weight:900;
+
+  color:#1f1f1f;
+
+  font-family:'Montserrat',sans-serif;
+}
+
+.trending-header p{
+  margin-top:5px;
+
+  font-size:12px;
+
+  color:#888;
+}
+
+.trending-header span{
+  min-width:75px;
+  height:32px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:999px;
+
+  background:#fff;
+
+  color:#d50000;
+
+  font-size:11px;
+  font-weight:800;
+
+  box-shadow:
+    0 6px 16px rgba(0,0,0,.05);
+}
+
+/* =========================
+   GRID
+========================= */
+
+.jodi-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:12px;
+
+  margin-bottom:24px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.jodi-card{
+  position:relative;
+
+  overflow:hidden;
+
+  background:#fff;
+
+  border-radius:22px;
+
+  padding:18px 12px;
+
+  text-align:center;
+
+  border:1px solid rgba(0,0,0,.04);
+
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.05);
+
+  transition:.25s ease;
+}
+
+.jodi-card:hover{
+  transform:translateY(-3px);
+}
+
+.hot-badge{
+  position:absolute;
+
+  top:10px;
+  right:10px;
+
+  padding:4px 8px;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff7b00,
+      #ff3d00
+    );
+
+  color:#fff;
+
+  font-size:8px;
+  font-weight:800;
+}
+
+/* =========================
+   NUMBER
+========================= */
+
+.jodi-number{
+  margin-top:12px;
+
+  font-size:42px;
+  font-weight:900;
+
+  font-family:'Montserrat',sans-serif;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ff2d2d,
+      #d50000
+    );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* =========================
+   VIEWS
+========================= */
+
+.jodi-views{
+  margin-top:10px;
+
+  font-size:10px;
+  font-weight:700;
+
+  color:#777;
+}
+
+/* =========================
+   SEO
+========================= */
+
+.jodi-seo{
+  background:#fff;
+
+  padding:20px;
+
+  border-radius:24px;
+
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.04);
+}
+
+.jodi-seo h2{
+  margin:0 0 12px;
+
+  font-size:20px;
+  font-weight:900;
+
+  color:#d50000;
+
+  font-family:'Montserrat',sans-serif;
+}
+
+.jodi-seo p{
+  margin:0;
+
+  font-size:13px;
+
+  color:#666;
+
+  line-height:1.8;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .trending-header h2{
+    font-size:20px;
+  }
+
+  .jodi-grid{
+    grid-template-columns:
+      repeat(4,1fr);
+
+    gap:10px;
+  }
+
+  .jodi-card{
+    padding:14px 8px;
+  }
+
+  .jodi-number{
+    font-size:32px;
+  }
+
+  .jodi-views{
+    font-size:9px;
+  }
+}
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media(min-width:1024px){
+
+  .jodi-grid{
+    grid-template-columns:
+      repeat(8,1fr);
+  }
+
+  .trending-header h2{
+    font-size:28px;
+  }
+}

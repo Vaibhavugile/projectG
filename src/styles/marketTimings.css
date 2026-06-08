@@ -1,0 +1,348 @@
+.market-timings{
+  padding:24px 12px;
+}
+
+/* =====================================
+   HEADER
+===================================== */
+
+.timings-header{
+  margin-bottom:24px;
+}
+
+.timings-header h2{
+  margin:0 0 10px;
+
+  font-size:26px;
+  font-weight:900;
+
+  color:#1f1f1f;
+
+  font-family:'Montserrat',sans-serif;
+
+  line-height:1.2;
+}
+
+.timings-header p{
+  margin:0;
+
+  font-size:14px;
+
+  color:#777;
+
+  line-height:1.7;
+}
+
+/* =====================================
+   GRID
+===================================== */
+
+.timings-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:14px;
+
+  margin-bottom:28px;
+}
+
+/* =====================================
+   CARD
+===================================== */
+
+.timing-card{
+  position:relative;
+
+  overflow:hidden;
+
+  background:#fff;
+
+  border-radius:24px;
+
+  padding:18px;
+
+  border:1px solid rgba(0,0,0,.04);
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.05);
+
+  transition:.3s ease;
+}
+
+.timing-card:hover{
+  transform:translateY(-4px);
+}
+
+.timing-card::before{
+  content:"";
+
+  position:absolute;
+
+  top:-70px;
+  right:-70px;
+
+  width:150px;
+  height:150px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      rgba(213,0,0,.08),
+      transparent 70%
+    );
+}
+
+.timing-card h3{
+  margin:0 0 14px;
+
+  font-size:15px;
+  font-weight:900;
+
+  color:#d50000;
+
+  font-family:'Montserrat',sans-serif;
+
+  text-transform:uppercase;
+
+  line-height:1.3;
+}
+
+/* =====================================
+   RESULT
+===================================== */
+
+.timing-result{
+  text-align:center;
+
+  margin-bottom:18px;
+
+  font-size:30px;
+  font-weight:900;
+
+  font-family:'Montserrat',sans-serif;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ff3d3d,
+      #d50000
+    );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  text-shadow:
+    0 8px 20px rgba(213,0,0,.15);
+}
+
+/* =====================================
+   OPEN CLOSE
+===================================== */
+
+.timing-info{
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:10px;
+}
+
+.timing-info div{
+  text-align:center;
+
+  padding:10px;
+
+  border-radius:14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fafafa,
+      #f6f6f6
+    );
+}
+
+.timing-info span{
+  display:block;
+
+  margin-bottom:5px;
+
+  font-size:9px;
+  font-weight:700;
+
+  letter-spacing:1px;
+
+  color:#999;
+}
+
+.timing-info strong{
+  font-size:12px;
+  font-weight:800;
+
+  color:#222;
+}
+
+/* =====================================
+   SEO BLOCK
+===================================== */
+
+.seo-block{
+  background:#fff;
+
+  border-radius:28px;
+
+  padding:24px;
+
+  border:1px solid rgba(0,0,0,.04);
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.04);
+}
+
+.seo-block h2{
+  margin:0 0 16px;
+
+  font-size:24px;
+  font-weight:900;
+
+  color:#d50000;
+
+  font-family:'Montserrat',sans-serif;
+
+  line-height:1.3;
+}
+
+.seo-block h3{
+  margin-top:24px;
+  margin-bottom:10px;
+
+  font-size:18px;
+  font-weight:800;
+
+  color:#1f1f1f;
+
+  font-family:'Montserrat',sans-serif;
+}
+
+.seo-block p{
+  margin:0;
+
+  font-size:14px;
+
+  color:#666;
+
+  line-height:1.9;
+}
+
+/* =====================================
+   FAQ STYLE
+===================================== */
+
+.seo-block p strong{
+  display:block;
+
+  margin-bottom:6px;
+
+  color:#d50000;
+}
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media(max-width:768px){
+
+  .market-timings{
+    padding:20px 12px;
+  }
+
+  .timings-header h2{
+    font-size:22px;
+  }
+
+  .timings-header p{
+    font-size:13px;
+  }
+
+  .timings-grid{
+    gap:12px;
+  }
+
+  .timing-card{
+    padding:16px;
+    border-radius:20px;
+  }
+
+  .timing-card h3{
+    font-size:13px;
+  }
+
+  .timing-result{
+    font-size:22px;
+  }
+
+  .timing-info strong{
+    font-size:11px;
+  }
+
+  .seo-block{
+    padding:18px;
+    border-radius:22px;
+  }
+
+  .seo-block h2{
+    font-size:20px;
+  }
+
+  .seo-block h3{
+    font-size:16px;
+  }
+
+  .seo-block p{
+    font-size:13px;
+  }
+}
+
+/* =====================================
+   TABLET
+===================================== */
+
+@media(min-width:768px){
+
+  .timings-grid{
+    grid-template-columns:
+      repeat(4,1fr);
+  }
+}
+
+/* =====================================
+   DESKTOP
+===================================== */
+
+@media(min-width:1024px){
+
+  .market-timings{
+    max-width:1400px;
+    margin:auto;
+  }
+
+  .timings-header h2{
+    font-size:32px;
+  }
+
+  .timing-card h3{
+    font-size:16px;
+  }
+
+  .timing-result{
+    font-size:34px;
+  }
+
+  .seo-block{
+    padding:32px;
+  }
+}
