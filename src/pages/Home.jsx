@@ -18,6 +18,7 @@ import TrendingSearches from "../components/TrendingSearches";
 import PopularResultsToday from "../components/PopularResultsToday";
 import FooterLinks from "../components/FooterLinks";
 import SEOContentBlock from "../components/SEOContentBlock";
+import NextResult from "../components/NextResult";
 function Home() {
   return (
     <>
@@ -67,7 +68,9 @@ function Home() {
         {/* Today's Main Result */}
         {/* Today's Main Result */}
 <TodaysResultCard />
+
 <RecentlyViewed />
+<NextResult />
 <LiveMarkets/>
 <MarketTimings/>
 <PopularMarkets/>

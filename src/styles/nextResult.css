@@ -1,0 +1,865 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+/* ====================================
+   SECTION
+==================================== */
+
+.next-result{
+  position:relative;
+
+  overflow:hidden;
+
+  margin:20px 12px;
+
+  padding:24px 18px;
+
+  border-radius:30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff1744,
+      #d50000
+    );
+
+  box-shadow:
+    0 20px 40px rgba(213,0,0,.22);
+
+  color:#fff;
+}
+
+/* ====================================
+   GLOW
+==================================== */
+
+.next-result-glow{
+  position:absolute;
+
+  top:-120px;
+  right:-120px;
+
+  width:240px;
+  height:240px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.12);
+
+  filter:blur(20px);
+}
+
+/* ====================================
+   BADGE
+==================================== */
+
+.next-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  height:34px;
+
+  padding:0 14px;
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.15);
+
+  backdrop-filter:blur(8px);
+
+  font-size:11px;
+  font-weight:800;
+
+  letter-spacing:.5px;
+
+  margin-bottom:14px;
+}
+
+/* ====================================
+   TITLE
+==================================== */
+
+.next-result h2{
+  margin:0;
+
+  font-size:34px;
+  font-weight:900;
+
+  font-family:'Montserrat',sans-serif;
+
+  text-transform:uppercase;
+
+  line-height:1.1;
+}
+
+/* ====================================
+   RESULT PREVIEW
+==================================== */
+
+.result-preview{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  gap:12px;
+
+  margin-top:16px;
+}
+
+.result-preview span{
+  min-width:72px;
+
+  height:56px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:18px;
+
+  background:
+    rgba(255,255,255,.12);
+
+  backdrop-filter:blur(10px);
+
+  font-size:22px;
+  font-weight:900;
+
+  font-family:'Montserrat',sans-serif;
+}
+
+.result-jodi{
+  background:#fff !important;
+  color:#d50000;
+
+  transform:scale(1.08);
+}
+
+/* ====================================
+   STATUS
+==================================== */
+
+.market-status{
+  text-align:center;
+
+  margin-top:16px;
+
+  font-size:13px;
+  font-weight:700;
+
+  color:#ffe082;
+}
+
+/* ====================================
+   TIMES
+==================================== */
+
+.market-time-row{
+  display:flex;
+  justify-content:center;
+
+  gap:10px;
+
+  margin-top:14px;
+}
+
+.time-pill{
+  height:38px;
+
+  padding:0 14px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.14);
+
+  backdrop-filter:blur(8px);
+
+  font-size:11px;
+  font-weight:700;
+}
+/* ====================================
+   PREMIUM FLIP TIMER
+==================================== */
+/* ====================================
+   FLIP TIMER
+==================================== */
+
+.flip-timer{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  margin-top:20px;
+}
+
+.flip-unit{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.flip-unit span{
+  margin-top:8px;
+
+  font-size:10px;
+  font-weight:800;
+
+  letter-spacing:2px;
+
+  color:#fff;
+
+  opacity:.9;
+}
+
+/* ====================================
+   FLIP CARD
+==================================== */
+
+.flip-clock{
+  position:relative;
+}
+
+.flip-number{
+  width:84px;
+  height:84px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:22px;
+
+  background:#fff;
+
+  color:#d50000;
+
+  font-size:38px;
+  font-weight:900;
+
+  font-family:'Montserrat',sans-serif;
+
+  box-shadow:
+    0 12px 28px rgba(0,0,0,.16);
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.flip-number::before{
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  right:0;
+
+  top:50%;
+
+  height:1px;
+
+  background:
+    rgba(0,0,0,.08);
+}
+
+.flip-number::after{
+  content:"";
+
+  position:absolute;
+
+  inset:8px;
+
+  border-radius:16px;
+
+  border:
+    1px solid rgba(0,0,0,.04);
+}
+
+/* ====================================
+   FLIP ANIMATION
+==================================== */
+
+.flip-animate{
+  animation:
+    flipCard .55s cubic-bezier(
+      .25,
+      .8,
+      .25,
+      1
+    );
+}
+
+@keyframes flipCard{
+
+  0%{
+    transform:
+      perspective(800px)
+      rotateX(-90deg);
+
+    opacity:.4;
+  }
+
+  100%{
+    transform:
+      perspective(800px)
+      rotateX(0deg);
+
+    opacity:1;
+  }
+
+}
+
+/* ====================================
+   RESULT GENERATING
+==================================== */
+
+.result-generator{
+  margin-top:20px;
+
+  padding:20px;
+
+  border-radius:22px;
+
+  background:
+    rgba(255,255,255,.12);
+
+  backdrop-filter:blur(12px);
+
+  text-align:center;
+
+  border:
+    1px solid rgba(255,255,255,.15);
+}
+
+.generator-title{
+  font-size:13px;
+  font-weight:800;
+
+  color:#fff;
+
+  margin-bottom:16px;
+
+  letter-spacing:.5px;
+}
+
+.rolling-digits{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+}
+
+.rolling-box{
+  width:72px;
+  height:72px;
+
+  border-radius:18px;
+
+  background:#fff;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#d50000;
+
+  font-size:34px;
+  font-weight:900;
+
+  font-family:'Montserrat',sans-serif;
+
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.14);
+
+  animation:
+    rollingPulse .2s linear infinite;
+}
+
+.rolling-box:nth-child(2){
+  animation-delay:.05s;
+}
+
+.rolling-box:nth-child(3){
+  animation-delay:.1s;
+}
+
+@keyframes rollingPulse{
+
+  0%{
+    transform:
+      scale(1);
+  }
+
+  50%{
+    transform:
+      scale(1.08);
+  }
+
+  100%{
+    transform:
+      scale(1);
+  }
+
+}
+
+/* ====================================
+   RESULT DECLARED
+==================================== */
+
+.result-live-box{
+  margin-top:20px;
+
+  padding:22px;
+
+  border-radius:22px;
+
+  background:#fff;
+
+  text-align:center;
+
+  box-shadow:
+    0 12px 28px rgba(0,0,0,.14);
+}
+
+.result-live-title{
+  font-size:14px;
+  font-weight:900;
+
+  color:#16a34a;
+
+  margin-bottom:14px;
+
+  letter-spacing:.5px;
+}
+
+.declared-result{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+}
+
+.declared-box{
+  width:72px;
+  height:72px;
+
+  border-radius:18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff1744,
+      #d50000
+    );
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#fff;
+
+  font-size:34px;
+  font-weight:900;
+
+  font-family:'Montserrat',sans-serif;
+
+  box-shadow:
+    0 10px 24px rgba(213,0,0,.25);
+
+  animation:
+    digitReveal .4s ease;
+}
+
+@keyframes digitReveal{
+
+  0%{
+    transform:
+      scale(.5);
+
+    opacity:0;
+  }
+
+  100%{
+    transform:
+      scale(1);
+
+    opacity:1;
+  }
+
+}
+
+/* ====================================
+   MOBILE
+==================================== */
+
+@media(max-width:768px){
+
+  .flip-timer{
+    gap:12px;
+  }
+
+  .flip-number{
+    width:72px;
+    height:72px;
+
+    font-size:30px;
+
+    border-radius:18px;
+  }
+
+  .rolling-box,
+  .declared-box{
+    width:60px;
+    height:60px;
+
+    font-size:28px;
+
+    border-radius:16px;
+  }
+
+  .flip-unit span{
+    font-size:9px;
+  }
+
+  .generator-title,
+  .result-live-title{
+    font-size:12px;
+  }
+
+}
+/* ====================================
+   STATUS CARDS
+==================================== */
+
+.status-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:10px;
+
+  margin-top:20px;
+}
+
+.status-card{
+  background:
+    rgba(255,255,255,.12);
+
+  backdrop-filter:blur(10px);
+
+  border-radius:18px;
+
+  padding:14px;
+
+  text-align:center;
+}
+
+.status-card span{
+  display:block;
+
+  font-size:10px;
+  font-weight:700;
+
+  letter-spacing:1px;
+
+  opacity:.8;
+
+  margin-bottom:6px;
+}
+
+.status-card strong{
+  font-size:15px;
+  font-weight:900;
+}
+
+/* ====================================
+   FLOATING ANIMATION
+==================================== */
+
+.next-result::before{
+  content:"74";
+
+  position:absolute;
+
+  top:40px;
+  right:30px;
+
+  font-size:60px;
+  font-weight:900;
+
+  color:rgba(255,255,255,.06);
+
+  animation:float 6s ease-in-out infinite;
+}
+
+@keyframes float{
+
+  0%{
+    transform:
+      translateY(0px);
+  }
+
+  50%{
+    transform:
+      translateY(-10px);
+  }
+
+  100%{
+    transform:
+      translateY(0px);
+  }
+
+}
+
+/* ====================================
+   MOBILE
+==================================== */
+
+@media(max-width:768px){
+
+  .next-result{
+    padding:20px 14px;
+    border-radius:24px;
+  }
+
+  .next-result h2{
+    font-size:28px;
+  }
+
+  .result-preview span{
+    min-width:58px;
+    height:48px;
+
+    font-size:18px;
+  }
+
+
+  .status-grid{
+    gap:8px;
+  }
+
+  .status-card{
+    padding:12px 8px;
+  }
+
+  .status-card strong{
+    font-size:13px;
+  }
+
+}
+
+/* ====================================
+   DESKTOP
+==================================== */
+
+@media(min-width:1024px){
+
+  .next-result{
+    max-width:1400px;
+    margin:24px auto;
+  }
+
+  
+}
+/* ====================================
+   MARKET SWITCHER
+==================================== */
+
+.market-switcher{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:10px;
+
+  margin:12px 12px 0;
+}
+
+.mini-market-card{
+  position:relative;
+
+  border:none;
+
+  min-height:82px;
+
+  padding:8px;
+
+  border-radius:18px;
+
+  background:#fff;
+
+  cursor:pointer;
+
+  transition:.25s ease;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.06);
+
+  overflow:hidden;
+}
+
+.mini-market-card:hover{
+  transform:translateY(-3px);
+}
+
+.mini-market-card::before{
+  content:"";
+
+  position:absolute;
+
+  top:-20px;
+  right:-20px;
+
+  width:50px;
+  height:50px;
+
+  border-radius:50%;
+
+  background:
+    rgba(213,0,0,.05);
+}
+
+.mini-market-card strong{
+  color:#d50000;
+
+  font-size:10px;
+  font-weight:800;
+
+  line-height:1.2;
+
+  text-align:center;
+
+  text-transform:uppercase;
+
+  font-family:'Montserrat',sans-serif;
+}
+
+.mini-market-card span{
+  margin-top:6px;
+
+  color:#777;
+
+  font-size:10px;
+  font-weight:700;
+}
+
+/* ACTIVE CARD */
+
+.mini-market-card.active{
+  background:
+    linear-gradient(
+      135deg,
+      #ff1744,
+      #d50000
+    );
+
+  box-shadow:
+    0 10px 24px rgba(213,0,0,.25);
+}
+
+.mini-market-card.active strong,
+.mini-market-card.active span{
+  color:#fff;
+}
+
+.mini-market-card.active::after{
+  content:"LIVE";
+
+  position:absolute;
+
+  top:6px;
+  right:6px;
+
+  height:16px;
+
+  padding:0 6px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:999px;
+
+  background:#22c55e;
+
+  color:#fff;
+
+  font-size:7px;
+  font-weight:900;
+
+  letter-spacing:.5px;
+}
+
+/* ====================================
+   MOBILE
+==================================== */
+
+@media(max-width:768px){
+
+  .market-switcher{
+    gap:8px;
+    margin:10px;
+  }
+
+  .mini-market-card{
+    min-height:72px;
+    border-radius:14px;
+    padding:6px;
+  }
+
+  .mini-market-card strong{
+    font-size:8px;
+  }
+
+  .mini-market-card span{
+    font-size:8px;
+  }
+
+}
+
+/* ====================================
+   EXTRA SMALL
+==================================== */
+
+@media(max-width:420px){
+
+  .market-switcher{
+    gap:6px;
+  }
+
+  .mini-market-card{
+    min-height:68px;
+  }
+
+  .mini-market-card strong{
+    font-size:7px;
+  }
+
+  .mini-market-card span{
+    font-size:7px;
+  }
+
+}
+.market-event{
+  margin-top:8px;
+
+  text-align:center;
+
+  font-size:13px;
+  font-weight:700;
+
+  color:#ffe082;
+
+  letter-spacing:.3px;
+}
