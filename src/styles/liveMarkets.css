@@ -429,3 +429,53 @@
 
   box-shadow:0 2px 8px rgba(0,0,0,.05);
 }
+.market-card.featured {
+  background: linear-gradient(
+    135deg,
+    #d50000,
+    #ff1f1f
+  );
+
+  border: none;
+
+  color: #fff;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.market-card.featured::before {
+  
+  position: absolute;
+
+  top: 12px;
+  right: 12px;
+
+  padding: 4px 8px;
+
+  border-radius: 999px;
+
+  background: rgba(255,255,255,.2);
+
+  color: #fff;
+
+  font-size: 10px;
+  font-weight: 800;
+}
+.market-card.featured .market-top h3,
+.market-card.featured .value,
+.market-card.featured .jodi-value,
+.market-card.featured .label,
+.market-card.featured .market-time {
+  color: #fff;
+}
+.market-card.featured .market-time {
+  background: rgba(255,255,255,.12);
+
+  border: 1px solid rgba(255,255,255,.15);
+}
+.market-card.featured .running {
+  background: rgba(255,255,255,.15);
+  color: #fff;
+}

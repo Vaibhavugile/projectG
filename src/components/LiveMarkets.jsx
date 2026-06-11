@@ -485,10 +485,14 @@ const filteredMarkets = useMemo(() => {
       <div className="market-list">
 
        {filteredMarkets.map((item) => (
-  <div
-    key={item.market}
-    className="market-card"
-  >
+ <div
+  key={item.market}
+  className={
+    item.favorite
+      ? "market-card featured"
+      : "market-card"
+  }
+>
     <div className="market-top">
       <h3>{item.market}</h3>
 

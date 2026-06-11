@@ -390,7 +390,7 @@ const [flipMin, setFlipMin] =
   return closeTime;
 };
 
-  const upcomingMarkets = useMemo(() => {
+ const upcomingMarkets = useMemo(() => {
 
   const now = new Date();
 
@@ -401,10 +401,14 @@ const [flipMin, setFlipMin] =
         getUpcomingTime(market)
       ),
     }))
-    .filter(
-      (market) =>
-        market.resultDate > now
-    )
+    .filter((market) => {
+      const keepUntil = new Date(
+        market.resultDate.getTime() +
+        15 * 60 * 1000
+      );
+
+      return keepUntil > now;
+    })
     .sort(
       (a, b) =>
         a.resultDate - b.resultDate
@@ -443,7 +447,7 @@ const [revealedDigits, setRevealedDigits] =
   }, [upcomingMarkets, selectedMarket]);
 
 
-  useEffect(() => {
+useEffect(() => {
 
   if (!selectedMarket) return;
 
@@ -453,24 +457,30 @@ const [revealedDigits, setRevealedDigits] =
       selectedMarket.resultDate -
       new Date();
 
-  if (diff <= 0) {
+    if (diff <= 0) {
 
-  setResultGenerating(true);
+      // Prevent generating again after result is already live
+      if (
+        !resultGenerating &&
+        !resultLive
+      ) {
+        setResultGenerating(true);
+      }
 
-  clearInterval(interval);
+      clearInterval(interval);
 
-  return;
-}
+      return;
+    }
 
     const totalMinutes =
-  Math.floor(
-    diff / 60000
-  );
+      Math.floor(
+        diff / 60000
+      );
 
-const seconds =
-  Math.floor(
-    (diff % 60000) / 1000
-  );
+    const seconds =
+      Math.floor(
+        (diff % 60000) / 1000
+      );
 
     /* SECOND FLIP */
 
@@ -492,19 +502,24 @@ const seconds =
 
     }
 
-   setRemaining({
-  mins: String(totalMinutes),
-  secs: String(seconds).padStart(
-    2,
-    "0"
-  ),
-});
+    setRemaining({
+      mins: String(totalMinutes),
+      secs: String(seconds).padStart(
+        2,
+        "0"
+      ),
+    });
 
   }, 1000);
 
-  return () => clearInterval(interval);
+  return () =>
+    clearInterval(interval);
 
-}, [selectedMarket]);
+}, [
+  selectedMarket,
+  resultGenerating,
+  resultLive
+]);
 useEffect(() => {
 
   if (resultLive) return;
