@@ -197,7 +197,7 @@ const markets = [
     jodi: "99",
     close: "111",
     status: "RUNNING",
-    time: "06:00 PM - 08:00 PM",
+    time: "06:00 PM - 08:20 PM",
     viewers: "1.9k",
     favorite: false,
   },
@@ -245,7 +245,7 @@ const markets = [
     market: "ROYAL NIGHT",
     open: "345",
     jodi: "61",
-    close: "***",
+    close: "100",
     status: "RUNNING",
     time: "08:15 PM - 10:15 PM",
     viewers: "1.1k",
@@ -257,7 +257,7 @@ const markets = [
     jodi: "44",
     close: "555",
     status: "CLOSED",
-    time: "12:00 PM - 02:00 PM",
+    time: "12:00 PM - 08:25 PM",
     viewers: "690",
     favorite: false,
   },
@@ -606,7 +606,7 @@ useEffect(() => {
 
     }, 3000);
 
-  }, 30000); // 30 sec rolling
+  }, 3000); // 30 sec rolling
 
   return () => {
 

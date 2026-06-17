@@ -444,7 +444,66 @@
 
   overflow: hidden;
 }
+.voice-btn{
+  width:50px;
+  height:50px;
 
+  border:none;
+  border-radius:16px;
+
+  background:#fff;
+
+  font-size:18px;
+
+  cursor:pointer;
+
+  box-shadow:0 6px 20px rgba(0,0,0,.05);
+}
+.voice-btn.listening{
+  animation:pulseMic 1s infinite;
+}
+
+@keyframes pulseMic{
+  0%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.08);
+  }
+
+  100%{
+    transform:scale(1);
+  }
+}
+.listening-indicator{
+  margin-top:8px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:13px;
+  font-weight:700;
+
+  color:#d50000;
+
+  animation:fadePulse 1.2s infinite;
+}
+
+@keyframes fadePulse{
+  0%{
+    opacity:.5;
+  }
+
+  50%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:.5;
+  }
+}
 .market-card.featured::before {
   
   position: absolute;

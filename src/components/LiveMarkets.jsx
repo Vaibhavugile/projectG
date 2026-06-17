@@ -311,8 +311,57 @@ const [showFilters, setShowFilters] = useState(false);
 const [statusFilter, setStatusFilter] = useState("ALL");
 const [favoritesOnly, setFavoritesOnly] = useState(false);
 const [sortBy, setSortBy] = useState("NAME");
+const [isListening, setIsListening] =
+  useState(false);
 const navigate = useNavigate();
+const startVoiceSearch = () => {
 
+  const SpeechRecognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
+
+  if (!SpeechRecognition) {
+    alert(
+      "Voice search is not supported on this device."
+    );
+    return;
+  }
+
+  const recognition =
+    new SpeechRecognition();
+
+  recognition.lang = "en-IN";
+
+  recognition.interimResults =
+    false;
+
+  recognition.maxAlternatives =
+    1;
+
+  setIsListening(true);
+
+  recognition.start();
+
+  recognition.onresult = (
+    event
+  ) => {
+
+    const transcript =
+      event.results[0][0]
+        .transcript;
+
+    setSearch(transcript);
+  };
+
+  recognition.onerror = () => {
+    setIsListening(false);
+  };
+
+  recognition.onend = () => {
+    setIsListening(false);
+  };
+
+};
 const filteredMarkets = useMemo(() => {
   let result = [...markets];
 
@@ -388,7 +437,16 @@ const filteredMarkets = useMemo(() => {
       onChange={(e) => setSearch(e.target.value)}
       placeholder="Search markets..."
     />
-
+<button
+  className={
+    isListening
+      ? "voice-btn listening"
+      : "voice-btn"
+  }
+  onClick={startVoiceSearch}
+>
+  {isListening ? "🔴" : "🎤"}
+</button>
     <button
       className="filter-toggle-btn"
       onClick={() =>
@@ -398,6 +456,11 @@ const filteredMarkets = useMemo(() => {
       ⚙️
     </button>
   </div>
+  {isListening && (
+  <div className="listening-indicator">
+    🎙️ Listening...
+  </div>
+)}
 
   {showFilters && (
     <>
