@@ -1,120 +1,228 @@
+import { useEffect, useState } from "react";
 import "../styles/recentlyViewed.css";
 
-const recentMarkets = [
-  {
-    market: "KALYAN",
-    open: "250",
-    jodi: "70",
-    close: "190",
-    status: "Running",
-  },
-  {
-    market: "MILAN DAY",
-    open: "340",
-    jodi: "74",
-    close: "194",
-    status: "Running",
-  },
-  {
-    market: "MAIN BAZAR",
-    open: "123",
-    jodi: "45",
-    close: "678",
-    status: "Running",
-  },
-  {
-    market: "RAJDHANI NIGHT",
-    open: "567",
-    jodi: "89",
-    close: "234",
-    status: "Closed",
-  },
-   {
-    market: "KALYAN",
-    open: "250",
-    jodi: "70",
-    close: "190",
-    status: "Running",
-  },
-  {
-    market: "MILAN DAY",
-    open: "340",
-    jodi: "74",
-    close: "194",
-    status: "Running",
-  },
-  {
-    market: "MAIN BAZAR",
-    open: "123",
-    jodi: "45",
-    close: "678",
-    status: "Running",
-  },
-  {
-    market: "RAJDHANI NIGHT",
-    open: "567",
-    jodi: "89",
-    close: "234",
-    status: "Closed",
-  },
-];
+import {
+  subscribeLiveMarkets,
+} from "../services/marketService";
 
 function RecentlyViewed() {
+
+ const [markets, setMarkets] =
+  useState([]);
+
+/* FIREBASE REALTIME */
+
+useEffect(() => {
+
+  const unsubscribe =
+    subscribeLiveMarkets(
+      (data) => {
+
+        const sorted =
+          [...data]
+            .sort(
+              (a, b) =>
+                (a.displayOrder || 999) -
+                (b.displayOrder || 999)
+            )
+            .slice(0, 8);
+
+        setMarkets(sorted);
+
+      }
+    );
+
+  return () =>
+    unsubscribe();
+
+}, []);
+
+/* DATE HELPERS */
+
+const today =
+  new Date()
+    .toLocaleDateString(
+      "en-CA",
+      {
+        timeZone:
+          "Asia/Kolkata",
+      }
+    );
+
+const yesterday =
+  new Date(
+    Date.now() - 86400000
+  )
+    .toLocaleDateString(
+      "en-CA",
+      {
+        timeZone:
+          "Asia/Kolkata",
+      }
+    );
+
+/* RESULT LABEL */
+
+const getResultLabel = (
+  resultDate
+) => {
+
+  if (!resultDate)
+    return "No Result";
+
+  if (
+    resultDate === today
+  ) {
+    return "🔥 Today";
+  }
+
+  if (
+    resultDate ===
+    yesterday
+  ) {
+    return "📅 Yesterday";
+  }
+
+  return resultDate;
+
+};
+
+/* STATUS LABEL */
+
+const getMarketStatus = (
+  market
+) => {
+
+  const resultDate =
+    market?.latestResult
+      ?.resultDate;
+
+  if (
+    resultDate === today
+  ) {
+    return "TODAY";
+  }
+
+  if (
+    resultDate ===
+    yesterday
+  ) {
+    return "YESTERDAY";
+  }
+
+  return "OLD";
+};
+
+/* NO DATA */
+
+if (!markets.length)
+  return null;
+
   return (
-    <section className="recently-viewed">
+  <section className="recently-viewed">
 
-      <div className="recently-header">
-        <h2>Recently Viewed</h2>
-        <span>Quick Access</span>
-      </div>
+    <div className="recently-header">
 
-      <div className="recently-scroll">
+      <h2>
+        Popular Markets
+      </h2>
 
-        {recentMarkets.map((item, index) => (
-          <div
-            key={item.market}
-            className={
-              index === 0
-                ? "recent-card active"
-                : "recent-card"
-            }
-          >
+      <span>
+        Quick Access
+      </span>
 
-            <div className="recent-card-top">
+    </div>
 
-              <h3>{item.market}</h3>
+    <div className="recently-scroll">
 
-              <span className="recent-status">
-                {item.status}
-              </span>
+      {markets.map(
+        (item, index) => {
 
-            </div>
+          const latestResult =
+            item.latestResult || {};
 
-            <div className="recent-jodi">
-              {item.jodi}
-            </div>
+          const resultDate =
+            latestResult.resultDate;
 
-            <div className="recent-values">
+          return (
 
-              <div>
-                <small>Open</small>
-                <strong>{item.open}</strong>
+            <div
+              key={item.id}
+              className={
+                index === 0
+                  ? "recent-card active"
+                  : "recent-card"
+              }
+            >
+
+              <div className="recent-card-top">
+
+                <h3>
+                  {item.name}
+                </h3>
+
+                <span
+                  className={`recent-status ${
+                    getMarketStatus(item)
+                      .toLowerCase()
+                  }`}
+                >
+                  {getMarketStatus(item)}
+                </span>
+
               </div>
 
-              <div>
-                <small>Close</small>
-                <strong>{item.close}</strong>
+              
+
+              <div className="recent-jodi">
+
+                {latestResult.jodi ||
+                  "**"}
+
+              </div>
+
+              <div className="recent-values">
+
+                <div>
+
+                  <small>
+                    Open
+                  </small>
+
+                  <strong>
+                    {latestResult.openPanna ||
+                      "***"}
+                  </strong>
+
+                </div>
+
+                <div>
+
+                  <small>
+                    Close
+                  </small>
+
+                  <strong>
+                    {latestResult.closePanna ||
+                      "***"}
+                  </strong>
+
+                </div>
+
               </div>
 
             </div>
 
-          </div>
-        ))}
+          );
 
-      </div>
+        }
+      )}
 
-    </section>
-  );
+    </div>
+
+  </section>
+);
+
 }
 
 export default RecentlyViewed;

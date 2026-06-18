@@ -1,660 +1,540 @@
 import { useEffect, useMemo, useState } from "react";
 import "../styles/nextResult.css";
-const markets = [
-  {
-    market: "MILAN DAY",
-    open: "340",
-    jodi: "74",
-    close: "194",
-    status: "RUNNING",
-    time: "02:00 PM - 04:30 PM",
-    viewers: "1.8k",
-    favorite: true,
-  },
-  {
-    market: "SRIDEVI",
-    open: "129",
-    jodi: "23",
-    close: "***",
-    status: "RUNNING",
-    time: "11:35 AM - 12:35 PM",
-    viewers: "934",
-    favorite: false,
-  },
-  {
-    market: "TIME BAZAR",
-    open: "567",
-    jodi: "89",
-    close: "234",
-    status: "CLOSED",
-    time: "01:00 PM - 02:00 PM",
-    viewers: "542",
-    favorite: false,
-  },
-  {
-    market: "KALYAN",
-    open: "248",
-    jodi: "56",
-    close: "780",
-    status: "RUNNING",
-    time: "04:00 PM - 06:00 PM",
-    viewers: "2.1k",
-    favorite: true,
-  },
-  {
-    market: "MAIN MUMBAI",
-    open: "145",
-    jodi: "32",
-    close: "456",
-    status: "RUNNING",
-    time: "09:00 PM - 11:00 PM",
-    viewers: "3.2k",
-    favorite: true,
-  },
-  {
-    market: "RAJDHANI DAY",
-    open: "234",
-    jodi: "67",
-    close: "890",
-    status: "RUNNING",
-    time: "03:00 PM - 05:00 PM",
-    viewers: "1.4k",
-    favorite: false,
-  },
-  {
-    market: "RAJDHANI NIGHT",
-    open: "890",
-    jodi: "45",
-    close: "***",
-    status: "RUNNING",
-    time: "09:15 PM - 11:15 PM",
-    viewers: "2.4k",
-    favorite: false,
-  },
-  {
-    market: "MADHUR DAY",
-    open: "456",
-    jodi: "12",
-    close: "378",
-    status: "RUNNING",
-    time: "01:00 PM - 03:00 PM",
-    viewers: "1.1k",
-    favorite: false,
-  },
-  {
-    market: "MADHUR NIGHT",
-    open: "378",
-    jodi: "90",
-    close: "***",
-    status: "RUNNING",
-    time: "08:00 PM - 10:00 PM",
-    viewers: "1.6k",
-    favorite: false,
-  },
-  {
-    market: "SUPREME DAY",
-    open: "111",
-    jodi: "22",
-    close: "333",
-    status: "CLOSED",
-    time: "12:00 PM - 01:00 PM",
-    viewers: "620",
-    favorite: false,
-  },
-  {
-    market: "SUPREME NIGHT",
-    open: "444",
-    jodi: "55",
-    close: "***",
-    status: "RUNNING",
-    time: "08:30 PM - 10:30 PM",
-    viewers: "1.7k",
-    favorite: false,
-  },
-  {
-    market: "KALYAN NIGHT",
-    open: "678",
-    jodi: "34",
-    close: "***",
-    status: "RUNNING",
-    time: "09:00 PM - 11:00 PM",
-    viewers: "2.8k",
-    favorite: true,
-  },
-  {
-    market: "SRIDEVI NIGHT",
-    open: "590",
-    jodi: "11",
-    close: "***",
-    status: "RUNNING",
-    time: "08:00 PM - 09:30 PM",
-    viewers: "1.3k",
-    favorite: false,
-  },
-  {
-    market: "RATAN KHATRI",
-    open: "470",
-    jodi: "82",
-    close: "391",
-    status: "CLOSED",
-    time: "12:00 PM - 02:00 PM",
-    viewers: "890",
-    favorite: false,
-  },
-  {
-    market: "NEW DELHI",
-    open: "123",
-    jodi: "78",
-    close: "567",
-    status: "RUNNING",
-    time: "05:00 PM - 07:00 PM",
-    viewers: "1.2k",
-    favorite: false,
-  },
-  {
-    market: "DELHI BAZAR",
-    open: "290",
-    jodi: "64",
-    close: "188",
-    status: "RUNNING",
-    time: "03:00 PM - 05:00 PM",
-    viewers: "1.0k",
-    favorite: false,
-  },
-  {
-    market: "GOLDEN DAY",
-    open: "349",
-    jodi: "50",
-    close: "237",
-    status: "RUNNING",
-    time: "02:30 PM - 04:30 PM",
-    viewers: "970",
-    favorite: false,
-  },
-  {
-    market: "DIAMOND",
-    open: "650",
-    jodi: "73",
-    close: "921",
-    status: "RUNNING",
-    time: "04:30 PM - 06:30 PM",
-    viewers: "1.5k",
-    favorite: false,
-  },
-  {
-    market: "KUBER",
-    open: "430",
-    jodi: "17",
-    close: "800",
-    status: "CLOSED",
-    time: "01:30 PM - 03:00 PM",
-    viewers: "740",
-    favorite: false,
-  },
-  {
-    market: "TARA MUMBAI",
-    open: "333",
-    jodi: "99",
-    close: "111",
-    status: "RUNNING",
-    time: "06:00 PM - 08:20 PM",
-    viewers: "1.9k",
-    favorite: false,
-  },
-  {
-    market: "SHREE DAY",
-    open: "210",
-    jodi: "43",
-    close: "678",
-    status: "RUNNING",
-    time: "11:00 AM - 01:00 PM",
-    viewers: "850",
-    favorite: false,
-  },
-  {
-    market: "SHREE NIGHT",
-    open: "900",
-    jodi: "27",
-    close: "***",
-    status: "RUNNING",
-    time: "09:30 PM - 11:55 PM",
-    viewers: "1.4k",
-    favorite: false,
-  },
-  {
-    market: "MUMBAI STAR",
-    open: "456",
-    jodi: "69",
-    close: "234",
-    status: "RUNNING",
-    time: "07:00 PM - 09:00 PM",
-    viewers: "2.3k",
-    favorite: true,
-  },
-  {
-    market: "STARLINE",
-    open: "120",
-    jodi: "30",
-    close: "450",
-    status: "RUNNING",
-    time: "10:00 AM - 10:30 AM",
-    viewers: "760",
-    favorite: false,
-  },
-  {
-    market: "ROYAL NIGHT",
-    open: "345",
-    jodi: "61",
-    close: "100",
-    status: "RUNNING",
-    time: "08:15 PM - 10:15 PM",
-    viewers: "1.1k",
-    favorite: false,
-  },
-  {
-    market: "KOHINOOR",
-    open: "888",
-    jodi: "44",
-    close: "555",
-    status: "CLOSED",
-    time: "12:00 PM - 08:25 PM",
-    viewers: "690",
-    favorite: false,
-  },
-  {
-    market: "JACKPOT DAY",
-    open: "160",
-    jodi: "26",
-    close: "777",
-    status: "RUNNING",
-    time: "01:30 PM - 03:30 PM",
-    viewers: "980",
-    favorite: false,
-  },
-  {
-    market: "JACKPOT NIGHT",
-    open: "777",
-    jodi: "48",
-    close: "***",
-    status: "RUNNING",
-    time: "08:30 PM - 10:30 PM",
-    viewers: "1.6k",
-    favorite: false,
-  },
-  {
-    market: "MAHALAXMI",
-    open: "540",
-    jodi: "70",
-    close: "340",
-    status: "RUNNING",
-    time: "05:00 PM - 07:00 PM",
-    viewers: "1.2k",
-    favorite: false,
-  },
-  {
-    market: "SUPER GOLD",
-    open: "230",
-    jodi: "58",
-    close: "612",
-    status: "RUNNING",
-    time: "04:00 PM - 06:00 PM",
-    viewers: "1.8k",
-    favorite: false,
-  },
-];
+import {
+  subscribeLiveMarkets
+} from "../services/marketService";
 function NextResult() {
-const convertToToday = (timeString) => {
+const [markets, setMarkets] =
+  useState([]);
 
-  const [time, period] =
-    timeString.split(" ");
-
-  let [hours, minutes] =
-    time.split(":").map(Number);
-
-  if (period === "PM" && hours !== 12)
-    hours += 12;
-
-  if (period === "AM" && hours === 12)
-    hours = 0;
-
-  const date = new Date();
-
-  date.setHours(hours);
-  date.setMinutes(minutes);
-  date.setSeconds(0);
-
-  return date;
-};
-  const convertToDate = (timeString) => {
-
-    const now = new Date();
-
-    const [time, period] = timeString.split(" ");
-
-    let [hours, minutes] =
-      time.split(":").map(Number);
-
-    if (period === "PM" && hours !== 12)
-      hours += 12;
-
-    if (period === "AM" && hours === 12)
-      hours = 0;
-
-    const date = new Date();
-
-    date.setHours(hours);
-    date.setMinutes(minutes);
-    date.setSeconds(0);
-
-    
-    return date;
-  };
-  const [flipSec, setFlipSec] =
+const [flipSec, setFlipSec] =
   useState(false);
 
 const [flipMin, setFlipMin] =
   useState(false);
 
-  const getCloseTime = (timeRange) =>
-    timeRange.split(" - ")[1];
+const [selectedMarket, setSelectedMarket] =
+  useState(null);
 
-  const getOpenTime = (timeRange) =>
-    timeRange.split(" - ")[0];
-  const getUpcomingTime = (market) => {
-
-  const now = new Date();
-
-  const openTime =
-    getOpenTime(market.time);
-
-  const closeTime =
-    getCloseTime(market.time);
-
-  const openDate =
-    convertToDate(openTime);
-
-  const closeDate =
-    convertToDate(closeTime);
-
-  if (now < openDate) {
-    return openTime;
-  }
-
-  if (
-    now >= openDate &&
-    now < closeDate
-  ) {
-    return closeTime;
-  }
-
-  return closeTime;
-};
-
- const upcomingMarkets = useMemo(() => {
-
-  const now = new Date();
-
-  return markets
-    .map((market) => ({
-      ...market,
-      resultDate: convertToDate(
-        getUpcomingTime(market)
-      ),
-    }))
-    .filter((market) => {
-      const keepUntil = new Date(
-        market.resultDate.getTime() +
-        15 * 60 * 1000
-      );
-
-      return keepUntil > now;
-    })
-    .sort(
-      (a, b) =>
-        a.resultDate - b.resultDate
-    );
-
-}, []);
-
-  const [selectedMarket, setSelectedMarket] =
-    useState(null);
-
- const [remaining, setRemaining] =
+const [remaining, setRemaining] =
   useState({
     mins: "0",
     secs: "00",
   });
-  const [resultLive, setResultLive] =
+
+const [resultLive, setResultLive] =
   useState(false);
-  const [resultGenerating, setResultGenerating] =
+
+const [resultGenerating,
+  setResultGenerating] =
   useState(false);
-const [rollingDigits, setRollingDigits] =
-  useState(["0", "0", "0"]);
 
-const [revealedDigits, setRevealedDigits] =
-  useState(["?", "?", "?"]);
-  useEffect(() => {
+const [rollingDigits,
+  setRollingDigits] =
+  useState([
+    "0",
+    "0",
+    "0",
+  ]);
 
-    if (
-      !selectedMarket &&
-      upcomingMarkets.length
-    ) {
-      setSelectedMarket(
-        upcomingMarkets[0]
-      );
-    }
+const [revealedDigits,
+  setRevealedDigits] =
+  useState([
+    "?",
+    "?",
+    "?",
+  ]);
 
-  }, [upcomingMarkets, selectedMarket]);
+/* HELPERS */
 
+const randomDigit =
+  () =>
+    String(
+      Math.floor(
+        Math.random() * 10
+      )
+    );
 
-useEffect(() => {
-
-  if (!selectedMarket) return;
-
-  const interval = setInterval(() => {
-
-    const diff =
-      selectedMarket.resultDate -
-      new Date();
-
-    if (diff <= 0) {
-
-      // Prevent generating again after result is already live
-      if (
-        !resultGenerating &&
-        !resultLive
-      ) {
-        setResultGenerating(true);
+const today =
+  new Date()
+    .toLocaleDateString(
+      "en-CA",
+      {
+        timeZone:
+          "Asia/Kolkata",
       }
-
-      clearInterval(interval);
-
-      return;
-    }
-
-    const totalMinutes =
-      Math.floor(
-        diff / 60000
-      );
-
-    const seconds =
-      Math.floor(
-        (diff % 60000) / 1000
-      );
-
-    /* SECOND FLIP */
-
-    setFlipSec(true);
-
-    setTimeout(() => {
-      setFlipSec(false);
-    }, 500);
-
-    /* MINUTE FLIP */
-
-    if (seconds === 59) {
-
-      setFlipMin(true);
-
-      setTimeout(() => {
-        setFlipMin(false);
-      }, 500);
-
-    }
-
-    setRemaining({
-      mins: String(totalMinutes),
-      secs: String(seconds).padStart(
-        2,
-        "0"
-      ),
-    });
-
-  }, 1000);
-
-  return () =>
-    clearInterval(interval);
-
-}, [
-  selectedMarket,
-  resultGenerating,
-  resultLive
-]);
-useEffect(() => {
-
-  if (resultLive) return;
-
-  const totalSeconds =
-    Number(remaining.mins) * 60 +
-    Number(remaining.secs);
-
-  if (totalSeconds > 30) return;
-
-  const interval = setInterval(() => {
-
-    setRollingDigits([
-      randomDigit(),
-      randomDigit(),
-      randomDigit(),
-    ]);
-
-  }, 100);
-
-  return () =>
-    clearInterval(interval);
-
-}, [
-  remaining,
-  resultLive,
-]);
-useEffect(() => {
-
-  if (!resultGenerating) return;
-
-  const result =
-    getUpcomingType(
-      selectedMarket
-    ) === "OPEN"
-      ? selectedMarket.open
-      : selectedMarket.close;
-
-  const rolling = setInterval(() => {
-
-    setRollingDigits([
-      randomDigit(),
-      randomDigit(),
-      randomDigit(),
-    ]);
-
-  }, 80);
-
-  const revealTimer = setTimeout(() => {
-
-    clearInterval(rolling);
-
-    setRevealedDigits([
-      result[0],
-      "?",
-      "?",
-    ]);
-
-    setTimeout(() => {
-
-      setRevealedDigits([
-        result[0],
-        result[1],
-        "?",
-      ]);
-
-    }, 1000);
-
-    setTimeout(() => {
-
-      setRevealedDigits([
-        result[0],
-        result[1],
-        result[2],
-      ]);
-
-    }, 2000);
-
-    setTimeout(() => {
-
-      setResultGenerating(false);
-
-      setResultLive(true);
-
-    }, 3000);
-
-  }, 3000); // 30 sec rolling
-
-  return () => {
-
-    clearInterval(rolling);
-
-    clearTimeout(revealTimer);
-
-  };
-
-}, [
-  resultGenerating,
-  selectedMarket,
-]);
-const getUpcomingType = (market) => {
-
-  const now = new Date();
-
-  const openDate =
-    convertToToday(
-      getOpenTime(market.time)
     );
 
-  const closeDate =
-    convertToToday(
-      getCloseTime(market.time)
+const convertToDate = (
+  timeString
+) => {
+
+  const [time, period] =
+    timeString.split(" ");
+
+  let [hours, minutes] =
+    time.split(":");
+
+  hours =
+    parseInt(hours);
+
+  minutes =
+    parseInt(minutes);
+
+  if (
+    period === "PM" &&
+    hours !== 12
+  ) {
+    hours += 12;
+  }
+
+  if (
+    period === "AM" &&
+    hours === 12
+  ) {
+    hours = 0;
+  }
+
+  const date =
+    new Date();
+
+  date.setHours(
+    hours,
+    minutes,
+    0,
+    0
+  );
+
+  return date;
+};
+
+/* RESULT TYPE */
+
+const getUpcomingType = (
+  market
+) => {
+
+  const now =
+    new Date();
+
+  const resultDate =
+    market?.latestResult
+      ?.resultDate;
+
+  const openTime =
+    convertToDate(
+      market.openTime
     );
 
-  if (now < openDate) {
+  const closeTime =
+    convertToDate(
+      market.closeTime
+    );
+
+  const isTodayResult =
+    resultDate ===
+    today;
+
+  if (
+    isTodayResult
+  ) {
+    return "TOMORROW";
+  }
+
+  if (
+    now < openTime
+  ) {
     return "OPEN";
   }
 
   if (
-    now >= openDate &&
-    now < closeDate
+    now < closeTime
   ) {
     return "CLOSE";
   }
 
-  return "DECLARED";
+  return "UPDATING";
 };
-const randomDigit = () =>
-  String(
-    Math.floor(
-      Math.random() * 10
-    )
-  );
-  if (!selectedMarket) return null;
 
+/* UPCOMING MARKETS */
+
+const upcomingMarkets =
+  useMemo(() => {
+
+    return markets
+
+      .map(
+        (market) => {
+
+          const type =
+            getUpcomingType(
+              market
+            );
+
+          let resultDate;
+
+          if (
+            type === "OPEN"
+          ) {
+
+            resultDate =
+              convertToDate(
+                market.openTime
+              );
+
+          } else if (
+            type ===
+            "CLOSE"
+          ) {
+
+            resultDate =
+              convertToDate(
+                market.closeTime
+              );
+
+          } else {
+
+            resultDate =
+              convertToDate(
+                market.openTime
+              );
+
+            resultDate.setDate(
+              resultDate.getDate() +
+                1
+            );
+
+          }
+
+          return {
+            ...market,
+            resultDate,
+          };
+
+        }
+      )
+
+      .sort(
+        (a, b) =>
+          a.resultDate -
+          b.resultDate
+      )
+
+      .slice(0, 5);
+
+  }, [markets]);
+
+/* AUTO SELECT */
+
+useEffect(() => {
+
+  if (
+    !upcomingMarkets.length
+  ) {
+    return;
+  }
+
+  const exists =
+    upcomingMarkets.find(
+      (market) =>
+        market.id ===
+        selectedMarket?.id
+    );
+
+  if (!exists) {
+
+    setResultLive(false);
+
+    setResultGenerating(
+      false
+    );
+
+    setRevealedDigits([
+      "?",
+      "?",
+      "?",
+    ]);
+
+    setSelectedMarket(
+      upcomingMarkets[0]
+    );
+
+  }
+
+}, [
+  selectedMarket,
+  upcomingMarkets,
+]);
+
+/* FIREBASE */
+
+useEffect(() => {
+
+  const unsubscribe =
+    subscribeLiveMarkets(
+      (data) => {
+
+        setMarkets(data);
+
+      }
+    );
+
+  return () =>
+    unsubscribe();
+
+}, []);
+
+/* COUNTDOWN */
+
+useEffect(() => {
+
+  if (
+    !selectedMarket
+  ) return;
+
+  const interval =
+    setInterval(() => {
+
+      const diff =
+        selectedMarket.resultDate -
+        new Date();
+
+      if (
+        diff <= 0
+      ) {
+
+        setRemaining({
+          mins: "0",
+          secs: "00",
+        });
+
+        setResultGenerating(
+          true
+        );
+
+        clearInterval(
+          interval
+        );
+
+        return;
+
+      }
+
+      const totalMinutes =
+        Math.floor(
+          diff / 60000
+        );
+
+      const seconds =
+        Math.floor(
+          (diff % 60000) /
+            1000
+        );
+
+      setFlipSec(true);
+
+      setTimeout(
+        () =>
+          setFlipSec(
+            false
+          ),
+        500
+      );
+
+      if (
+        seconds === 59
+      ) {
+
+        setFlipMin(true);
+
+        setTimeout(
+          () =>
+            setFlipMin(
+              false
+            ),
+          500
+        );
+
+      }
+
+      setRemaining({
+
+        mins:
+          String(
+            totalMinutes
+          ),
+
+        secs:
+          String(
+            seconds
+          ).padStart(
+            2,
+            "0"
+          ),
+
+      });
+
+    }, 1000);
+
+  return () =>
+    clearInterval(
+      interval
+    );
+
+}, [selectedMarket]);
+
+/* ROLLING DIGITS */
+
+useEffect(() => {
+
+  if (
+    !resultGenerating
+  ) {
+    return;
+  }
+
+  const rolling =
+    setInterval(() => {
+
+      setRollingDigits([
+        randomDigit(),
+        randomDigit(),
+        randomDigit(),
+      ]);
+
+    }, 80);
+
+  return () =>
+    clearInterval(
+      rolling
+    );
+
+}, [resultGenerating]);
+
+/* FIREBASE RESULT DETECTION */
+/* FIREBASE RESULT DETECTION */
+
+useEffect(() => {
+
+  if (
+    !selectedMarket ||
+    !resultGenerating
+  ) {
+    return;
+  }
+
+  const resultDate =
+    selectedMarket
+      ?.latestResult
+      ?.resultDate;
+
+  if (
+    resultDate !== today
+  ) {
+    return;
+  }
+
+  const openPanna =
+    selectedMarket
+      ?.latestResult
+      ?.openPanna;
+
+  const closePanna =
+    selectedMarket
+      ?.latestResult
+      ?.closePanna;
+
+  let result =
+    "000";
+
+  const marketType =
+    getUpcomingType(
+      selectedMarket
+    );
+
+  if (
+    marketType ===
+    "OPEN"
+  ) {
+
+    result =
+      openPanna ||
+      "000";
+
+  } else if (
+    marketType ===
+    "CLOSE"
+  ) {
+
+    result =
+      closePanna ||
+      "000";
+
+  } else {
+
+    result =
+      closePanna ||
+      openPanna ||
+      "000";
+
+  }
+
+  revealResult(
+    result
+  );
+
+}, [
+  selectedMarket,
+  resultGenerating,
+]);
+const revealResult = (
+  result
+) => {
+
+  setRevealedDigits([
+    result[0] || "?",
+    "?",
+    "?",
+  ]);
+
+  setTimeout(() => {
+
+    setRevealedDigits([
+      result[0] || "?",
+      result[1] || "?",
+      "?",
+    ]);
+
+  }, 500);
+
+  setTimeout(() => {
+
+    setRevealedDigits([
+      result[0] || "?",
+      result[1] || "?",
+      result[2] || "?",
+    ]);
+
+  }, 1000);
+
+  setTimeout(() => {
+
+    setResultGenerating(
+      false
+    );
+
+    setResultLive(
+      true
+    );
+
+  }, 1500);
+
+};
+ const isTodayResult =
+  selectedMarket?.latestResult
+    ?.resultDate === today;
+if (!selectedMarket)
+  return null;
  return (
   <>
     <section className="next-result">
@@ -666,267 +546,285 @@ const randomDigit = () =>
       </div>
 
       <h2>
-        {selectedMarket.market}
+        {selectedMarket.name}
       </h2>
-  
-<div className="market-event">
 
-  {selectedMarket.close === "***"
-    ? `Close • ${getCloseTime(
-        selectedMarket.time
-      )}`
-    : `Open • ${getOpenTime(
-        selectedMarket.time
-      )}`}
+      <div className="market-event">
 
-</div>
-
-      <div className="result-preview">
-
-        <span>
-          {selectedMarket.open}
-        </span>
-
-        <span className="result-jodi">
-          {selectedMarket.jodi}
-        </span>
-
-        <span>
-          {selectedMarket.close}
-        </span>
+        {getUpcomingType(
+          selectedMarket
+        ) === "OPEN"
+          ? `🟢 Open • ${selectedMarket.openTime}`
+          : getUpcomingType(
+              selectedMarket
+            ) === "CLOSE"
+          ? `🔴 Close • ${selectedMarket.closeTime}`
+          : getUpcomingType(
+              selectedMarket
+            ) === "UPDATING"
+          ? "⚡ Result Updating"
+          : `🌅 Tomorrow • ${selectedMarket.openTime}`}
 
       </div>
 
-  <div className="market-status">
+     
+    <div className="result-preview">
 
-  {getUpcomingType(
-    selectedMarket
-  ) === "OPEN" && (
+  <span>
+    {isTodayResult
+      ? selectedMarket?.latestResult?.openPanna
+      : "***"}
+  </span>
 
-    <>
-      🟢 OPEN RESULT IN {" "}
-      {remaining.mins}:
-      {remaining.secs}
-    </>
+  <span className="result-jodi">
+    {isTodayResult
+      ? selectedMarket?.latestResult?.jodi
+      : "**"}
+  </span>
 
-  )}
-
-  {getUpcomingType(
-    selectedMarket
-  ) === "CLOSE" && (
-
-    <>
-      🔴 CLOSE RESULT IN {" "}
-      {remaining.mins}:
-      {remaining.secs}
-    </>
-
-  )}
-
-  {getUpcomingType(
-    selectedMarket
-  ) === "DECLARED" && (
-
-    <>
-      ✅ RESULT DECLARED
-    </>
-
-  )}
+  <span>
+    {isTodayResult
+      ? selectedMarket?.latestResult?.closePanna
+      : "***"}
+  </span>
 
 </div>
+
+      <div className="market-status">
+
+        {getUpcomingType(
+          selectedMarket
+        ) === "OPEN" && (
+          <>
+            🟢 OPEN RESULT IN{" "}
+            {remaining.mins}:
+            {remaining.secs}
+          </>
+        )}
+
+        {getUpcomingType(
+          selectedMarket
+        ) === "CLOSE" && (
+          <>
+            🔴 CLOSE RESULT IN{" "}
+            {remaining.mins}:
+            {remaining.secs}
+          </>
+        )}
+
+        {getUpcomingType(
+          selectedMarket
+        ) === "UPDATING" && (
+          <>
+            ⚡ RESULT UPDATING...
+          </>
+        )}
+
+        {getUpcomingType(
+          selectedMarket
+        ) === "TOMORROW" && (
+          <>
+            🌅 TOMORROW RESULT
+          </>
+        )}
+
+      </div>
 
       <div className="market-time-row">
 
         <div className="time-pill">
-          🟢 {getOpenTime(
-            selectedMarket.time
-          )}
+          🟢 {selectedMarket.openTime}
         </div>
 
         <div className="time-pill">
-          🔴 {getCloseTime(
-            selectedMarket.time
-          )}
+          🔴 {selectedMarket.closeTime}
         </div>
 
       </div>
 
-{resultGenerating ? (
+      {resultGenerating ? (
 
-  <div className="result-generator">
+        <div className="result-generator">
 
-    <div className="generator-title">
-
-      {getUpcomingType(
-        selectedMarket
-      ) === "OPEN"
-        ? "🟢 OPEN RESULT GENERATING"
-        : "🔴 CLOSE RESULT GENERATING"}
-
-    </div>
-
-    <div className="rolling-digits">
-
-      {rollingDigits.map(
-        (digit, index) => (
-
-          <div
-            key={index}
-            className="rolling-box"
-          >
-            {digit}
+          <div className="generator-title">
+            ⚡ RESULT UPDATING
           </div>
 
-      ))}
-
-    </div>
-
-  </div>
-
-) : resultLive ? (
-
-  <div className="result-live-box">
-
-    <div className="result-live-title">
-
-      🎯 RESULT DECLARED
-
-    </div>
-
-    <div className="declared-result">
-
-      {revealedDigits.map(
-        (digit, index) => (
-
-          <div
-            key={index}
-            className="declared-box"
-          >
-            {digit}
+          <div className="generator-subtitle">
+            Waiting for official result...
           </div>
 
-      ))}
+          <div className="rolling-digits">
 
-    </div>
+            {rollingDigits.map(
+              (
+                digit,
+                index
+              ) => (
 
-  </div>
+                <div
+                  key={index}
+                  className="rolling-box"
+                >
+                  {digit}
+                </div>
 
-) : (
+              )
+            )}
 
-  <div className="flip-timer">
+          </div>
 
-    {/* MINUTES */}
-
-    <div className="flip-unit">
-
-      <div className="flip-clock">
-
-        <div
-          className={
-            flipMin
-              ? "flip-number flip-animate"
-              : "flip-number"
-          }
-        >
-          {remaining.mins}
         </div>
 
-      </div>
+      ) : resultLive ? (
 
-      <span>
-        MINS
-      </span>
+        <div className="result-live-box">
 
-    </div>
+          <div className="result-live-title">
+            🎯 RESULT DECLARED
+          </div>
 
-    {/* SECONDS */}
+          <div className="declared-result">
 
-    <div className="flip-unit">
+            {revealedDigits.map(
+              (
+                digit,
+                index
+              ) => (
 
-      <div className="flip-clock">
+                <div
+                  key={index}
+                  className="declared-box"
+                >
+                  {digit}
+                </div>
 
-        <div
-          className={
-            flipSec
-              ? "flip-number flip-animate"
-              : "flip-number"
-          }
-        >
-          {remaining.secs}
+              )
+            )}
+
+          </div>
+
         </div>
 
-      </div>
+      ) : (
 
-      <span>
-        SECS
-      </span>
+        <div className="flip-timer">
 
-    </div>
+          <div className="flip-unit">
 
-  </div>
+            <div className="flip-clock">
 
-)}
+              <div
+                className={
+                  flipMin
+                    ? "flip-number flip-animate"
+                    : "flip-number"
+                }
+              >
+                {remaining.mins}
+              </div>
 
-      
+            </div>
+
+            <span>
+              MINS
+            </span>
+
+          </div>
+
+          <div className="flip-unit">
+
+            <div className="flip-clock">
+
+              <div
+                className={
+                  flipSec
+                    ? "flip-number flip-animate"
+                    : "flip-number"
+                }
+              >
+                {remaining.secs}
+              </div>
+
+            </div>
+
+            <span>
+              SECS
+            </span>
+
+          </div>
+
+        </div>
+
+      )}
 
     </section>
-
-    {/* MARKET SWITCHER BELOW CARD */}
 
     <div className="market-switcher">
 
       {upcomingMarkets
         .filter(
           (market) =>
-            market.market !==
-            selectedMarket.market
+            market.id !==
+            selectedMarket.id
         )
         .slice(0, 4)
         .map((market) => (
 
           <button
-           key={`${market.market}-${market.time}`}
+            key={market.id}
             className="mini-market-card"
-        onClick={() => {
+            onClick={() => {
 
-  setResultLive(false);
+              setResultLive(
+                false
+              );
 
-  setResultGenerating(false);
+              setResultGenerating(
+                false
+              );
 
-  setRevealedDigits([
-    "?",
-    "?",
-    "?",
-  ]);
+              setRevealedDigits([
+                "?",
+                "?",
+                "?",
+              ]);
 
-  setSelectedMarket(
-    market
-  );
+              setSelectedMarket(
+                market
+              );
 
-}}
+            }}
           >
 
             <strong>
-              {market.market}
+              {market.name}
             </strong>
 
             <span>
 
-  {market.close === "***"
-    ? `Close • ${getCloseTime(
-        market.time
-      )}`
-    : `Open • ${getOpenTime(
-        market.time
-      )}`}
+              {getUpcomingType(
+                market
+              ) === "OPEN"
+                ? `🟢 Open • ${market.openTime}`
+                : getUpcomingType(
+                    market
+                  ) === "CLOSE"
+                ? `🔴 Close • ${market.closeTime}`
+                : getUpcomingType(
+                    market
+                  ) === "UPDATING"
+                ? "⚡ Updating"
+                : `🌅 Tomorrow • ${market.openTime}`}
 
-</span>
+            </span>
 
           </button>
 
-      ))}
+        ))}
 
     </div>
+
   </>
 );
 }

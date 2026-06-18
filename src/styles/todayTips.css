@@ -1,0 +1,306 @@
+/* =========================
+TODAY TIPS SECTION
+========================= */
+
+.today-tips{
+
+  padding:24px 16px;
+
+  background:#fff;
+}
+
+/* =========================
+HEADER
+========================= */
+
+.tips-header{
+
+  text-align:center;
+
+  margin-bottom:18px;
+}
+
+.tips-header h2{
+
+  margin:0;
+
+  color:#111827;
+
+  font-size:24px;
+  font-weight:800;
+}
+
+.tips-header p{
+
+  margin-top:6px;
+
+  color:#6b7280;
+
+  font-size:14px;
+}
+
+/* =========================
+GRID
+========================= */
+
+.tips-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:14px;
+}
+
+/* =========================
+CARD
+========================= */
+
+.tip-card{
+
+  position:relative;
+
+  background:#fff;
+
+  border-radius:20px;
+
+  padding:18px;
+
+  border:1px solid #f0f0f0;
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,.06);
+
+  overflow:hidden;
+
+  transition:.3s ease;
+}
+
+.tip-card:hover{
+
+  transform:
+    translateY(-4px);
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.1);
+}
+
+.tip-card::before{
+
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:0;
+  right:0;
+
+  height:4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff1744,
+      #ff9800
+    );
+}
+
+/* =========================
+GOLDEN CARD
+========================= */
+
+.tip-card.golden{
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff8e1,
+      #fff3cd
+    );
+
+  border:
+    1px solid #ffd54f;
+}
+
+.golden-number{
+
+  margin-top:12px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width:90px;
+  height:90px;
+
+  margin-left:auto;
+  margin-right:auto;
+
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffcc00,
+      #ff9800
+    );
+
+  color:#fff;
+
+  font-size:42px;
+  font-weight:900;
+
+  box-shadow:
+    0 12px 30px rgba(255,152,0,.35);
+}
+
+/* =========================
+LABEL
+========================= */
+
+.tip-label{
+
+  display:block;
+
+  color:#6b7280;
+
+  font-size:12px;
+
+  font-weight:800;
+
+  letter-spacing:1px;
+}
+
+/* =========================
+LIST
+========================= */
+
+.tip-list{
+
+  margin-top:16px;
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+}
+
+.tip-pill{
+
+  min-width:46px;
+  height:42px;
+
+  padding:0 12px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff1744,
+      #d50000
+    );
+
+  color:#fff;
+
+  font-size:18px;
+  font-weight:800;
+
+  box-shadow:
+    0 6px 18px rgba(213,0,0,.2);
+}
+
+/* =========================
+TABLET
+========================= */
+
+@media (max-width:992px){
+
+  .tips-grid{
+
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media (max-width:768px){
+
+  .today-tips{
+
+    padding:20px 12px;
+  }
+
+  .tips-header h2{
+
+    font-size:20px;
+  }
+
+  .tips-grid{
+
+    grid-template-columns:1fr;
+  }
+
+  .tip-card{
+
+    padding:16px;
+  }
+
+  .golden-number{
+
+    width:80px;
+    height:80px;
+
+    font-size:36px;
+  }
+
+  .tip-pill{
+
+    min-width:42px;
+    height:38px;
+
+    font-size:16px;
+  }
+}
+
+/* =========================
+SMALL MOBILE
+========================= */
+
+@media (max-width:480px){
+
+  .tips-header h2{
+
+    font-size:18px;
+  }
+
+  .tips-header p{
+
+    font-size:12px;
+  }
+
+  .golden-number{
+
+    width:70px;
+    height:70px;
+
+    font-size:30px;
+  }
+
+  .tip-pill{
+
+    min-width:38px;
+    height:34px;
+
+    font-size:14px;
+  }
+}

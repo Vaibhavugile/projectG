@@ -1,4 +1,9 @@
 .recent-winning-bar{
+  position: sticky;
+  top: 112px; /* below announcement bar */
+
+  z-index: 9998;
+
   display:flex;
   align-items:center;
 

@@ -1,0 +1,237 @@
+/* =========================
+BREAKING NEWS BAR
+========================= */
+
+.breaking-news{
+
+  position:fixed;
+
+  left:0;
+  right:0;
+  bottom:0;
+
+  z-index:99999;
+
+  display:flex;
+  align-items:center;
+
+  height:48px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #8b0000,
+      #d50000,
+      #ff1744
+    );
+
+  border-top:2px solid #ffd54f;
+
+  box-shadow:
+    0 -8px 25px rgba(213,0,0,.35);
+
+  overflow:hidden;
+}
+
+/* =========================
+BREAKING LABEL
+========================= */
+
+.breaking-label{
+
+  position:relative;
+
+  min-width:140px;
+
+  height:100%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffd54f,
+      #ffb300
+    );
+
+  color:#7a0000;
+
+  font-size:12px;
+  font-weight:900;
+
+  text-transform:uppercase;
+
+  letter-spacing:.8px;
+
+  animation:
+    breakingBlink 1.2s infinite;
+}
+
+.breaking-label::after{
+
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:-100%;
+
+  width:100%;
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.4),
+      transparent
+    );
+
+  animation:
+    shine 2s infinite;
+}
+
+/* =========================
+NEWS CONTENT
+========================= */
+
+.breaking-content{
+
+  flex:1;
+
+  overflow:hidden;
+
+  white-space:nowrap;
+
+  padding:0 12px;
+}
+
+.breaking-track{
+
+  display:inline-block;
+
+  padding-left:100%;
+
+  color:#fff;
+
+  font-size:13px;
+  font-weight:700;
+
+  letter-spacing:.2px;
+
+  text-shadow:
+    0 1px 3px rgba(0,0,0,.25);
+
+  animation:
+    breakingMove 24s linear infinite;
+}
+
+.breaking-track:hover{
+  animation-play-state:paused;
+}
+
+/* =========================
+ANIMATIONS
+========================= */
+
+@keyframes breakingMove{
+
+  0%{
+    transform:translateX(0);
+  }
+
+  100%{
+    transform:translateX(-100%);
+  }
+
+}
+
+@keyframes breakingBlink{
+
+  0%{
+    opacity:1;
+  }
+
+  50%{
+    opacity:.75;
+  }
+
+  100%{
+    opacity:1;
+  }
+
+}
+
+@keyframes shine{
+
+  0%{
+    left:-100%;
+  }
+
+  100%{
+    left:200%;
+  }
+
+}
+
+/* =========================
+TABLET
+========================= */
+
+@media (max-width:768px){
+
+  .breaking-news{
+    height:44px;
+  }
+
+  .breaking-label{
+
+    min-width:105px;
+
+    font-size:10px;
+
+    letter-spacing:.4px;
+  }
+
+  .breaking-track{
+
+    font-size:11px;
+
+    animation:
+      breakingMove 20s linear infinite;
+  }
+
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media (max-width:480px){
+
+  .breaking-news{
+
+    height:42px;
+
+    padding-bottom:
+      env(safe-area-inset-bottom);
+  }
+
+  .breaking-label{
+
+    min-width:90px;
+
+    font-size:9px;
+  }
+
+  .breaking-track{
+
+    font-size:10px;
+  }
+
+}
+body{
+  padding-bottom:48px;
+}
