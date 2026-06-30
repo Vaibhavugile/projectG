@@ -59,7 +59,28 @@ export function PanelChartProvider({
 
   const currentWeek =
     weeks[currentIndex] || null;
+const allDays = useMemo(() => {
 
+  return weeks
+
+    .flatMap((week) => week.days || [])
+
+    .sort(
+
+      (a, b) =>
+
+        new Date(b.date) -
+
+        new Date(a.date)
+
+    );
+
+}, [weeks]);
+const getRecentDays = (limit = 10) => {
+
+  return allDays.slice(0, limit);
+
+};
   const hasPrevious =
     currentIndex < weeks.length - 1;
 
@@ -87,6 +108,8 @@ export function PanelChartProvider({
     loading,
 
     weeks,
+  allDays,
+  getRecentDays,
 
     currentWeek,
 
@@ -107,6 +130,8 @@ export function PanelChartProvider({
     weeks,
 
     currentWeek,
+      allDays,
+getRecentDays,
 
     currentIndex,
 

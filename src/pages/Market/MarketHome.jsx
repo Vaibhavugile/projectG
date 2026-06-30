@@ -5,6 +5,10 @@ import { useMarkets } from "../../context/MarketContext";
 import MarketHero from "../../components/market/MarketHero";
 import MarketStats from "../../components/market/MarketStats";
 import ChartPreview from "../../components/market/ChartPreview";
+import MarketResultHistoryPreview from "../../components/market/MarketResultHistoryPreview";
+import MarketFAQ from "../../components/market/MarketFAQ";
+import MarketRelatedMarkets from "../../components/market/MarketRelatedMarkets";
+import MarketSEO from "./MarketSEO";
 function MarketHome() {
 
   const { slug } = useParams();
@@ -46,6 +50,15 @@ function MarketHome() {
     market={market}
     variant="jodi"
 />
+<MarketResultHistoryPreview
+  market={market}
+/>
+<MarketFAQ
+market={market} />
+<MarketRelatedMarkets
+market={market} />
+<MarketSEO 
+market={market} />
 
     </>
 
