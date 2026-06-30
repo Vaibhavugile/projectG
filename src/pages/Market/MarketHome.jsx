@@ -4,8 +4,7 @@ import { useMarkets } from "../../context/MarketContext";
 
 import MarketHero from "../../components/market/MarketHero";
 import MarketStats from "../../components/market/MarketStats";
-import PanelChartPreview from "../../components/market/PanelChartPreview";
-
+import ChartPreview from "../../components/market/ChartPreview";
 function MarketHome() {
 
   const { slug } = useParams();
@@ -38,8 +37,14 @@ function MarketHome() {
       <MarketStats
         market={market}
       />
-      <PanelChartPreview
+   <ChartPreview
     market={market}
+    variant="panel"
+/>
+
+<ChartPreview
+    market={market}
+    variant="jodi"
 />
 
     </>

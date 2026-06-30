@@ -8,7 +8,10 @@ import {
 
 import "./panelChartPreview.css";
 
-function PanelChartPreviewContent({ market }) {
+function ChartPreviewContent({
+  market,
+  variant = "panel",
+}) {
 
   const {
 
@@ -82,6 +85,93 @@ function PanelChartPreviewContent({ market }) {
         .toDate()
         .toLocaleString("en-IN")
     : "--";
+    const config = {
+
+  panel: {
+
+    tag: "📊 PANEL CHART",
+
+    title: `${market.name} Panel Chart`,
+  layout: "panel",
+    description:
+      "Browse weekly panel charts, previous weeks, historical panna, jodi and close panna results.",
+
+    button: "View Full Chart →",
+
+    buttonUrl: `/market/${market.slug}/panel-chart`,
+
+    historyUrl: `/market/${market.slug}/old-results`,
+
+    quickLinks: [
+
+      {
+        title: "🎯 Jodi Chart",
+        url: `/market/${market.slug}/jodi-chart`,
+      },
+
+      {
+        title: "📅 Weekly Chart",
+        url: `/market/${market.slug}/weekly-chart`,
+      },
+
+      {
+        title: "🗓 Monthly Chart",
+        url: `/market/${market.slug}/monthly-chart`,
+      },
+
+      {
+        title: "🏆 Today's Result",
+        url: `/market/${market.slug}/result`,
+      },
+
+    ],
+
+  },
+
+  jodi: {
+
+    tag: "🎯 JODI CHART",
+
+    title: `${market.name} Jodi Chart`,
+  layout: "jodi",
+    description:
+      "Browse weekly jodi charts and historical jodi numbers.",
+
+    button: "View Full Chart →",
+
+    buttonUrl: `/market/${market.slug}/jodi-chart`,
+
+    historyUrl: `/market/${market.slug}/old-results`,
+
+    quickLinks: [
+
+      {
+        title: "📊 Panel Chart",
+        url: `/market/${market.slug}/panel-chart`,
+      },
+
+      {
+        title: "📅 Weekly Chart",
+        url: `/market/${market.slug}/weekly-chart`,
+      },
+
+      {
+        title: "🗓 Monthly Chart",
+        url: `/market/${market.slug}/monthly-chart`,
+      },
+
+      {
+        title: "🏆 Today's Result",
+        url: `/market/${market.slug}/result`,
+      },
+
+    ],
+
+  },
+
+};
+
+const page = config[variant] || config.panel;
 
   return (
 
@@ -95,34 +185,30 @@ function PanelChartPreviewContent({ market }) {
 
           <span className="panel-tag">
 
-            📊 PANEL CHART
+             {page.tag}
 
           </span>
 
           <h2>
 
-            {market.name} Panel Chart
+            {page.title}
 
           </h2>
 
           <p>
 
-            Browse weekly panel charts,
-            previous weeks,
-            historical panna,
-            jodi,
-            and close panna results.
+           {page.description}
 
           </p>
 
         </div>
 
         <Link
-          to={`/market/${market.slug}/panel-chart`}
+          to={page.buttonUrl}
           className="panel-btn"
         >
 
-          View Full Chart →
+          {page.button}
 
         </Link>
 
@@ -194,45 +280,64 @@ function PanelChartPreviewContent({ market }) {
 
         <div className="panel-grid">
 
-          {preview.map((item) => (
+  {preview.map((item) => (
 
-            <div
+    <div
+      key={item.date}
+     className={`panel-column ${page.layout}`}
+    >
 
-              key={item.date}
+      <div className="panel-day">
 
-              className="panel-column"
+        {item.day}
 
-            >
+      </div>
 
-              <div className="panel-day">
+      {/* PANEL */}
 
-                {item.day}
+      {page.layout === "panel" && (
 
-              </div>
+        <>
 
-              <div className="panel-open">
+          <div className="panel-open">
 
-                {item.open}
+            {item.open}
 
-              </div>
+          </div>
 
-              <div className="panel-jodi">
+          <div className="panel-jodi">
 
-                {item.jodi}
+            {item.jodi}
 
-              </div>
+          </div>
 
-              <div className="panel-close">
+          <div className="panel-close">
 
-                {item.close}
+            {item.close}
 
-              </div>
+          </div>
 
-            </div>
+        </>
 
-          ))}
+      )}
+
+      {/* JODI */}
+
+      {page.layout === "jodi" && (
+
+        <div className="panel-jodi panel-jodi-large">
+
+          {item.jodi}
 
         </div>
+
+      )}
+
+    </div>
+
+  ))}
+
+</div>
                 {/* Footer */}
 
         <div className="panel-footer">
@@ -246,7 +351,7 @@ function PanelChartPreviewContent({ market }) {
           <div className="panel-footer-links">
 
             <Link
-              to={`/market/${market.slug}/old-results`}
+              to={page.historyUrl}
             >
               View History →
             </Link>
@@ -261,31 +366,20 @@ function PanelChartPreviewContent({ market }) {
 
       <div className="panel-related-links">
 
-        <Link
-          to={`/market/${market.slug}/jodi-chart`}
-        >
-          🎯 Jodi Chart
-        </Link>
+  {page.quickLinks.map((item) => (
 
-        <Link
-          to={`/market/${market.slug}/weekly-chart`}
-        >
-          📅 Weekly Chart
-        </Link>
+    <Link
+      key={item.title}
+      to={item.url}
+    >
 
-        <Link
-          to={`/market/${market.slug}/monthly-chart`}
-        >
-          🗓 Monthly Chart
-        </Link>
+      {item.title}
 
-        <Link
-          to={`/market/${market.slug}/result`}
-        >
-          🏆 Today's Result
-        </Link>
+    </Link>
 
-      </div>
+  ))}
+
+</div>
 
     </section>
 
@@ -297,7 +391,10 @@ function PanelChartPreviewContent({ market }) {
    WRAPPER
 ========================================== */
 
-function PanelChartPreview({ market }) {
+function ChartPreview({
+  market,
+  variant = "panel",
+}) {
 
   if (!market) return null;
 
@@ -307,9 +404,10 @@ function PanelChartPreview({ market }) {
       marketSlug={market.slug}
     >
 
-      <PanelChartPreviewContent
-        market={market}
-      />
+      <ChartPreviewContent
+    market={market}
+    variant={variant}
+/>
 
     </PanelChartProvider>
 
@@ -317,4 +415,4 @@ function PanelChartPreview({ market }) {
 
 }
 
-export default PanelChartPreview;
+export default ChartPreview;

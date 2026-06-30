@@ -692,6 +692,48 @@ box-shadow:
 rgba(106,27,154,.22);
 
 }
+/* ==========================================
+   JODI PREVIEW
+========================================== */
+
+.panel-column.jodi{
+
+    justify-content:center;
+
+}
+
+.panel-jodi-large{
+
+    width:74px;
+
+    height:74px;
+
+    margin:25px auto;
+
+    border-radius:22px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:1.7rem;
+
+    font-weight:800;
+
+    background:linear-gradient(
+        135deg,
+        #FF9800,
+        #FF5722
+    );
+
+    color:#fff;
+
+    box-shadow:
+        0 15px 35px rgba(255,87,34,.35);
+
+}
 /* =====================================================
    TABLET
 ===================================================== */
@@ -1027,6 +1069,7 @@ font-size:.8rem;
 }
 
 }
+
 
 /* =====================================================
    VERY SMALL MOBILE
