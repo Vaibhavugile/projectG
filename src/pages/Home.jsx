@@ -35,25 +35,15 @@ import BreakingNews
 from "../components/BreakingNews";
 import TodayTips
 from "../components/TodayTips";
-import { useEffect, useMemo, useState } from "react";
-import { subscribeLiveMarkets } from "../services/marketService";
+import { useMarkets } from "../context/MarketContext";
 
 function Home() {
-const [markets, setMarkets] = useState([]);
-const [loadingMarkets, setLoadingMarkets] = useState(true);
-
-useEffect(() => {
-  const unsubscribe = subscribeLiveMarkets((data) => {
-    setMarkets(data);
-    setLoadingMarkets(false);
-  });
-
-  return () => unsubscribe();
-}, []);
-
-const featuredMarkets = useMemo(() => {
-  return markets.filter((market) => market.isFeatured);
-}, [markets]);
+const {
+  loading,
+  markets,
+  featuredMarkets,
+  recentMarkets,
+} = useMarkets();
 
 
   return (
@@ -113,15 +103,13 @@ const featuredMarkets = useMemo(() => {
     <ResultPopup />
       <BreakingNews />
       <TodayTips />
-      <TodaysResultCard
+    <TodaysResultCard
   markets={featuredMarkets}
 />
 <RecentlyViewed
-  markets={markets}
+  markets={recentMarkets}
 />
-      <NextResult
-    markets={markets}
-/>
+<NextResult markets={markets} />
 
 
 

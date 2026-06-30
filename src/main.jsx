@@ -4,6 +4,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
+import { MarketProvider } from "./context/MarketContext";
 
 import "./styles/global.css";
 
@@ -16,7 +17,11 @@ ReactDOM.createRoot(
 
       <HelmetProvider>
 
-        <App />
+        <MarketProvider>
+
+          <App />
+
+        </MarketProvider>
 
       </HelmetProvider>
 
