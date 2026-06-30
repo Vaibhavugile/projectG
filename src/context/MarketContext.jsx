@@ -1,105 +1,138 @@
 import {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+  collection,
+  query,
+  where,
+  orderBy,
+  onSnapshot,
+} from "firebase/firestore";
 
-import {
-  subscribeLiveMarkets,
-} from "../services/marketService";
+import { db } from "../firebase/firebase";
 
-const MarketContext =
-  createContext(null);
+/* -----------------------------
+   Memory Cache
+------------------------------ */
 
-export function MarketProvider({
-  children,
-}) {
+let marketsCache = [];
+let featuredCache = [];
 
-  const [markets, setMarkets] =
-    useState([]);
+let liveSubscribers = [];
+let featuredSubscribers = [];
 
-  const [loading, setLoading] =
-    useState(true);
+let liveUnsubscribe = null;
+let featuredUnsubscribe = null;
 
-  useEffect(() => {
+/* -----------------------------
+   LIVE MARKETS
+------------------------------ */
 
-    const unsubscribe =
-      subscribeLiveMarkets(
-        (data) => {
+export function subscribeLiveMarkets(callback) {
 
-          setMarkets(data);
+  // Return cached data instantly
+  if (marketsCache.length) {
+    callback(marketsCache);
+  }
 
-          setLoading(false);
+  liveSubscribers.push(callback);
 
-        }
-      );
+  if (!liveUnsubscribe) {
 
-    return () =>
-      unsubscribe();
-
-  }, []);
-
-  const featuredMarkets =
-    useMemo(() => {
-
-      return markets.filter(
-        (market) =>
-          market.isFeatured
-      );
-
-    }, [markets]);
-
-  const recentMarkets =
-    useMemo(() => {
-
-      return [...markets]
-
-        .sort(
-          (a, b) =>
-            (a.displayOrder || 999) -
-            (b.displayOrder || 999)
-        )
-
-        .slice(0, 8);
-
-    }, [markets]);
-
-  const value =
-    useMemo(
-      () => ({
-        loading,
-        markets,
-        featuredMarkets,
-        recentMarkets,
-      }),
-      [
-        loading,
-        markets,
-        featuredMarkets,
-        recentMarkets,
-      ]
+    const q = query(
+      collection(db, "markets"),
+      orderBy("displayOrder")
     );
 
-  return (
+    liveUnsubscribe = onSnapshot(q, (snapshot) => {
 
-    <MarketContext.Provider
-      value={value}
-    >
+      marketsCache = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
 
-      {children}
+      liveSubscribers.forEach(cb =>
+        cb(marketsCache)
+      );
 
-    </MarketContext.Provider>
+    });
 
-  );
+  }
+
+  return () => {
+
+    liveSubscribers =
+      liveSubscribers.filter(
+        cb => cb !== callback
+      );
+
+    if (
+      !liveSubscribers.length &&
+      liveUnsubscribe
+    ) {
+
+      liveUnsubscribe();
+
+      liveUnsubscribe = null;
+
+    }
+
+  };
 
 }
 
-export function useMarkets() {
+/* -----------------------------
+   FEATURED MARKETS
+------------------------------ */
 
-  return useContext(
-    MarketContext
-  );
+export function subscribeFeaturedMarkets(callback) {
+
+  if (featuredCache.length) {
+    callback(featuredCache);
+  }
+
+  featuredSubscribers.push(callback);
+
+  if (!featuredUnsubscribe) {
+
+    const q = query(
+      collection(db, "markets"),
+      where("isFeatured", "==", true),
+      orderBy("displayOrder")
+    );
+
+    featuredUnsubscribe =
+      onSnapshot(q, (snapshot) => {
+
+        featuredCache =
+          snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+
+        featuredSubscribers.forEach(cb =>
+          cb(featuredCache)
+        );
+
+      });
+
+  }
+
+  return () => {
+
+    featuredSubscribers =
+      featuredSubscribers.filter(
+        cb => cb !== callback
+      );
+
+    if (
+      !featuredSubscribers.length &&
+      featuredUnsubscribe
+    ) {
+
+      featuredUnsubscribe();
+
+      featuredUnsubscribe = null;
+
+    }
+
+  };
 
 }

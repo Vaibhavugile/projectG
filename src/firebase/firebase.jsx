@@ -1,5 +1,9 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import {
+  initializeFirestore,
+  persistentLocalCache,
+  persistentMultipleTabManager,
+} from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
@@ -9,12 +13,17 @@ const firebaseConfig = {
   storageBucket: "matkaresult-45b2c.firebasestorage.app",
   messagingSenderId: "984635087286",
   appId: "1:984635087286:web:ac1d4392885199dd94c917",
-  measurementId: "G-SGW5MZ3E7G"
+  measurementId: "G-SGW5MZ3E7G",
 };
 
 const app = initializeApp(firebaseConfig);
 
-export const db = getFirestore(app);
+export const db = initializeFirestore(app, {
+  localCache: persistentLocalCache({
+    tabManager: persistentMultipleTabManager(),
+  }),
+});
+
 export const auth = getAuth(app);
 
 export default app;
