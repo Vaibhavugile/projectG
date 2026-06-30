@@ -1,0 +1,1125 @@
+/* =====================================================
+   PANEL PREVIEW
+===================================================== */
+
+.panel-preview{
+
+    max-width:1320px;
+
+    margin:70px auto;
+
+    padding:0 20px;
+
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.panel-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-end;
+
+    gap:30px;
+
+    margin-bottom:35px;
+
+}
+
+.panel-tag{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 18px;
+
+    border-radius:999px;
+
+    background:rgba(106,27,154,.08);
+
+    color:#6A1B9A;
+
+    font-size:.85rem;
+
+    font-weight:700;
+
+    letter-spacing:.8px;
+
+    margin-bottom:16px;
+
+}
+
+.panel-header h2{
+
+    margin:0;
+
+    font-size:2.5rem;
+
+    font-weight:900;
+
+    color:#1d1d1d;
+
+    line-height:1.2;
+
+}
+
+.panel-header p{
+
+    margin-top:12px;
+
+    color:#666;
+
+    font-size:1rem;
+
+    max-width:650px;
+
+    line-height:1.7;
+
+}
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.panel-btn{
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+padding:16px 30px;
+
+border-radius:999px;
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#6A1B9A,
+
+#8E24AA
+
+);
+
+color:#fff;
+
+text-decoration:none;
+
+font-weight:700;
+
+transition:.35s;
+
+box-shadow:
+
+0 15px 30px
+
+rgba(106,27,154,.28);
+
+}
+
+.panel-btn:hover{
+
+transform:
+
+translateY(-4px);
+
+box-shadow:
+
+0 22px 40px
+
+rgba(106,27,154,.35);
+
+}
+
+/* =====================================================
+   MAIN CARD
+===================================================== */
+
+.panel-card{
+
+position:relative;
+
+overflow:hidden;
+
+border-radius:30px;
+
+background:#fff;
+
+border:1px solid #ececec;
+
+box-shadow:
+
+0 25px 60px
+
+rgba(0,0,0,.08);
+
+}
+
+.panel-card::before{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+top:0;
+
+width:100%;
+
+height:5px;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+#6A1B9A,
+
+#AB47BC,
+
+#FF9800
+
+);
+
+}
+
+/* =====================================================
+   WEEK HEADER
+===================================================== */
+
+.panel-week-header{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:28px 35px;
+
+background:
+
+linear-gradient(
+
+180deg,
+
+#faf7fd,
+
+#ffffff
+
+);
+
+border-bottom:1px solid #ececec;
+
+}
+
+.week-title{
+
+text-align:center;
+
+flex:1;
+
+}
+
+.week-title h3{
+
+margin:0;
+
+font-size:1.4rem;
+
+font-weight:800;
+
+color:#222;
+
+}
+
+.week-title span{
+
+display:block;
+
+margin-top:8px;
+
+font-size:.9rem;
+
+color:#777;
+
+}
+
+/* =====================================================
+   WEEK BUTTONS
+===================================================== */
+
+.week-arrow{
+
+width:52px;
+
+height:52px;
+
+border:none;
+
+cursor:pointer;
+
+border-radius:50%;
+
+background:#fff;
+
+font-size:1.3rem;
+
+font-weight:700;
+
+color:#6A1B9A;
+
+transition:.35s;
+
+box-shadow:
+
+0 10px 25px
+
+rgba(0,0,0,.08);
+
+}
+
+.week-arrow:hover{
+
+background:#6A1B9A;
+
+color:#fff;
+
+transform:
+
+scale(1.08);
+
+}
+
+/* =====================================================
+   GLASS GLOW
+===================================================== */
+
+.panel-card::after{
+
+content:"";
+
+position:absolute;
+
+top:-120px;
+
+right:-120px;
+
+width:280px;
+
+height:280px;
+
+border-radius:50%;
+
+background:
+
+radial-gradient(
+
+rgba(106,27,154,.08),
+
+transparent 70%
+
+);
+
+pointer-events:none;
+
+}
+/* =====================================================
+   PANEL GRID
+===================================================== */
+
+.panel-grid{
+
+display:grid;
+
+grid-template-columns:repeat(7,1fr);
+
+border-bottom:1px solid #ececec;
+
+}
+
+.panel-column{
+
+position:relative;
+
+padding:24px 18px;
+
+text-align:center;
+
+border-right:1px solid #f1f1f1;
+
+transition:.35s;
+
+cursor:pointer;
+
+}
+
+.panel-column:last-child{
+
+border-right:none;
+
+}
+
+.panel-column:hover{
+
+background:#faf8fd;
+
+transform:translateY(-4px);
+
+}
+
+.panel-column::after{
+
+content:"";
+
+position:absolute;
+
+left:50%;
+
+bottom:0;
+
+width:0;
+
+height:4px;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+#6A1B9A,
+
+#AB47BC
+
+);
+
+transition:.35s;
+
+transform:translateX(-50%);
+
+}
+
+.panel-column:hover::after{
+
+width:70%;
+
+}
+
+/* =====================================================
+   DAY
+===================================================== */
+
+.panel-day{
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+width:58px;
+
+height:58px;
+
+margin:auto;
+
+border-radius:18px;
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#6A1B9A,
+
+#8E24AA
+
+);
+
+color:#fff;
+
+font-weight:800;
+
+font-size:1rem;
+
+box-shadow:
+
+0 12px 25px
+
+rgba(106,27,154,.25);
+
+margin-bottom:22px;
+
+}
+
+/* =====================================================
+   OPEN
+===================================================== */
+
+.panel-open{
+
+font-size:1.25rem;
+
+font-weight:800;
+
+color:#222;
+
+margin-bottom:16px;
+
+}
+
+/* =====================================================
+   JODI
+===================================================== */
+
+.panel-jodi{
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+width:72px;
+
+height:72px;
+
+margin:auto;
+
+border-radius:22px;
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#FF9800,
+
+#FF5722
+
+);
+
+color:#fff;
+
+font-size:1.5rem;
+
+font-weight:900;
+
+box-shadow:
+
+0 15px 30px
+
+rgba(255,87,34,.30);
+
+margin-bottom:16px;
+
+transition:.35s;
+
+}
+
+.panel-column:hover .panel-jodi{
+
+transform:
+
+scale(1.08)
+
+rotate(-4deg);
+
+}
+
+/* =====================================================
+   CLOSE
+===================================================== */
+
+.panel-close{
+
+font-size:1.25rem;
+
+font-weight:800;
+
+color:#222;
+
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.panel-footer{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:24px 35px;
+
+background:#fafafa;
+
+}
+
+.panel-update{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+color:#00A152;
+
+font-weight:700;
+
+font-size:.95rem;
+
+}
+
+.panel-footer-links{
+
+display:flex;
+
+gap:18px;
+
+}
+
+.panel-footer-links a{
+
+color:#6A1B9A;
+
+font-weight:700;
+
+text-decoration:none;
+
+transition:.3s;
+
+}
+
+.panel-footer-links a:hover{
+
+color:#8E24AA;
+
+}
+
+/* =====================================================
+   RELATED LINKS
+===================================================== */
+
+.panel-related-links{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:18px;
+
+margin-top:30px;
+
+}
+
+.panel-related-links a{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+padding:18px;
+
+border-radius:20px;
+
+background:#fff;
+
+border:1px solid #ececec;
+
+text-decoration:none;
+
+font-weight:700;
+
+color:#333;
+
+transition:.35s;
+
+box-shadow:
+
+0 10px 25px
+
+rgba(0,0,0,.05);
+
+}
+
+.panel-related-links a:hover{
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#6A1B9A,
+
+#8E24AA
+
+);
+
+color:#fff;
+
+transform:
+
+translateY(-5px);
+
+box-shadow:
+
+0 20px 35px
+
+rgba(106,27,154,.22);
+
+}
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width:992px){
+
+.panel-preview{
+margin:45px auto;
+padding:0 18px;
+}
+
+.panel-header{
+flex-direction:column;
+align-items:flex-start;
+gap:18px;
+margin-bottom:22px;
+}
+
+.panel-header h2{
+font-size:2rem;
+}
+
+.panel-btn{
+width:100%;
+justify-content:center;
+}
+
+.panel-week-header{
+padding:20px;
+}
+
+.week-arrow{
+width:44px;
+height:44px;
+font-size:1rem;
+}
+
+.week-title h3{
+font-size:1.15rem;
+}
+
+.week-title span{
+font-size:.82rem;
+}
+
+/* KEEP 6 DAYS */
+
+.panel-grid{
+
+display:grid;
+
+grid-template-columns:repeat(7,1fr);
+
+gap:0;
+
+}
+
+.panel-column{
+
+padding:16px 8px;
+
+min-height:220px;
+
+}
+
+.panel-day{
+
+width:46px;
+height:46px;
+font-size:.8rem;
+margin-bottom:16px;
+
+}
+
+.panel-open{
+
+font-size:1rem;
+margin-bottom:14px;
+
+}
+
+.panel-jodi{
+
+width:54px;
+height:54px;
+font-size:1.15rem;
+margin-bottom:14px;
+
+}
+
+.panel-close{
+
+font-size:1rem;
+
+}
+
+.panel-footer{
+
+padding:18px;
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:14px;
+
+}
+
+.panel-footer-links{
+
+width:100%;
+
+justify-content:space-between;
+
+}
+
+.panel-related-links{
+
+grid-template-columns:repeat(2,1fr);
+
+gap:14px;
+
+}
+
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width:768px){
+
+.panel-preview{
+
+margin:35px auto;
+
+padding:0 10px;
+
+}
+
+.panel-header{
+
+margin-bottom:20px;
+
+}
+
+.panel-header h2{
+
+font-size:1.45rem;
+
+}
+
+.panel-header p{
+
+font-size:.82rem;
+
+line-height:1.5;
+
+}
+
+.panel-tag{
+
+font-size:.72rem;
+
+padding:6px 12px;
+
+}
+
+.panel-btn{
+
+width:100%;
+
+padding:14px;
+
+font-size:.9rem;
+
+}
+
+.panel-card{
+
+border-radius:18px;
+
+overflow:hidden;
+
+}
+
+.panel-week-header{
+
+padding:14px 10px;
+
+}
+
+.week-arrow{
+
+width:34px;
+
+height:34px;
+
+font-size:.9rem;
+
+}
+
+.week-title h3{
+
+font-size:.95rem;
+
+}
+
+.week-title span{
+
+font-size:.7rem;
+
+}
+
+/* 6 DAYS FIT */
+
+.panel-grid{
+
+display:grid;
+
+grid-template-columns:repeat(7,minmax(48px,1fr));
+
+gap:0;
+
+padding:0;
+
+overflow:visible;
+
+}
+
+.panel-column{
+
+padding:12px 2px;
+
+min-height:165px;
+
+border-right:1px solid #eee;
+
+}
+
+.panel-column:last-child{
+
+border-right:none;
+
+}
+
+.panel-day{
+
+width:34px;
+
+height:34px;
+
+font-size:.68rem;
+
+border-radius:10px;
+
+margin-bottom:10px;
+
+}
+
+.panel-open{
+
+font-size:.78rem;
+
+margin-bottom:8px;
+
+}
+
+.panel-jodi{
+
+width:38px;
+
+height:38px;
+
+font-size:.82rem;
+
+border-radius:12px;
+
+margin-bottom:8px;
+
+}
+
+.panel-close{
+
+font-size:.78rem;
+
+}
+
+.panel-footer{
+
+padding:14px;
+
+gap:10px;
+
+}
+
+.panel-update{
+
+font-size:.72rem;
+
+}
+
+.panel-footer-links{
+
+width:100%;
+
+justify-content:space-between;
+
+}
+
+.panel-footer-links a{
+
+font-size:.75rem;
+
+}
+
+.panel-related-links{
+
+grid-template-columns:repeat(2,1fr);
+
+gap:10px;
+
+margin-top:18px;
+
+}
+
+.panel-related-links a{
+
+padding:12px 8px;
+
+font-size:.8rem;
+
+}
+
+}
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width:380px){
+
+.panel-preview{
+
+padding:0 6px;
+
+}
+
+.panel-grid{
+
+grid-template-columns:repeat(7,minmax(42px,1fr));
+
+}
+
+.panel-column{
+
+padding:10px 1px;
+
+min-height:145px;
+
+}
+
+.panel-day{
+
+width:30px;
+
+height:30px;
+
+font-size:.62rem;
+
+margin-bottom:8px;
+
+}
+
+.panel-open{
+
+font-size:.7rem;
+
+}
+
+.panel-jodi{
+
+width:34px;
+
+height:34px;
+
+font-size:.72rem;
+
+margin-bottom:8px;
+
+}
+
+.panel-close{
+
+font-size:.7rem;
+
+}
+
+.week-arrow{
+
+width:30px;
+
+height:30px;
+
+}
+
+.week-title h3{
+
+font-size:.85rem;
+
+}
+
+.week-title span{
+
+font-size:.65rem;
+
+}
+
+.panel-related-links{
+
+grid-template-columns:1fr;
+
+}
+
+.panel-related-links a{
+
+padding:12px;
+
+}
+
+}

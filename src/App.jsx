@@ -1,8 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
-import JodiChartPage from "./pages/JodiChartPage";
-import PanelChartPage from "./pages/PanelChartPage";
+
+import MarketHome from "./pages/Market/MarketHome";
+// import MarketResult from "./pages/Market/MarketResult";
+// import PanelChart from "./pages/Market/PanelChart";
+// import JodiChart from "./pages/Market/JodiChart";
+// import WeeklyChart from "./pages/Market/WeeklyChart";
+// import MonthlyChart from "./pages/Market/MonthlyChart";
+// import OldResults from "./pages/Market/OldResults";
 
 function App() {
   return (
@@ -14,14 +20,39 @@ function App() {
       />
 
       <Route
-        path="/jodi-chart/:market"
-        element={<JodiChartPage />}
+        path="/market/:slug"
+        element={<MarketHome />}
+      />
+
+      {/* <Route
+        path="/market/:slug/result"
+        element={<MarketResult />}
       />
 
       <Route
-        path="/panel-chart/:market"
-        element={<PanelChartPage />}
+        path="/market/:slug/panel-chart"
+        element={<PanelChart />}
       />
+
+      <Route
+        path="/market/:slug/jodi-chart"
+        element={<JodiChart />}
+      />
+
+      <Route
+        path="/market/:slug/weekly-chart"
+        element={<WeeklyChart />}
+      />
+
+      <Route
+        path="/market/:slug/monthly-chart"
+        element={<MonthlyChart />}
+      />
+
+      <Route
+        path="/market/:slug/old-results"
+        element={<OldResults />}
+      /> */}
 
     </Routes>
   );
