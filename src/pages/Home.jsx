@@ -1,3 +1,4 @@
+import React, { Suspense } from "react";
 
 import { Helmet } from "react-helmet-async";
 
@@ -7,17 +8,17 @@ import RecentWinningBar from "../components/RecentWinningBar";
 import TodaysResultCard from "../components/TodaysResultCard";
 import RecentlyViewed from "../components/RecentlyViewed";
 import LiveMarkets from "../components/LiveMarkets";
-import MarketTimings from "../components/MarketTimings";
-import PopularMarkets from "../components/PopularMarkets";
-import TrendingJodi from "../components/TrendingJodi";
-import JodiChartPreview from "../components/JodiChartPreview";
-import FAQSection from "../components/FAQSection";
-import LatestResultUpdates from "../components/LatestResultUpdates";
-import MarketStatistics from "../components/MarketStatistics";
-import TrendingSearches from "../components/TrendingSearches";
-import PopularResultsToday from "../components/PopularResultsToday";
-import FooterLinks from "../components/FooterLinks";
-import SEOContentBlock from "../components/SEOContentBlock";
+const MarketTimings = React.lazy(() => import("../components/MarketTimings"));
+const PopularMarkets = React.lazy(() => import("../components/PopularMarkets"));
+const TrendingJodi = React.lazy(() => import("../components/TrendingJodi"));
+const JodiChartPreview = React.lazy(() => import("../components/JodiChartPreview"));
+const FAQSection = React.lazy(() => import("../components/FAQSection"));
+const LatestResultUpdates = React.lazy(() => import("../components/LatestResultUpdates"));
+const MarketStatistics = React.lazy(() => import("../components/MarketStatistics"));
+const TrendingSearches = React.lazy(() => import("../components/TrendingSearches"));
+const PopularResultsToday = React.lazy(() => import("../components/PopularResultsToday"));
+const FooterLinks = React.lazy(() => import("../components/FooterLinks"));
+const SEOContentBlock = React.lazy(() => import("../components/SEOContentBlock"));
 import NextResult from "../components/NextResult";
 import { db } from "../firebase/firebase";
 import {
@@ -118,19 +119,19 @@ const {
 <LiveMarkets
   markets={markets}
 />
-<MarketTimings/>
-<PopularMarkets/>
-<TrendingJodi/>
-<JodiChartPreview/>
-<FAQSection/>
-<LatestResultUpdates/>
-<MarketStatistics/>
-<TrendingSearches/>
-<PopularResultsToday/>
-<FloatingContact/>
-<FooterLinks/>
-
-<SEOContentBlock/>
+<Suspense fallback={null}>
+  <MarketTimings />
+  <PopularMarkets />
+  <TrendingJodi />
+  <JodiChartPreview />
+  <FAQSection />
+  <LatestResultUpdates />
+  <MarketStatistics />
+  <TrendingSearches />
+  <PopularResultsToday />
+  <FooterLinks />
+  <SEOContentBlock />
+</Suspense>
         {/* Latest Results */}
 
         {/* Live Markets */}

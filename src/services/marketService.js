@@ -8,63 +8,131 @@ import {
 
 import { db } from "../firebase/firebase";
 
-/* =========================
+/* -----------------------------
+   Memory Cache
+------------------------------ */
+
+let marketsCache = [];
+let featuredCache = [];
+
+let liveSubscribers = [];
+let featuredSubscribers = [];
+
+let liveUnsubscribe = null;
+let featuredUnsubscribe = null;
+
+/* -----------------------------
+   LIVE MARKETS
+------------------------------ */
+
+export function subscribeLiveMarkets(callback) {
+
+  // Return cached data instantly
+  if (marketsCache.length) {
+    callback(marketsCache);
+  }
+
+  liveSubscribers.push(callback);
+
+  if (!liveUnsubscribe) {
+
+    const q = query(
+      collection(db, "markets"),
+      orderBy("displayOrder")
+    );
+
+    liveUnsubscribe = onSnapshot(q, (snapshot) => {
+
+      marketsCache = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      liveSubscribers.forEach(cb =>
+        cb(marketsCache)
+      );
+
+    });
+
+  }
+
+  return () => {
+
+    liveSubscribers =
+      liveSubscribers.filter(
+        cb => cb !== callback
+      );
+
+    if (
+      !liveSubscribers.length &&
+      liveUnsubscribe
+    ) {
+
+      liveUnsubscribe();
+
+      liveUnsubscribe = null;
+
+    }
+
+  };
+
+}
+
+/* -----------------------------
    FEATURED MARKETS
-========================= */
+------------------------------ */
 
-export const subscribeFeaturedMarkets = (
-  callback
-) => {
+export function subscribeFeaturedMarkets(callback) {
 
-  const q = query(
-    collection(db, "markets"),
-    where("isFeatured", "==", true),
-    orderBy("displayOrder")
-  );
+  if (featuredCache.length) {
+    callback(featuredCache);
+  }
 
-  return onSnapshot(
-    q,
-    (snapshot) => {
+  featuredSubscribers.push(callback);
 
-      const data =
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
+  if (!featuredUnsubscribe) {
 
-      callback(data);
+    const q = query(
+      collection(db, "markets"),
+      where("isFeatured", "==", true),
+      orderBy("displayOrder")
+    );
 
-    }
-  );
+    featuredUnsubscribe =
+      onSnapshot(q, (snapshot) => {
 
-};
+        featuredCache =
+          snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
 
-/* =========================
-   ALL LIVE MARKETS
-========================= */
+        featuredSubscribers.forEach(cb =>
+          cb(featuredCache)
+        );
 
-export const subscribeLiveMarkets = (
-  callback
-) => {
+      });
 
-  const q = query(
-    collection(db, "markets"),
-    orderBy("displayOrder")
-  );
+  }
 
-  return onSnapshot(
-    q,
-    (snapshot) => {
+  return () => {
 
-      const data =
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
+    featuredSubscribers =
+      featuredSubscribers.filter(
+        cb => cb !== callback
+      );
 
-      callback(data);
+    if (
+      !featuredSubscribers.length &&
+      featuredUnsubscribe
+    ) {
+
+      featuredUnsubscribe();
+
+      featuredUnsubscribe = null;
 
     }
-  );
 
-};
+  };
+
+}

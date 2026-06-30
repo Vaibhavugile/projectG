@@ -550,13 +550,13 @@ const filteredMarkets =
 
             </div>
 
-            <div className="market-meta">
+            {/* <div className="market-meta">
 
               👁 {item.viewers || 0}
               {" "}
               viewers
 
-            </div>
+            </div> */}
 
             <div className="market-bottom">
 
