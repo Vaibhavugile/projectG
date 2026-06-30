@@ -1,41 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState ,useMemo} from "react";
 import "../styles/recentlyViewed.css";
 
-import {
-  subscribeLiveMarkets,
-} from "../services/marketService";
 
-function RecentlyViewed() {
+function RecentlyViewed({ markets = [] }) {
 
- const [markets, setMarkets] =
-  useState([]);
 
 /* FIREBASE REALTIME */
 
-useEffect(() => {
-
-  const unsubscribe =
-    subscribeLiveMarkets(
-      (data) => {
-
-        const sorted =
-          [...data]
-            .sort(
-              (a, b) =>
-                (a.displayOrder || 999) -
-                (b.displayOrder || 999)
-            )
-            .slice(0, 8);
-
-        setMarkets(sorted);
-
-      }
-    );
-
-  return () =>
-    unsubscribe();
-
-}, []);
+const recentMarkets = useMemo(() => {
+  return [...markets]
+    .sort(
+      (a, b) =>
+        (a.displayOrder || 999) -
+        (b.displayOrder || 999)
+    )
+    .slice(0, 8);
+}, [markets]);
 
 /* DATE HELPERS */
 
@@ -115,7 +95,7 @@ const getMarketStatus = (
 
 /* NO DATA */
 
-if (!markets.length)
+if (!recentMarkets.length)
   return null;
 
   return (
@@ -135,7 +115,7 @@ if (!markets.length)
 
     <div className="recently-scroll">
 
-      {markets.map(
+      {recentMarkets.map(
         (item, index) => {
 
           const latestResult =

@@ -1,11 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import "../styles/nextResult.css";
-import {
-  subscribeLiveMarkets
-} from "../services/marketService";
-function NextResult() {
-const [markets, setMarkets] =
-  useState([]);
+
+function NextResult({ markets = [] }) {
+
 
 const [flipSec, setFlipSec] =
   useState(false);
@@ -268,21 +265,7 @@ useEffect(() => {
 
 /* FIREBASE */
 
-useEffect(() => {
 
-  const unsubscribe =
-    subscribeLiveMarkets(
-      (data) => {
-
-        setMarkets(data);
-
-      }
-    );
-
-  return () =>
-    unsubscribe();
-
-}, []);
 
 /* COUNTDOWN */
 

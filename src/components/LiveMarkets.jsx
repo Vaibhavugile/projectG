@@ -8,14 +8,10 @@ import "../styles/liveMarkets.css";
 
 import { useNavigate } from "react-router-dom";
 
-import {
-  subscribeLiveMarkets,
-} from "../services/marketService";
 
-function LiveMarkets() {
 
-  const [markets, setMarkets] =
-    useState([]);
+function LiveMarkets({ markets = [] }) {
+
 
   const [search, setSearch] =
     useState("");
@@ -39,18 +35,6 @@ function LiveMarkets() {
     useNavigate();
 
   /* FIREBASE REALTIME */
-
-  useEffect(() => {
-
-    const unsubscribe =
-      subscribeLiveMarkets(
-        setMarkets
-      );
-
-    return () =>
-      unsubscribe();
-
-  }, []);
 
   const startVoiceSearch = () => {
 

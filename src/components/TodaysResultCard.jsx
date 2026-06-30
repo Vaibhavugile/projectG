@@ -1,30 +1,15 @@
 import { useEffect, useState } from "react";
 import "../styles/todaysResult.css";
 
-import {
-subscribeFeaturedMarkets,
-} from "../services/marketService";
 
-function TodaysResultCard() {
+function TodaysResultCard({ markets = [] }) {
 const [current, setCurrent] =
   useState(0);
 
-const [markets, setMarkets] =
-  useState([]);
 
 /* FIREBASE REALTIME */
 
-useEffect(() => {
 
-  const unsubscribe =
-    subscribeFeaturedMarkets(
-      setMarkets
-    );
-
-  return () =>
-    unsubscribe();
-
-}, []);
 
 /* AUTO SLIDER */
 
@@ -49,6 +34,11 @@ useEffect(() => {
     clearInterval(interval);
 
 }, [markets]);
+useEffect(() => {
+  if (current >= markets.length) {
+    setCurrent(0);
+  }
+}, [markets, current]);
 
 /* NO DATA */
 
