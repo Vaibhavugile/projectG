@@ -1,0 +1,137 @@
+.admin-dashboard{
+
+    min-height:100vh;
+
+    background:#f7f8fc;
+
+    padding:60px 20px;
+
+}
+
+.admin-header{
+
+    text-align:center;
+
+    margin-bottom:50px;
+
+}
+
+.admin-header h1{
+
+    margin:0;
+
+    font-size:42px;
+
+    font-weight:900;
+
+    color:#d50000;
+
+    font-family:"Montserrat",sans-serif;
+
+}
+
+.admin-header p{
+
+    margin-top:10px;
+
+    color:#666;
+
+    font-size:16px;
+
+}
+
+.admin-grid{
+
+    max-width:900px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:30px;
+
+}
+
+.admin-card{
+
+    background:#fff;
+
+    border:1px solid #ececec;
+
+    border-radius:24px;
+
+    padding:40px;
+
+    text-decoration:none;
+
+    color:#222;
+
+    text-align:center;
+
+    transition:.3s;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+
+}
+
+.admin-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#ffb300;
+
+    box-shadow:0 20px 40px rgba(213,0,0,.12);
+
+}
+
+.admin-icon{
+
+    font-size:60px;
+
+    margin-bottom:20px;
+
+}
+
+.admin-card h2{
+
+    margin:0;
+
+    font-size:28px;
+
+    font-weight:800;
+
+}
+
+.admin-card p{
+
+    margin-top:12px;
+
+    color:#777;
+
+    line-height:1.6;
+
+}
+
+@media(max-width:768px){
+
+.admin-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.admin-card{
+
+padding:30px;
+
+}
+
+.admin-header h1{
+
+font-size:32px;
+
+}
+
+}

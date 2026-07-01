@@ -5,6 +5,12 @@ import Home from "./pages/Home";
 import MarketHome from "./pages/Market/MarketHome";
 import JodiChartPage from "./pages/Market/JodiChartPage";
 import PanelChartPage from "./pages/Market/PanelChartPage";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import MarketsPage from "./pages/admin/MarketsPage";
+import AddMarketPage from "./pages/admin/AddMarketPage";
+import EditMarketPage from "./pages/admin/EditMarketPage";
+import ResultsPage from "./pages/admin/ResultsPage";
+import ManageResultPage from "./pages/admin/ManageResultPage";
 // import MarketResult from "./pages/Market/MarketResult";
 // import PanelChart from "./pages/Market/PanelChart";
 // import JodiChart from "./pages/Market/JodiChart";
@@ -38,6 +44,30 @@ function App() {
 
     element={<PanelChartPage />}
 
+/>
+   <Route
+        path="/admindashboard"
+        element={<AdminDashboard />}
+      />
+        <Route
+        path="/admin/markets"
+        element={<MarketsPage />}
+      />
+       <Route
+        path="/admin/markets/add"
+        element={<AddMarketPage />}
+      />
+      <Route
+    path="/admin/markets/edit/:marketId"
+    element={<EditMarketPage />}
+/>
+   <Route
+    path="/admin/results"
+    element={<ResultsPage />}
+/>
+<Route
+    path="/admin/results/:marketId"
+    element={<ManageResultPage />}
 />
       {/* <Route
         path="/market/:slug/result"
