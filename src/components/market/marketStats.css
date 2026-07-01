@@ -118,12 +118,12 @@
 
   height: 5px;
 
-  background: linear-gradient(
-      90deg,
-      #6a1b9a,
-      #8e24aa,
-      #ab47bc
-  );
+ background: linear-gradient(
+    90deg,
+    #b71c1c,
+    #d50000,
+    #ff6f00
+);
 
 }
 
@@ -147,12 +147,11 @@
 
   font-size: 1.8rem;
 
-  background: linear-gradient(
-      135deg,
-      #6a1b9a,
-      #ab47bc
-  );
-
+background: linear-gradient(
+    135deg,
+    #ff6f00,
+    #ff6f00
+);
   color: white;
 
   margin-bottom: 18px;

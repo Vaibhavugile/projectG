@@ -1,0 +1,1200 @@
+/* ===========================================================
+   MONTHLY CHART CONTAINER
+=========================================================== */
+
+.monthly-chart-table{
+
+    max-width:1400px;
+
+    margin:50px auto;
+
+    padding:30px;
+
+    background:#fff;
+
+    border-radius:28px;
+
+    border:1px solid #f1f1f1;
+
+    box-shadow:
+
+        0 20px 60px rgba(0,0,0,.08);
+
+}
+
+/* ===========================================================
+   HEADER
+=========================================================== */
+
+.monthly-chart-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-end;
+
+    gap:30px;
+
+    margin-bottom:28px;
+
+    flex-wrap:wrap;
+
+}
+
+.monthly-tag{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 16px;
+
+    border-radius:999px;
+
+    background:#fff5f5;
+
+    color:#d50000;
+
+    border:1px solid rgba(213,0,0,.12);
+
+    font-size:11px;
+
+    font-weight:800;
+
+    letter-spacing:.8px;
+
+    text-transform:uppercase;
+
+}
+
+.monthly-chart-header h2{
+
+    margin:14px 0 8px;
+
+    font-size:38px;
+
+    font-weight:900;
+
+    color:#222;
+
+    font-family:"Montserrat",sans-serif;
+
+}
+
+.monthly-chart-header p{
+
+    margin:0;
+
+    color:#777;
+
+    font-size:14px;
+
+    line-height:1.7;
+
+}
+
+/* ===========================================================
+   FILTERS
+=========================================================== */
+
+.monthly-filters{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    flex-wrap:wrap;
+
+}
+
+.monthly-filters select{
+
+    height:50px;
+
+    min-width:170px;
+
+    padding:0 18px;
+
+    border-radius:14px;
+
+    border:1px solid #ececec;
+
+    background:#fff;
+
+    color:#222;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    outline:none;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    box-shadow:
+
+        0 6px 18px rgba(0,0,0,.05);
+
+}
+
+.monthly-filters select:hover{
+
+    border-color:#d50000;
+
+}
+
+.monthly-filters select:focus{
+
+    border-color:#d50000;
+
+    box-shadow:
+
+        0 0 0 4px rgba(213,0,0,.08);
+
+}
+
+.monthly-filters option{
+
+    color:#222;
+
+}
+
+/* ===========================================================
+   MONTH BUTTONS
+=========================================================== */
+
+.month-nav{
+
+    width:50px;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#fff;
+
+    background:linear-gradient(
+
+        135deg,
+
+        #d50000,
+
+        #ff3d3d
+
+    );
+
+    transition:.25s;
+
+    box-shadow:
+
+        0 10px 22px rgba(213,0,0,.18);
+
+}
+
+.month-nav:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+        0 16px 30px rgba(213,0,0,.28);
+
+}
+
+.month-nav:active{
+
+    transform:scale(.95);
+
+}
+/* ===========================================================
+   TABLE WRAPPER
+=========================================================== */
+
+.monthly-table-wrapper{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    border-radius:22px;
+
+    border:1px solid #ececec;
+
+    background:#fff;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.9);
+
+}
+
+
+/* ===========================================================
+   TABLE
+=========================================================== */
+
+.monthly-table{
+
+    width:100%;
+
+    min-width:1000px;
+
+    border-collapse:separate;
+
+    border-spacing:0;
+
+}
+
+
+/* ===========================================================
+   HEADER
+=========================================================== */
+
+.monthly-table thead th{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:10;
+
+    height:62px;
+
+    background:linear-gradient(
+        135deg,
+        #d50000,
+        #ff3d3d
+    );
+
+    color:#fff;
+
+    font-size:14px;
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    letter-spacing:.8px;
+
+    text-align:center;
+
+    border:none;
+
+}
+
+
+.monthly-table thead th:first-child{
+
+    border-top-left-radius:20px;
+
+}
+
+
+.monthly-table thead th:last-child{
+
+    border-top-right-radius:20px;
+
+}
+
+
+/* ===========================================================
+   BODY
+=========================================================== */
+
+.monthly-table tbody tr{
+
+    transition:.25s;
+
+}
+
+
+.monthly-table tbody tr:nth-child(even){
+
+    background:#fafafa;
+
+}
+
+
+.monthly-table tbody tr:hover{
+
+    background:#fff7f7;
+
+}
+
+
+/* ===========================================================
+   CELLS
+=========================================================== */
+
+.monthly-table td{
+
+    padding:16px 12px;
+
+    text-align:center;
+
+    vertical-align:middle;
+
+    border-bottom:1px solid #f1f1f1;
+
+}
+
+
+/* ===========================================================
+   WEEK COLUMN
+=========================================================== */
+
+.week-number{
+
+    width:170px;
+
+    min-width:170px;
+
+    padding:18px;
+
+    text-align:left;
+
+    background:#fff8f3;
+
+    border-right:1px solid #eeeeee;
+
+}
+
+
+.week-number strong{
+
+    display:block;
+
+    font-size:20px;
+
+    font-weight:900;
+
+    color:#d50000;
+
+    font-family:"Montserrat",sans-serif;
+
+}
+
+
+.week-number small{
+
+    display:block;
+
+    margin-top:8px;
+
+    font-size:12px;
+
+    line-height:1.5;
+
+    color:#888;
+
+    font-weight:600;
+
+}
+
+
+/* ===========================================================
+   MONTHLY CELLS
+=========================================================== */
+
+.monthly-cell{
+
+    width:110px;
+
+    height:90px;
+
+    transition:.25s;
+
+    cursor:pointer;
+
+}
+
+
+.monthly-cell:hover{
+
+    background:#fff5f5;
+
+}
+
+
+/* ===========================================================
+   EMPTY CELL
+=========================================================== */
+
+.empty-cell{
+
+    color:#d0d0d0;
+
+    font-size:16px;
+
+    font-weight:700;
+
+}
+/* ===========================================================
+   JODI CARD
+=========================================================== */
+
+.jodi-pill{
+
+    width:60px;
+
+    height:60px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:18px;
+
+    background:linear-gradient(
+        180deg,
+        #ffffff,
+        #f9f9f9
+    );
+
+    border:1px solid #ececec;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.06);
+
+    transition:.25s;
+
+}
+
+.jodi-pill strong{
+
+    font-size:24px;
+
+    font-weight:900;
+
+    color:#d50000;
+
+    font-family:"Montserrat",sans-serif;
+
+    letter-spacing:.5px;
+
+}
+
+.monthly-cell:hover .jodi-pill{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+
+        0 16px 30px rgba(213,0,0,.15);
+
+    border-color:#ffd54f;
+
+}
+
+
+/* ===========================================================
+   PANEL CARD
+=========================================================== */
+
+.panel-pill{
+
+    width:78px;
+
+    margin:auto;
+
+    padding:8px;
+
+    border-radius:18px;
+
+    background:#fff;
+
+    border:1px solid #ececec;
+
+    box-shadow:
+
+        0 8px 20px rgba(0,0,0,.06);
+
+    transition:.25s;
+
+}
+
+.monthly-cell:hover .panel-pill{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+
+        0 16px 28px rgba(213,0,0,.14);
+
+}
+
+
+/* ===========================================================
+   PANEL OPEN
+=========================================================== */
+
+.panel-open{
+
+    font-size:13px;
+
+    font-weight:700;
+
+    color:#666;
+
+    line-height:1.2;
+
+}
+
+
+/* ===========================================================
+   PANEL JODI
+=========================================================== */
+
+
+
+/* ===========================================================
+   PANEL CLOSE
+=========================================================== */
+
+.panel-close{
+
+    font-size:13px;
+
+    font-weight:700;
+
+    color:#666;
+
+}
+
+
+/* ===========================================================
+   TODAY HIGHLIGHT
+=========================================================== */
+
+.monthly-cell.today .jodi-pill,
+
+.monthly-cell.today .panel-pill{
+
+    background:linear-gradient(
+        135deg,
+        #d50000,
+        #ff3d3d
+    );
+
+    border:none;
+
+}
+
+.monthly-cell.today .jodi-pill strong,
+
+.monthly-cell.today .panel-jodii,
+
+.monthly-cell.today .panel-open,
+
+.monthly-cell.today .panel-close{
+
+    color:#fff;
+
+}
+
+
+/* ===========================================================
+   EMPTY CELLS
+=========================================================== */
+
+.empty-cell{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:60px;
+
+    height:60px;
+
+    margin:auto;
+
+    border-radius:18px;
+
+    background:#fafafa;
+
+    border:1px dashed #e2e2e2;
+
+    color:#c5c5c5;
+
+    font-size:15px;
+
+    font-weight:700;
+
+}
+
+
+/* ===========================================================
+   HOVER EFFECT
+=========================================================== */
+
+.monthly-cell{
+
+    transition:.25s;
+
+}
+
+.monthly-cell:hover{
+
+    background:#fff7f7;
+
+}
+
+
+/* ===========================================================
+   ROW ANIMATION
+=========================================================== */
+
+.monthly-table tbody tr{
+
+    animation:fadeRow .35s ease;
+
+}
+
+@keyframes fadeRow{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(10px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:none;
+
+    }
+
+}
+/* ===========================================================
+   PREMIUM SCROLLBAR
+=========================================================== */
+
+.monthly-table-wrapper::-webkit-scrollbar{
+
+    height:10px;
+
+}
+
+.monthly-table-wrapper::-webkit-scrollbar-track{
+
+    background:#f5f5f5;
+
+    border-radius:999px;
+
+}
+
+.monthly-table-wrapper::-webkit-scrollbar-thumb{
+
+    background:linear-gradient(
+        90deg,
+        #d50000,
+        #ff3d3d
+    );
+
+    border-radius:999px;
+
+}
+
+.monthly-table-wrapper::-webkit-scrollbar-thumb:hover{
+
+    background:linear-gradient(
+        90deg,
+        #b00000,
+        #d50000
+    );
+
+}
+
+
+/* ===========================================================
+   EMPTY STATE
+=========================================================== */
+
+.monthly-empty{
+
+    padding:70px 20px;
+
+    text-align:center;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    color:#888;
+
+}
+
+
+/* ===========================================================
+   SMOOTH FADE
+=========================================================== */
+
+.monthly-chart-table{
+
+    animation:chartFade .35s ease;
+
+}
+
+@keyframes chartFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(18px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:none;
+
+    }
+
+}
+
+
+/* ===========================================================
+   TABLET
+=========================================================== */
+/* ===========================================================
+   TABLET
+=========================================================== */
+
+@media (max-width:1024px){
+
+    .monthly-chart-table{
+
+        padding:24px;
+
+        border-radius:22px;
+
+    }
+
+    .monthly-chart-header{
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:18px;
+
+    }
+
+    .monthly-chart-header h2{
+
+        font-size:32px;
+
+    }
+
+    .monthly-chart-header p{
+
+        font-size:13px;
+
+    }
+
+    .monthly-filters{
+
+        display:flex;
+
+        width:100%;
+
+        gap:12px;
+
+        align-items:center;
+
+    }
+
+    .monthly-filters select{
+
+        flex:1;
+
+        min-width:140px;
+
+    }
+
+    .monthly-table{
+
+        min-width:850px;
+
+    }
+
+    .week-number{
+
+        width:130px;
+
+        min-width:130px;
+
+    }
+
+}
+
+
+/* ===========================================================
+   MOBILE
+=========================================================== */
+
+@media (max-width:768px){
+
+    .monthly-chart-table{
+
+        margin:20px 10px;
+
+        padding:16px;
+
+        border-radius:18px;
+
+    }
+
+    .monthly-chart-header{
+
+        gap:14px;
+
+    }
+
+    .monthly-chart-header h2{
+
+        font-size:24px;
+
+        margin:10px 0 4px;
+
+    }
+
+    .monthly-chart-header p{
+
+        display:none;
+
+    }
+
+    .monthly-tag{
+
+        font-size:9px;
+
+        padding:6px 10px;
+
+    }
+
+    /* Filters in ONE ROW */
+
+    .monthly-filters{
+
+        display:flex;
+
+        align-items:center;
+
+        gap:8px;
+
+        width:100%;
+
+        flex-wrap:nowrap;
+
+    }
+
+    .month-nav{
+
+        width:42px;
+
+        min-width:42px;
+
+        height:42px;
+
+        border-radius:12px;
+
+        font-size:16px;
+
+    }
+
+    .monthly-filters select{
+
+        flex:1;
+
+        min-width:0;
+
+        height:42px;
+
+        padding:0 10px;
+
+        font-size:12px;
+
+        border-radius:12px;
+
+    }
+
+    /* Table */
+
+    .monthly-table{
+
+        min-width:720px;
+
+    }
+
+    .monthly-table thead th{
+
+        height:44px;
+
+        font-size:11px;
+
+    }
+
+    .monthly-table td{
+
+        padding:6px;
+
+    }
+
+    /* Week Column */
+
+    .week-number{
+
+        position:sticky;
+
+        left:0;
+
+        z-index:5;
+
+        background:#fff8f3;
+
+        width:95px;
+
+        min-width:95px;
+
+        padding:8px;
+
+    }
+
+    .week-number strong{
+
+        font-size:15px;
+
+        line-height:1.1;
+
+    }
+
+    .week-number small{
+
+        display:block;
+
+        margin-top:4px;
+
+        font-size:9px;
+
+        line-height:1.2;
+
+        color:#888;
+
+    }
+
+    /* Jodi */
+
+    .jodi-pill{
+
+        width:40px;
+
+        height:40px;
+
+        border-radius:10px;
+
+    }
+
+    .jodi-pill strong{
+
+        font-size:16px;
+
+    }
+
+    /* Panel */
+
+    .panel-pill{
+
+        width:54px;
+
+        padding:5px;
+
+        border-radius:10px;
+
+    }
+
+    .panel-open,
+
+    .panel-close{
+
+        font-size:10px;
+
+    }
+
+    .panel-jodii{
+
+        font-size:16px;
+
+    }
+
+}
+
+
+/* ===========================================================
+   SMALL MOBILE
+=========================================================== */
+
+@media (max-width:480px){
+
+    .monthly-chart-table{
+
+        margin:15px 6px;
+
+        padding:12px;
+
+    }
+
+    .monthly-chart-header h2{
+
+        font-size:20px;
+
+    }
+
+    .monthly-table{
+
+        min-width:650px;
+
+    }
+
+    .monthly-table thead th{
+
+        font-size:10px;
+
+    }
+
+    .week-number{
+
+        width:85px;
+
+        min-width:85px;
+
+    }
+
+    .week-number strong{
+
+        font-size:13px;
+
+    }
+
+    .week-number small{
+
+        font-size:8px;
+
+    }
+
+    .jodi-pill{
+
+        width:36px;
+
+        height:36px;
+
+    }
+
+    .jodi-pill strong{
+
+        font-size:14px;
+
+    }
+
+}
+
+
+/* ===========================================================
+   PRINT
+=========================================================== */
+
+@media print{
+
+    .monthly-filters,
+
+    .month-nav{
+
+        display:none;
+
+    }
+
+    .monthly-chart-table{
+
+        margin:0;
+
+        padding:0;
+
+        border:none;
+
+        box-shadow:none;
+
+    }
+
+    .monthly-table{
+
+        min-width:100%;
+
+    }
+
+}
+.panel-chart-values{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:6px;
+
+}
+
+.panel-open,
+.panel-close{
+
+    font-size:13px;
+
+    font-weight:700;
+
+    color:#666;
+
+}
+
+.panel-jodii{
+
+    font-size:24px;
+
+    font-weight:900;
+
+    color:#d50000;
+
+    font-family:"Montserrat",sans-serif;
+
+}

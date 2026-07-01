@@ -38,7 +38,7 @@
 
     background:rgba(106,27,154,.08);
 
-    color:#7B1FA2;
+    color:#d50000;
 
     font-size:.82rem;
 
@@ -1061,7 +1061,7 @@ font-size:.85rem;
 
 .seo-links a:focus-visible{
 
-outline:3px solid #8E24AA;
+outline:3px solid #d50000;
 
 outline-offset:3px;
 

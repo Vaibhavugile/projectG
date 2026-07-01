@@ -564,7 +564,7 @@ const filteredMarkets =
                 className="quick-chart"
                 onClick={() =>
                   navigate(
-                    `/jodi-chart/${item.slug}`
+                    `/market/${item.slug}/jodi-chart`
                   )
                 }
               >
@@ -583,7 +583,7 @@ const filteredMarkets =
                 className="quick-chart"
                 onClick={() =>
                   navigate(
-                    `/panel-chart/${item.slug}`
+                    `/market/${item.slug}/panel-chart`
                   )
                 }
               >

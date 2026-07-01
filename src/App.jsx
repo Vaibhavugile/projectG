@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 
 import MarketHome from "./pages/Market/MarketHome";
+import JodiChartPage from "./pages/Market/JodiChartPage";
+import PanelChartPage from "./pages/Market/PanelChartPage";
 // import MarketResult from "./pages/Market/MarketResult";
 // import PanelChart from "./pages/Market/PanelChart";
 // import JodiChart from "./pages/Market/JodiChart";
@@ -23,7 +25,20 @@ function App() {
         path="/market/:slug"
         element={<MarketHome />}
       />
+<Route
 
+    path="/market/:slug/jodi-chart"
+
+    element={<JodiChartPage />}
+
+/>
+<Route
+
+    path="/market/:slug/panel-chart"
+
+    element={<PanelChartPage />}
+
+/>
       {/* <Route
         path="/market/:slug/result"
         element={<MarketResult />}

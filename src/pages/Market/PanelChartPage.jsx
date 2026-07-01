@@ -3,12 +3,16 @@ import { useParams } from "react-router-dom";
 import { useMarkets } from "../../context/MarketContext";
 
 import MarketHero from "../../components/market/MarketHero";
-import MarketStats from "../../components/market/MarketStats";
+
 import ChartPreview from "../../components/market/ChartPreview";
-import MarketResultHistoryPreview from "../../components/market/MarketResultHistoryPreview";
+
 import MarketFAQ from "../../components/market/MarketFAQ";
+
 import MarketRelatedMarkets from "../../components/market/MarketRelatedMarkets";
+
 import MarketSEO from "./MarketSEO";
+import MonthlyChartTable from "../../components/market/MonthlyChartTable";
+import { PanelChartProvider } from "../../context/PanelChartContext";
 import Header from "../../components/Header";
 import TopBar from "../../components/TopBar";
 import RecentWinningBar from "../../components/RecentWinningBar";
@@ -19,30 +23,42 @@ import FloatingContact from "../../components/FloatingContact";
 import BreakingNews
 from "../../components/BreakingNews";
 
-function MarketHome() {
+
+function PanelChartPage() {
 
   const { slug } = useParams();
 
   const {
-    loading,
+
     markets,
+
+    loading,
+
   } = useMarkets();
 
   if (loading) {
-    return <h2>Loading...</h2>;
+
+    return <div>Loading...</div>;
+
   }
 
   const market = markets.find(
-    (item) => item.slug === slug
+
+    item => item.slug === slug
+
   );
 
   if (!market) {
+
     return <h2>Market Not Found</h2>;
+
   }
 
   return (
 
-    <>
+    <PanelChartProvider
+    marketSlug={market.slug}
+>
    <Header />
       <TopBar />
 <RecentWinningBar />
@@ -51,36 +67,31 @@ function MarketHome() {
       <FloatingContact />
 
 
-      <MarketHero
+    <MarketHero
         market={market}
-      />
+        page="panel"
+    />
 
-      <MarketStats
+    <MonthlyChartTable
+        variant="panel"
+    />
+
+    <MarketFAQ
         market={market}
-      />
-   <ChartPreview
-    market={market}
-    variant="panel"
-/>
+    />
 
-<ChartPreview
-    market={market}
-    variant="jodi"
-/>
-<MarketResultHistoryPreview
-  market={market}
-/>
-<MarketFAQ
-market={market} />
-<MarketRelatedMarkets
-market={market} />
-<MarketSEO 
-market={market} />
+    <MarketRelatedMarkets
+        market={market}
+    />
 
-    </>
+    <MarketSEO
+        market={market}
+    />
 
+</PanelChartProvider>
   );
 
 }
 
-export default MarketHome;
+export default PanelChartPage;
+    

@@ -38,7 +38,7 @@
 
     background:rgba(106,27,154,.08);
 
-    color:#7B1FA2;
+    color:#d50000;
 
     font-size:.82rem;
 
@@ -120,7 +120,7 @@
 
     font-weight:700;
 
-    color:#7B1FA2;
+    color:#d50000;
 
 }
 /* =====================================================
@@ -189,11 +189,11 @@
 
             90deg,
 
-            #6A1B9A,
+            #d50000,
 
-            #8E24AA,
+            #d50000,
 
-            #AB47BC
+            #d50000
 
         );
 
@@ -253,7 +253,7 @@
 
 .related-card:hover .related-market-name{
 
-    color:#6A1B9A;
+    color:#d50000;
 
 }
 
@@ -298,8 +298,8 @@
 
         linear-gradient(
             135deg,
-            #6A1B9A,
-            #AB47BC
+            #d50000,
+            #d50000
         );
 
     box-shadow:
@@ -376,7 +376,7 @@
 
 .related-footer strong{
 
-    color:#6A1B9A;
+    color:#d50000;
 
     font-weight:800;
 
@@ -709,7 +709,7 @@ font-size:.82rem;
 
 .related-card:focus-visible{
 
-outline:3px solid #8E24AA;
+outline:3px solid #d50000;
 
 outline-offset:3px;
 

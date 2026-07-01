@@ -4,7 +4,13 @@ import MarketQuickNavigation from "./MarketQuickNavigation";
 import migratePanelCharts from "./migrationPanelCharts";
 
 
-function MarketHero({ market }) {
+function MarketHero({
+
+  market,
+
+  page = "market",
+
+}) {
   if (!market) return null;
 
   const result = market.latestResult || {};
@@ -27,6 +33,96 @@ function MarketHero({ market }) {
     : resultDate === yesterday
     ? "YESTERDAY"
     : "OLD RESULT";
+    const heroPages = {
+
+  market: {
+
+    title: `${market.name} Matka Result Today`,
+
+    description:
+      `Check the latest ${market.name} Result, Panel Chart, Jodi Chart, Weekly Chart, Monthly Chart, Old Results, Open Panna, Close Panna and Live Updates.`,
+
+    buttonText: "View Today's Result →",
+
+    buttonUrl: `/market/${market.slug}/result`,
+
+    rightTitle: "TODAY'S RESULT",
+
+    breadcrumb: market.name,
+
+  },
+
+  panel: {
+
+    title: `${market.name} Panel Chart`,
+
+    description:
+      `Browse the latest ${market.name} Panel Chart, previous weeks, historical panel numbers and weekly records.`,
+
+    buttonText: "Browse Panel Chart ↓",
+
+    buttonUrl: "#chart",
+
+    rightTitle: "LATEST PANEL",
+
+    breadcrumb: "Panel Chart",
+
+  },
+
+  jodi: {
+
+    title: `${market.name} Jodi Chart`,
+
+    description:
+      `Browse the latest ${market.name} Jodi Chart, previous weeks and historical jodi numbers.`,
+
+    buttonText: "Browse Jodi Chart ↓",
+
+    buttonUrl: "#chart",
+
+    rightTitle: "LATEST JODI",
+
+    breadcrumb: "Jodi Chart",
+
+  },
+
+  weekly: {
+
+    title: `${market.name} Weekly Chart`,
+
+    description:
+      `Browse weekly historical charts, previous results and complete weekly records.`,
+
+    buttonText: "Browse Weekly Chart ↓",
+
+    buttonUrl: "#chart",
+
+    rightTitle: "LATEST WEEK",
+
+    breadcrumb: "Weekly Chart",
+
+  },
+
+  monthly: {
+
+    title: `${market.name} Monthly Chart`,
+
+    description:
+      `Browse monthly historical charts, previous months and archived records.`,
+
+    buttonText: "Browse Monthly Chart ↓",
+
+    buttonUrl: "#chart",
+
+    rightTitle: "LATEST MONTH",
+
+    breadcrumb: "Monthly Chart",
+
+  },
+
+};
+
+const hero = heroPages[page];
 
   
 
@@ -47,9 +143,29 @@ function MarketHero({ market }) {
 
           <span>›</span>
 
-          <span className="active">
-            {market.name}
-          </span>
+        {page !== "market" && (
+
+  <>
+
+    <span>›</span>
+
+    <Link
+      to={`/market/${market.slug}`}
+    >
+      {market.name}
+    </Link>
+
+  </>
+
+)}
+
+<span>›</span>
+
+<span className="active">
+
+  {hero.breadcrumb}
+
+</span>
 
         </nav>
 
@@ -69,24 +185,16 @@ function MarketHero({ market }) {
 
             </div>
 
-            <h1>
+           <h1>
 
-              {market.name} Matka Result Today
+  {hero.title}
 
-            </h1>
+</h1>
+           <p className="market-description">
 
-            <p className="market-description">
+  {hero.description}
 
-              Check the latest {market.name} Result,
-              Panel Chart,
-              Jodi Chart,
-              Weekly Chart,
-              Monthly Chart,
-              Old Results,
-              Open Panna,
-              Close Panna and Live Updates.
-
-            </p>
+</p>
 
             <div className="market-times">
 
@@ -128,13 +236,13 @@ Create Panel Charts
             <div className="hero-buttons">
 
               <Link
-                to={`/market/${market.slug}/result`}
-                className="hero-btn"
-              >
+  to={hero.buttonUrl}
+  className="hero-btn"
+>
 
-                View Today's Result →
+  {hero.buttonText}
 
-              </Link>
+</Link>
 
             </div>
 
@@ -144,51 +252,50 @@ Create Panel Charts
 
           <div className="market-result-card">
 
-            <span className="result-heading">
+          <span className="result-heading">
 
-              TODAY'S RESULT
+  {hero.rightTitle}
 
-            </span>
+</span>
+<div className="hero-result">
 
-            <div className="hero-result">
+    <div>
 
-              <div>
+      <small>OPEN</small>
 
-                <small>OPEN</small>
+      <h2>
 
-                <h2>
+        {result.openPanna || "***"}
 
-                  {result.openPanna || "***"}
+      </h2>
 
-                </h2>
+    </div>
 
-              </div>
+    <div className="hero-jodi">
 
-              <div className="hero-jodi">
+      <small>JODI</small>
 
-                <small>JODI</small>
+      <h1>
 
-                <h1>
+        {result.jodi || "**"}
 
-                  {result.jodi || "**"}
+      </h1>
 
-                </h1>
+    </div>
 
-              </div>
+    <div>
 
-              <div>
+      <small>CLOSE</small>
 
-                <small>CLOSE</small>
+      <h2>
 
-                <h2>
+        {result.closePanna || "***"}
 
-                  {result.closePanna || "***"}
+      </h2>
 
-                </h2>
+    </div>
 
-              </div>
-
-            </div>
+  </div>
 
             <div className="hero-update">
 

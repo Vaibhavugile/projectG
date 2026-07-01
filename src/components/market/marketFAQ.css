@@ -38,7 +38,7 @@
 
     background:rgba(106,27,154,.08);
 
-    color:#7B1FA2;
+    color:#d50000;
 
     font-size:.82rem;
 
@@ -156,7 +156,7 @@
 
             90deg,
 
-            #6A1B9A,
+            #d50000,
 
             #8E24AA,
 
@@ -233,7 +233,7 @@
 
 .faq-item:hover .faq-question span{
 
-    color:#6A1B9A;
+    color:#d50000;
 
 }
 
@@ -263,9 +263,9 @@
 
             135deg,
 
-            #6A1B9A,
+            #d50000,
 
-            #AB47BC
+            #d50000
 
         );
 
@@ -450,7 +450,7 @@
 
 .faq-footer strong{
 
-    color:#6A1B9A;
+    color:#d50000;
 
 }
 
@@ -484,9 +484,9 @@
 
             135deg,
 
-            #6A1B9A,
+            #d50000,
 
-            #AB47BC
+            #d50000
 
         );
 
@@ -827,7 +827,7 @@ font-size:.85rem;
 
 .faq-top-btn:focus-visible{
 
-outline:3px solid #8E24AA;
+outline:3px solid #d50000;
 
 outline-offset:3px;
 

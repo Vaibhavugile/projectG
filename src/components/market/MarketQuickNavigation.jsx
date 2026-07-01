@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import "./marketQuickNavigation.css";
 function MarketQuickNavigation({ slug }) {
 
   const navigation = [
@@ -18,21 +18,21 @@ function MarketQuickNavigation({ slug }) {
       icon: "🎯",
       url: `/market/${slug}/jodi-chart`,
     },
-    {
-      title: "Weekly Chart",
-      icon: "📅",
-      url: `/market/${slug}/weekly-chart`,
-    },
-    {
-      title: "Monthly Chart",
-      icon: "🗓️",
-      url: `/market/${slug}/monthly-chart`,
-    },
-    {
-      title: "Old Results",
-      icon: "📜",
-      url: `/market/${slug}/old-results`,
-    },
+    // {
+    //   title: "Weekly Chart",
+    //   icon: "📅",
+    //   url: `/market/${slug}/weekly-chart`,
+    // },
+    // {
+    //   title: "Monthly Chart",
+    //   icon: "🗓️",
+    //   url: `/market/${slug}/monthly-chart`,
+    // },
+    // {
+    //   title: "Old Results",
+    //   icon: "📜",
+    //   url: `/market/${slug}/old-results`,
+    // },
   ];
 
   return (
