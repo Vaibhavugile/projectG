@@ -38,6 +38,19 @@ function AdminDashboard() {
           </p>
         </Link>
 
+        <Link
+          to="/admin/import-panel-chart"
+          className="admin-card"
+        >
+          <div className="admin-icon">📥</div>
+
+          <h2>Import Panel Charts</h2>
+
+          <p>
+            Upload Excel and import historical panel charts.
+          </p>
+        </Link>
+
       </div>
 
     </div>

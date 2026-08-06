@@ -51,7 +51,7 @@ const {
     <>
       <Helmet>
         <title>
-          Matka Star | Kalyan Matka Result Today | Main Bazar Result
+          Matka News | Kalyan Matka Result Today | Main Bazar Result
         </title>
 
         <meta
@@ -61,14 +61,14 @@ const {
 
         <meta
           name="keywords"
-          content="Kalyan Matka, Kalyan Result Today, Main Bazar Result, Milan Day Result, Rajdhani Night Result, Jodi Chart, Panel Chart, Matka Result, Satta Matka, Matka Star"
+          content="Kalyan Matka, Kalyan Result Today, Main Bazar Result, Milan Day Result, Rajdhani Night Result, Jodi Chart, Panel Chart, Matka Result, Satta Matka, Matka News"
         />
 
-        <meta name="author" content="Matka Star" />
+        <meta name="author" content="Matka News" />
 
         <meta
           property="og:title"
-          content="Matka Star | Fastest Matka Results"
+          content="Matka News | Fastest Matka Results"
         />
 
         <meta

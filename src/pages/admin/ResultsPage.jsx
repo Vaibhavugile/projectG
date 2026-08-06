@@ -122,6 +122,35 @@ function timeToMinutes(time) {
   return hour * 60 + minute;
 
 }
+function nextEventMinutes(market, todayResult) {
+
+  const latest = todayResult || {};
+
+  const hasTodayResult =
+    latest.resultDate === today;
+
+  const openEntered =
+    !!latest.openPanna &&
+    latest.openPanna !== "***";
+
+  const closeEntered =
+    !!latest.closePanna &&
+    latest.closePanna !== "***";
+
+  if (!hasTodayResult) {
+    return timeToMinutes(market.openTime);
+  }
+
+  if (!openEntered) {
+    return timeToMinutes(market.openTime);
+  }
+
+  if (!closeEntered) {
+    return timeToMinutes(market.closeTime);
+  }
+
+  return 9999;
+}
 
 /* ==========================================
     MARKET STATUS
@@ -584,15 +613,35 @@ function getMarketStatus(market, todayResult) {
 
                     {[...markets]
 
-                        .sort(
+                       .sort((a, b) => {
 
-                            (a, b) =>
+  const todayA =
+    todayResults[a.slug];
 
-                                getMarketStatus(b).priority -
+  const todayB =
+    todayResults[b.slug];
 
-                                getMarketStatus(a).priority
+  const statusA =
+    getMarketStatus(a, todayA);
 
-                        )
+  const statusB =
+    getMarketStatus(b, todayB);
+
+  // Highest priority first
+  if (statusA.priority !== statusB.priority) {
+    return statusB.priority - statusA.priority;
+  }
+
+  // Same priority -> nearest event first
+  const nextA =
+    nextEventMinutes(a, todayA);
+
+  const nextB =
+    nextEventMinutes(b, todayB);
+
+  return nextA - nextB;
+
+})
 
                         .map((market, index) => {
 

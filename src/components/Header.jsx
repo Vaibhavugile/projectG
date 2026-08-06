@@ -41,7 +41,7 @@ function Header() {
             LIVE
           </span>
 
-          <h1>MATKA STAR</h1>
+          <h1>MATKA News</h1>
 
           <p>India's Fastest Matka Results</p>
         </div>

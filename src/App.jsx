@@ -17,6 +17,7 @@ import ManageResultPage from "./pages/admin/ManageResultPage";
 // import WeeklyChart from "./pages/Market/WeeklyChart";
 // import MonthlyChart from "./pages/Market/MonthlyChart";
 // import OldResults from "./pages/Market/OldResults";
+import ImportPanelChart from "./pages/admin/ImportPanelChart";
 
 function App() {
   return (
@@ -57,6 +58,10 @@ function App() {
         path="/admin/markets/add"
         element={<AddMarketPage />}
       />
+      <Route
+    path="/admin/import-panel-chart"
+    element={<ImportPanelChart />}
+/>
       <Route
     path="/admin/markets/edit/:marketId"
     element={<EditMarketPage />}

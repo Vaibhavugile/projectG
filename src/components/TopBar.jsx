@@ -9,7 +9,7 @@ function TopBar() {
 
       <div className="announcement-wrapper">
         <div className="announcement-track">
-          Welcome to Matka Star • Fastest Matka Results • Kalyan Result • Main Bazar Result • Milan Day Result • Rajdhani Night Result • Updated Daily • Play Responsibly •
+          Welcome to Matka News • Fastest Matka Results • Kalyan Result • Main Bazar Result • Milan Day Result • Rajdhani Night Result • Updated Daily • Play Responsibly •
         </div>
       </div>
     </div>

@@ -1,0 +1,40 @@
+.import-page{
+    max-width:900px;
+    margin:auto;
+    padding:40px;
+}
+
+.import-card{
+    background:#fff;
+    border-radius:12px;
+    padding:25px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.import-card label{
+    display:block;
+    font-weight:600;
+    margin-top:18px;
+    margin-bottom:8px;
+}
+
+.import-card select,
+.import-card input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+.file-name{
+    margin-top:15px;
+    color:#0a7;
+    font-weight:600;
+}
+
+.preview{
+    margin-top:30px;
+    padding:20px;
+    background:#f8f8f8;
+    border-radius:10px;
+}

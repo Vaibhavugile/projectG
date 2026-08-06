@@ -4,7 +4,7 @@
   position:fixed;
 
   right:0;          /* 🔥 FULL RIGHT EDGE */
-  bottom:22px;
+  bottom:50px;
 
   display:flex;
   flex-direction:column;
