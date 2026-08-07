@@ -10,7 +10,7 @@ import {
 import { db } from "../../firebase/firebase";
 import "./importPanelChart.css";
 
-const DAY_COLUMNS = [
+const ALL_DAYS = [
   {
     day: "Mon",
     open: 1,
@@ -47,6 +47,12 @@ const DAY_COLUMNS = [
     jodi: 17,
     close: 18,
   },
+  {
+    day: "Sun",
+    open: 19,
+    jodi: 20,
+    close: 21,
+  },
 ];
 
 function ImportPanelChart() {
@@ -62,7 +68,8 @@ function ImportPanelChart() {
 
   const [weeks, setWeeks] =
     useState([]);
-
+const [workingDays, setWorkingDays] =
+  useState("mon-sat");
   const [loadingFile, setLoadingFile] =
     useState(false);
 
@@ -206,7 +213,7 @@ const excelDateToJS = (value) => {
 
     return `${top}${middle}${bottom}`;
   };
-  const parseWeeks = (rows) => {
+ const parseWeeks = (rows) => {
   const parsed = [];
   let weekNumber = 1;
 
@@ -216,17 +223,41 @@ const excelDateToJS = (value) => {
     const bottom = rows[row + 2];
 
     if (!top || !middle || !bottom) continue;
-
     if (!top[0]) continue;
 
     const startDate = excelDateToJS(top[0]);
-    const endDate = excelDateToJS(bottom[0]);
 
-    if (!startDate || !endDate) continue;
+    if (!startDate) continue;
+
+    let dayColumns = [];
+    let endOffset = 5;
+
+    switch (workingDays) {
+      case "mon-fri":
+        dayColumns = ALL_DAYS.slice(0, 5);
+        endOffset = 4;
+        break;
+
+      case "mon-sat":
+        dayColumns = ALL_DAYS.slice(0, 6);
+        endOffset = 5;
+        break;
+
+      case "all":
+        dayColumns = ALL_DAYS;
+        endOffset = 6;
+        break;
+
+      default:
+        dayColumns = ALL_DAYS.slice(0, 6);
+        endOffset = 5;
+    }
+
+    const endDate = addDays(startDate, endOffset);
 
     const days = [];
 
-    DAY_COLUMNS.forEach((config, index) => {
+    dayColumns.forEach((config, index) => {
       const date = addDays(startDate, index);
 
       days.push({
@@ -251,22 +282,22 @@ const excelDateToJS = (value) => {
       });
     });
 
-   const year = startDate.getFullYear();
+    const year = startDate.getFullYear();
 
-const docId = `week_${year}_${String(
-  weekNumber
-).padStart(3, "0")}`;
+    const docId = `week_${year}_${String(
+      weekNumber
+    ).padStart(3, "0")}`;
 
-parsed.push({
-  docId,
-  year,
-  week: weekNumber,
-  startDate: formatDate(startDate),
-  endDate: formatDate(endDate),
-  days,
-});
+    parsed.push({
+      docId,
+      year,
+      week: weekNumber,
+      startDate: formatDate(startDate),
+      endDate: formatDate(endDate),
+      days,
+    });
 
-weekNumber++;
+    weekNumber++;
   }
 
   return parsed;
@@ -462,6 +493,33 @@ console.log(rows[1][0], typeof rows[1][0]);
           </select>
 
         </div>
+        <div className="form-group">
+
+  <label>
+    Working Days
+  </label>
+
+  <select
+    value={workingDays}
+    onChange={(e) =>
+      setWorkingDays(e.target.value)
+    }
+  >
+    <option value="mon-fri">
+      Monday - Friday
+    </option>
+
+    <option value="mon-sat">
+      Monday - Saturday
+    </option>
+
+    <option value="all">
+      Monday - Sunday
+    </option>
+
+  </select>
+
+</div>
 
         <div className="form-group">
 
