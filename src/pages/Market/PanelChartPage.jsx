@@ -9,7 +9,7 @@ import ChartPreview from "../../components/market/ChartPreview";
 import MarketFAQ from "../../components/market/MarketFAQ";
 
 import MarketRelatedMarkets from "../../components/market/MarketRelatedMarkets";
-
+import { useEffect } from "react";
 import MarketSEO from "./MarketSEO";
 import MonthlyChartTable from "../../components/market/MonthlyChartTable";
 import { PanelChartProvider } from "../../context/PanelChartContext";
@@ -25,7 +25,13 @@ from "../../components/BreakingNews";
 
 
 function PanelChartPage() {
-
+ useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, []);
   const { slug } = useParams();
 
   const {

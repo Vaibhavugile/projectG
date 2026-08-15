@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 
 import { useMarkets } from "../../context/MarketContext";
-
+import { useEffect } from "react";
 import MarketHero from "../../components/market/MarketHero";
 
 import ChartPreview from "../../components/market/ChartPreview";
@@ -24,7 +24,13 @@ import BreakingNews
 from "../../components/BreakingNews";
 
 function JodiChartPage() {
-
+ useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, []);
   const { slug } = useParams();
 
   const {

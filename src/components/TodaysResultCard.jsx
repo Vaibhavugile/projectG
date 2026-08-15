@@ -1,243 +1,318 @@
 import { useEffect, useState } from "react";
 import "../styles/todaysResult.css";
 
-
 function TodaysResultCard({ markets = [] }) {
-const [current, setCurrent] =
-  useState(0);
+  const [current, setCurrent] = useState(0);
 
+  /* --------------------------------
+     CREATE MARKET SLUG
+  -------------------------------- */
 
-/* FIREBASE REALTIME */
+  const createSlug = (name) => {
+    return name
+      ?.toString()
+      .trim()
+      .toLowerCase()
+      .replace(/&/g, "and")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  };
 
+  /* --------------------------------
+     AUTO SLIDER
+  -------------------------------- */
 
+  useEffect(() => {
+    if (!markets.length) {
+      return;
+    }
 
-/* AUTO SLIDER */
-
-useEffect(() => {
-
-  if (!markets.length)
-    return;
-
-  const interval =
-    setInterval(() => {
-
+    const interval = setInterval(() => {
       setCurrent((prev) =>
-        prev ===
-        markets.length - 1
+        prev === markets.length - 1
           ? 0
           : prev + 1
       );
-
     }, 5000);
 
-  return () =>
-    clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [markets]);
 
-}, [markets]);
-useEffect(() => {
-  if (current >= markets.length) {
-    setCurrent(0);
+  /* --------------------------------
+     RESET CURRENT INDEX
+  -------------------------------- */
+
+  useEffect(() => {
+    if (current >= markets.length) {
+      setCurrent(0);
+    }
+  }, [markets, current]);
+
+  /* --------------------------------
+     NO DATA
+  -------------------------------- */
+
+  if (!markets.length) {
+    return null;
   }
-}, [markets, current]);
 
-/* NO DATA */
+  /* --------------------------------
+     CURRENT MARKET
+  -------------------------------- */
 
-if (!markets.length)
-  return null;
+  const item = markets[current] || {};
 
-/* CURRENT MARKET */
+  /* --------------------------------
+     RESULT DATA
+  -------------------------------- */
 
-const item =
-  markets[current] || {};
+  const latestResult =
+    item.latestResult || {};
 
-/* RESULT DATA */
-const latestResult =
-  item.latestResult || {};
+  /* --------------------------------
+     TODAY - INDIA
+  -------------------------------- */
 
-const today =
-  new Date()
+  const today = new Date()
     .toLocaleDateString(
       "en-CA",
       {
-        timeZone:
-          "Asia/Kolkata",
+        timeZone: "Asia/Kolkata",
       }
     );
 
-const resultDate =
-  latestResult.resultDate || "";
-
-const isTodayResult =
-  resultDate === today;
-
-const openResult =
-  latestResult.openPanna
-    ? latestResult.openPanna
-    : "***";
-
-const closeResult =
-  latestResult.closePanna
-    ? latestResult.closePanna
-    : "***";
-
-const jodi =
-  latestResult.jodi || "**";
-
-const marketStatus =
-  isTodayResult
-    ? "TODAY"
-    : "YESTERDAY";
-
-const yesterday =
-  new Date(
+  const yesterday = new Date(
     Date.now() - 86400000
   )
     .toLocaleDateString(
       "en-CA",
       {
-        timeZone:
-          "Asia/Kolkata",
+        timeZone: "Asia/Kolkata",
       }
     );
 
-const resultLabel =
-  resultDate === today
-    ? "🔥 Today's Result"
-    : resultDate === yesterday
-    ? "📅 Yesterday's Result"
-    : resultDate
-    ? `📅 ${resultDate}`
-    : "No Result";
-return (
+  /* --------------------------------
+     RESULT DATE
+  -------------------------------- */
 
-  <section className="today-result-section">
+  const resultDate =
+    latestResult.resultDate || "";
 
-    <div className="result-card">
+  const isTodayResult =
+    resultDate === today;
 
-      <div className="result-glow" />
+  /* --------------------------------
+     RESULT VALUES
+  -------------------------------- */
 
-      <div className="result-header">
+  const openResult =
+    latestResult.openPanna
+      ? latestResult.openPanna
+      : "***";
 
-        <div className="result-tag">
-          🔥 TODAY'S MAIN RESULT
-        </div>
+  const closeResult =
+    latestResult.closePanna
+      ? latestResult.closePanna
+      : "***";
 
-        <div className="running-badge">
-          {marketStatus}
-        </div>
+  const jodi =
+    latestResult.jodi
+      ? latestResult.jodi
+      : "**";
 
-      </div>
+  /* --------------------------------
+     MARKET STATUS
+  -------------------------------- */
 
-      <div
-        key={item.id}
-        className="market-content"
-      >
+  const marketStatus =
+    isTodayResult
+      ? "TODAY"
+      : "YESTERDAY";
 
-        <h2>
-          {item.name}
-        </h2>
+  /* --------------------------------
+     RESULT LABEL
+  -------------------------------- */
 
-        <p className="market-subtitle">
-          Fastest Live Matka Result Today
-        </p>
+  const resultLabel =
+    resultDate === today
+      ? "🔥 Today's Result"
+      : resultDate === yesterday
+      ? "📅 Yesterday's Result"
+      : resultDate
+      ? `📅 ${resultDate}`
+      : "No Result";
 
-        <p className="market-date">
-          {resultLabel}
-        </p>
+  /* --------------------------------
+     MARKET SLUG
+  -------------------------------- */
 
-        <div className="result-grid">
+  const marketSlug =
+    item.slug ||
+    createSlug(item.name);
 
-          <div className="score-box">
+  /* --------------------------------
+     VIEW RESULT
+  -------------------------------- */
 
-            <span>
-              OPEN
-            </span>
+  const handleViewResult = () => {
+    if (!marketSlug) {
+      return;
+    }
 
-            <h3>
-              {openResult}
-            </h3>
+    window.location.href =
+      `/market/${marketSlug}`;
+  };
 
+  return (
+    <section className="today-result-section">
+
+      <div className="result-card">
+
+        <div className="result-glow" />
+
+        {/* ==============================
+            HEADER
+        ============================== */}
+
+        <div className="result-header">
+
+          <div className="result-tag">
+            🔥 TODAY'S MAIN RESULT
           </div>
 
-          <div className="center-jodi">
-
-            <span>
-              JODI
-            </span>
-
-            <h1>
-              {jodi}
-            </h1>
-
-          </div>
-
-          <div className="score-box">
-
-            <span>
-              CLOSE
-            </span>
-
-            <h3>
-              {closeResult}
-            </h3>
-
+          <div className="running-badge">
+            {marketStatus}
           </div>
 
         </div>
 
-      </div>
+        {/* ==============================
+            MARKET CONTENT
+        ============================== */}
 
-      <div className="result-footer">
-
-        <div className="update-info">
-
-          {isTodayResult
-            ? "🔥 Today's Result"
-            : "🔥 Yesterday's Result"}
-
-        </div>
-
-        <button
-          className="view-btn"
-          type="button"
+        <div
+          key={item.id}
+          className="market-content"
         >
-          VIEW RESULT →
-        </button>
+
+          <h2>
+            {item.name}
+          </h2>
+
+          <p className="market-subtitle">
+            Fastest Live Matka Result Today
+          </p>
+
+          <p className="market-date">
+            {resultLabel}
+          </p>
+
+          {/* ==========================
+              RESULT
+          ========================== */}
+
+          <div className="result-grid">
+
+            <div className="score-box">
+
+              <span>
+                OPEN
+              </span>
+
+              <h3>
+                {openResult}
+              </h3>
+
+            </div>
+
+            <div className="center-jodi">
+
+              <span>
+                JODI
+              </span>
+
+              <h1>
+                {jodi}
+              </h1>
+
+            </div>
+
+            <div className="score-box">
+
+              <span>
+                CLOSE
+              </span>
+
+              <h3>
+                {closeResult}
+              </h3>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* ==============================
+            FOOTER
+        ============================== */}
+
+        <div className="result-footer">
+
+          <div className="update-info">
+
+            {isTodayResult
+              ? "🔥 Today's Result"
+              : "🔥 Yesterday's Result"}
+
+          </div>
+
+          <button
+            className="view-btn"
+            type="button"
+            onClick={
+              handleViewResult
+            }
+          >
+            VIEW RESULT →
+          </button>
+
+        </div>
+
+        {/* ==============================
+            SLIDER DOTS
+        ============================== */}
+
+        <div className="slider-dots">
+
+          {markets.map(
+            (market, index) => (
+
+              <button
+                key={market.id}
+                type="button"
+                className={
+                  current === index
+                    ? "dot active"
+                    : "dot"
+                }
+                onClick={() =>
+                  setCurrent(index)
+                }
+                aria-label={`View ${market.name}`}
+              />
+
+            )
+          )}
+
+        </div>
 
       </div>
 
-      <div className="slider-dots">
-
-        {markets.map(
-          (
-            market,
-            index
-          ) => (
-
-            <button
-              key={market.id}
-              type="button"
-              className={
-                current === index
-                  ? "dot active"
-                  : "dot"
-              }
-              onClick={() =>
-                setCurrent(index)
-              }
-              aria-label={`View ${market.name}`}
-            />
-
-          )
-        )}
-
-      </div>
-
-    </div>
-
-  </section>
-
-);
+    </section>
+  );
 }
 
 export default TodaysResultCard;

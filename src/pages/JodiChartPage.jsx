@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import "../styles/jodiChart.css";
 
 const years = ["2025", "2024", "2023", "2022", "2021"];

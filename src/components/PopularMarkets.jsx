@@ -1,63 +1,130 @@
+import { useEffect, useState } from "react";
+import {
+  collection,
+  onSnapshot,
+  query,
+  orderBy,
+} from "firebase/firestore";
+
+import { db } from "../firebase/firebase";
 import "../styles/popularMarkets.css";
 
-const markets = [
-  {
-    name: "Kalyan",
-    result: "Kalyan Result Today",
-    timing: "04:00 PM - 06:00 PM",
-  },
-  {
-    name: "Main Bazar",
-    result: "Main Bazar Result Today",
-    timing: "09:00 PM - 11:00 PM",
-  },
-  {
-    name: "Milan Day",
-    result: "Milan Day Result Today",
-    timing: "03:00 PM - 05:00 PM",
-  },
-  {
-    name: "Rajdhani Night",
-    result: "Rajdhani Night Result Today",
-    timing: "09:30 PM - 11:30 PM",
-  },
-  {
-    name: "Time Bazar",
-    result: "Time Bazar Result Today",
-    timing: "01:00 PM - 03:00 PM",
-  },
-  {
-    name: "Sridevi",
-    result: "Sridevi Result Today",
-    timing: "11:35 AM - 12:35 PM",
-  },
-  {
-    name: "Madhur Day",
-    result: "Madhur Day Result Today",
-    timing: "01:00 PM - 03:00 PM",
-  },
-  {
-    name: "Kalyan Night",
-    result: "Kalyan Night Result Today",
-    timing: "09:00 PM - 11:00 PM",
-  },
-];
-
 function PopularMarkets() {
+  const [markets, setMarkets] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // --------------------------------
+  // CREATE URL SLUG
+  // --------------------------------
+
+  const createSlug = (name) => {
+    return name
+      .toString()
+      .trim()
+      .toLowerCase()
+      .replace(/&/g, "and")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  };
+
+  // --------------------------------
+  // LOAD MARKETS
+  // --------------------------------
+
+  useEffect(() => {
+    const marketsQuery = query(
+      collection(db, "markets"),
+      orderBy("displayOrder")
+    );
+
+    const unsubscribe = onSnapshot(
+      marketsQuery,
+      (snapshot) => {
+        const marketList = snapshot.docs.map(
+          (marketDoc) => {
+            const data = marketDoc.data();
+
+            return {
+              id: marketDoc.id,
+
+              name:
+                data.name ||
+                marketDoc.id,
+
+              slug:
+                data.slug ||
+                createSlug(
+                  data.name ||
+                  marketDoc.id
+                ),
+
+              timing:
+                data.timing ||
+                data.marketTiming ||
+                data.time ||
+                "Timing not available",
+
+              latestResult:
+                data.latestResult || {},
+
+              isFeatured:
+                data.isFeatured || false,
+
+              displayOrder:
+                data.displayOrder || 0,
+            };
+          }
+        );
+
+        setMarkets(marketList);
+        setLoading(false);
+      },
+      (error) => {
+        console.error(
+          "Error loading markets:",
+          error
+        );
+
+        setMarkets([]);
+        setLoading(false);
+      }
+    );
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  // --------------------------------
+  // OPEN MARKET
+  // --------------------------------
+
+  const openMarket = (slug) => {
+    window.location.href =
+      `/market/${slug}`;
+  };
+
   return (
     <section className="popular-markets">
+
+      {/* ==============================
+          HEADER
+      ============================== */}
 
       <div className="popular-header">
 
         <div>
+
           <h2>
             Popular Satta Matka Markets
           </h2>
 
           <p>
-            Check Kalyan Result, Main Bazar Result,
-            Milan Day Result and all live market updates.
+            Check Kalyan Result, Main Bazar
+            Result, Milan Day Result and all
+            live market updates.
           </p>
+
         </div>
 
         <span>
@@ -66,42 +133,113 @@ function PopularMarkets() {
 
       </div>
 
-      <div className="popular-grid">
+      {/* ==============================
+          LOADING
+      ============================== */}
 
-        {markets.map((market) => (
-          <article
-            key={market.name}
-            className="popular-card"
-          >
+      {loading && (
+        <div className="popular-loading">
+          Loading markets...
+        </div>
+      )}
 
-            <div className="popular-top">
+      {/* ==============================
+          EMPTY
+      ============================== */}
 
-              <h3>
-                {market.name}
-              </h3>
+      {!loading &&
+        markets.length === 0 && (
+          <div className="popular-empty">
+            No markets available.
+          </div>
+        )}
 
-              <div className="popular-arrow">
-                →
-              </div>
+      {/* ==============================
+          MARKET GRID
+      ============================== */}
 
-            </div>
+      {!loading &&
+        markets.length > 0 && (
 
-            <div className="popular-result">
-              {market.result}
-            </div>
+          <div className="popular-grid">
 
-            <div className="popular-time">
-              ⏱ {market.timing}
-            </div>
+            {markets.map((market) => (
 
-            <button className="popular-btn">
-              View Result
-            </button>
+              <article
+                key={market.id}
+                className="popular-card"
+              >
 
-          </article>
-        ))}
+                {/* ==========================
+                    TOP
+                ========================== */}
 
-      </div>
+                <div className="popular-top">
+
+                  <h3>
+                    {market.name}
+                  </h3>
+
+                  <div
+                    className="popular-arrow"
+                    onClick={() =>
+                      openMarket(
+                        market.slug
+                      )
+                    }
+                  >
+                    →
+                  </div>
+
+                </div>
+
+                {/* ==========================
+                    RESULT TITLE
+                ========================== */}
+
+                <div className="popular-result">
+
+                  {market.name} Result Today
+
+                </div>
+
+                {/* ==========================
+                    TIMING
+                ========================== */}
+
+                <div className="popular-time">
+
+                  ⏱ {market.timing}
+
+                </div>
+
+                {/* ==========================
+                    BUTTON
+                ========================== */}
+
+                <button
+                  type="button"
+                  className="popular-btn"
+                  onClick={() =>
+                    openMarket(
+                      market.slug
+                    )
+                  }
+                >
+                  View Result
+                </button>
+
+              </article>
+
+            ))}
+
+          </div>
+
+        )}
+
+      {/* ==============================
+          SEO
+      ============================== */}
 
       <div className="popular-seo">
 
@@ -111,13 +249,13 @@ function PopularMarkets() {
 
         <p>
           Find the latest Kalyan Result Today,
-          Main Bazar Result Today,
-          Milan Day Result Today,
-          Rajdhani Night Result Today,
-          Time Bazar Result Today and other
-          popular Satta Matka market updates.
-          View open close results, jodi results,
-          panel charts and daily market timings.
+          Main Bazar Result Today, Milan Day
+          Result Today, Rajdhani Night Result
+          Today, Time Bazar Result Today and
+          other popular Satta Matka market
+          updates. View open close results,
+          jodi results, panel charts and daily
+          market timings.
         </p>
 
       </div>

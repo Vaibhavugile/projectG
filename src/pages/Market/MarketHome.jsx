@@ -15,12 +15,18 @@ import RecentWinningBar from "../../components/RecentWinningBar";
 import ResultPopup
 from "../../components/ResultPopup";
 import FloatingContact from "../../components/FloatingContact";
-
+import { useEffect } from "react";
 import BreakingNews
 from "../../components/BreakingNews";
 
 function MarketHome() {
-
+useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, []);
   const { slug } = useParams();
 
   const {
