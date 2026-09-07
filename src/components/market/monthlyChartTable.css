@@ -1186,7 +1186,19 @@
     color:#666;
 
 }
+.download-chart-btn {
+  border: none;
+  cursor: pointer;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  white-space: nowrap;
+}
 
+.download-chart-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 .panel-jodii{
 
     font-size:24px;

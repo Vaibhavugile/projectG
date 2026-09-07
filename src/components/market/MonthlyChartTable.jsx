@@ -1,13 +1,19 @@
 import {
   useMemo,
   useState,
+  useRef,
 } from "react";
 
 import {
   usePanelChart,
 } from "../../context/PanelChartContext";
 
+import html2canvas from "html2canvas";
+
+import { jsPDF } from "jspdf";
+
 import "./monthlyChartTable.css";
+
 
 function MonthlyChartTable({
 
@@ -19,19 +25,16 @@ function MonthlyChartTable({
 
     loading,
 
-    weeks,
+    weeks = [],
 
   } = usePanelChart();
 
-  if (loading) {
-
-    return null;
-
-  }
 
   /* ==========================================
-      TODAY
+      ALL HOOKS FIRST
   ========================================== */
+
+  const chartRef = useRef(null);
 
   const today = new Date();
 
@@ -41,6 +44,10 @@ function MonthlyChartTable({
   const [selectedYear, setSelectedYear] =
     useState(today.getFullYear());
 
+  const [downloading, setDownloading] =
+    useState(false);
+
+
   /* ==========================================
       MONTHS
   ========================================== */
@@ -48,30 +55,20 @@ function MonthlyChartTable({
   const months = [
 
     "January",
-
     "February",
-
     "March",
-
     "April",
-
     "May",
-
     "June",
-
     "July",
-
     "August",
-
     "September",
-
     "October",
-
     "November",
-
     "December",
 
   ];
+
 
   /* ==========================================
       AVAILABLE YEARS
@@ -82,18 +79,13 @@ function MonthlyChartTable({
     return [
 
       ...new Set(
-
-        weeks.map(
-
-          week => week.year
-
-        )
-
+        weeks.map((week) => week.year)
       ),
 
     ].sort((a, b) => b - a);
 
   }, [weeks]);
+
 
   /* ==========================================
       FILTER MONTH
@@ -103,49 +95,50 @@ function MonthlyChartTable({
 
     return weeks
 
-  .filter((week) => {
+      .filter((week) => {
 
-    const startDate = week.startDate?.toDate
-  ? week.startDate.toDate()
-  : new Date(week.startDate);
+        const startDate =
+          week.startDate?.toDate
+            ? week.startDate.toDate()
+            : new Date(week.startDate);
 
-const endDate = week.endDate?.toDate
-  ? week.endDate.toDate()
-  : new Date(week.endDate);
+        const endDate =
+          week.endDate?.toDate
+            ? week.endDate.toDate()
+            : new Date(week.endDate);
 
-    return (
+        return (
 
-      (
+          (
 
-        startDate.getMonth() === selectedMonth ||
+            startDate.getMonth() === selectedMonth ||
 
-        endDate.getMonth() === selectedMonth
+            endDate.getMonth() === selectedMonth
 
-      ) &&
+          ) &&
 
-      (
+          (
 
-        startDate.getFullYear() === selectedYear ||
+            startDate.getFullYear() === selectedYear ||
 
-        endDate.getFullYear() === selectedYear
+            endDate.getFullYear() === selectedYear
 
-      )
+          )
 
-    );
+        );
 
-  })
+      })
 
-  .sort((a, b) => a.week - b.week);
+      .sort((a, b) => a.week - b.week);
 
   }, [
 
     weeks,
-
     selectedMonth,
-
     selectedYear,
 
   ]);
+
 
   /* ==========================================
       WEEK DAYS
@@ -154,353 +147,890 @@ const endDate = week.endDate?.toDate
   const weekDays = [
 
     "Mon",
-
     "Tue",
-
     "Wed",
-
     "Thu",
-
     "Fri",
-
     "Sat",
-"Sun",
+    "Sun",
+
   ];
+
+
   /* ==========================================
-    MONTH NAVIGATION
-========================================== */
+      MONTH NAVIGATION
+  ========================================== */
 
-const previousMonth = () => {
+  const previousMonth = () => {
 
-  if (selectedMonth === 0) {
+    if (selectedMonth === 0) {
 
-    setSelectedMonth(11);
+      setSelectedMonth(11);
 
-    setSelectedYear((year) => year - 1);
+      setSelectedYear((year) => year - 1);
 
-  } else {
+    } else {
 
-    setSelectedMonth((month) => month - 1);
+      setSelectedMonth((month) => month - 1);
+
+    }
+
+  };
+
+
+  const nextMonth = () => {
+
+    if (selectedMonth === 11) {
+
+      setSelectedMonth(0);
+
+      setSelectedYear((year) => year + 1);
+
+    } else {
+
+      setSelectedMonth((month) => month + 1);
+
+    }
+
+  };
+
+
+  /* ==========================================
+      DOWNLOAD PDF
+  ========================================== */
+
+const downloadPDF = async () => {
+
+  if (!chartRef.current) return;
+
+  let tempContainer = null;
+
+  try {
+
+    setDownloading(true);
+
+
+    const originalTable =
+      chartRef.current;
+
+
+    /* ==========================================
+       CREATE TEMPORARY FULL TABLE
+    ========================================== */
+
+    tempContainer =
+      document.createElement("div");
+
+
+    const clonedTable =
+      originalTable.cloneNode(true);
+
+
+    /* ==========================================
+       TEMP CONTAINER STYLE
+    ========================================== */
+
+    tempContainer.style.position =
+      "fixed";
+
+    tempContainer.style.left =
+      "-99999px";
+
+    tempContainer.style.top =
+      "0";
+
+    tempContainer.style.background =
+      "#ffffff";
+
+    tempContainer.style.padding =
+      "0";
+
+    tempContainer.style.margin =
+      "0";
+
+    tempContainer.style.overflow =
+      "visible";
+
+    tempContainer.style.direction =
+      "ltr";
+
+
+    tempContainer.setAttribute(
+      "dir",
+      "ltr"
+    );
+
+
+    /* ==========================================
+       TABLE SIZE
+    ========================================== */
+
+    tempContainer.style.width =
+      `${originalTable.scrollWidth}px`;
+
+
+    clonedTable.style.width =
+      `${originalTable.scrollWidth}px`;
+
+    clonedTable.style.minWidth =
+      `${originalTable.scrollWidth}px`;
+
+    clonedTable.style.maxWidth =
+      "none";
+
+
+    /* ==========================================
+       FORCE CORRECT COLUMN ORDER
+
+       WEEK → MON → TUE → WED → THU → FRI
+       → SAT → SUN
+    ========================================== */
+
+    clonedTable.style.direction =
+      "ltr";
+
+
+    clonedTable.setAttribute(
+      "dir",
+      "ltr"
+    );
+
+
+    clonedTable.style.tableLayout =
+      "fixed";
+
+
+    /* Force all table elements LTR */
+
+    clonedTable
+      .querySelectorAll(
+        "thead, tbody, tr, th, td"
+      )
+      .forEach((element) => {
+
+        element.style.direction =
+          "ltr";
+
+
+        element.setAttribute(
+          "dir",
+          "ltr"
+        );
+
+
+        /* Remove unwanted positioning */
+
+        const computed =
+          window.getComputedStyle(element);
+
+
+        if (
+          computed.position === "sticky"
+        ) {
+
+          element.style.position =
+            "static";
+
+        }
+
+
+        /* Remove right sticky positioning */
+
+        element.style.right =
+          "auto";
+
+
+        /* Make sure left positioning works */
+
+        if (
+          element.classList.contains(
+            "week-number"
+          )
+        ) {
+
+          element.style.left =
+            "auto";
+
+        }
+
+      });
+
+
+    /* ==========================================
+       APPEND CLONED TABLE
+    ========================================== */
+
+    tempContainer.appendChild(
+      clonedTable
+    );
+
+
+    document.body.appendChild(
+      tempContainer
+    );
+
+
+    /* ==========================================
+       WAIT FOR RENDERING
+    ========================================== */
+
+    await new Promise(
+      (resolve) => {
+
+        setTimeout(
+          resolve,
+          300
+        );
+
+      }
+    );
+
+
+    /* ==========================================
+       GET COMPLETE TABLE SIZE
+    ========================================== */
+
+    const tableWidth =
+      clonedTable.scrollWidth;
+
+
+    const tableHeight =
+      clonedTable.scrollHeight;
+
+
+    /* ==========================================
+       CAPTURE COMPLETE TABLE
+    ========================================== */
+
+    const canvas =
+      await html2canvas(
+        clonedTable,
+        {
+
+          scale: 2,
+
+          useCORS: true,
+
+          backgroundColor:
+            "#ffffff",
+
+          width:
+            tableWidth,
+
+          height:
+            tableHeight,
+
+          windowWidth:
+            tableWidth,
+
+          windowHeight:
+            tableHeight,
+
+          scrollX: 0,
+
+          scrollY: 0,
+
+        }
+      );
+
+
+    /* ==========================================
+       REMOVE TEMP TABLE
+    ========================================== */
+
+    if (
+      tempContainer &&
+      tempContainer.parentNode
+    ) {
+
+      tempContainer.parentNode.removeChild(
+        tempContainer
+      );
+
+      tempContainer = null;
+
+    }
+
+
+    /* ==========================================
+       PDF SETTINGS
+    ========================================== */
+
+    const margin =
+      10;
+
+
+    const pdfWidth =
+      297;
+
+
+    /* Calculate chart ratio */
+
+    const chartRatio =
+      canvas.height /
+      canvas.width;
+
+
+    const imageWidth =
+      pdfWidth -
+      (margin * 2);
+
+
+    const imageHeight =
+      imageWidth *
+      chartRatio;
+
+
+    const pdfHeight =
+      imageHeight +
+      (margin * 2);
+
+
+    /* ==========================================
+       CREATE SINGLE PDF PAGE
+    ========================================== */
+
+    const pdf =
+      new jsPDF({
+
+        orientation:
+          "landscape",
+
+        unit:
+          "mm",
+
+        format: [
+
+          pdfWidth,
+
+          pdfHeight,
+
+        ],
+
+      });
+
+
+    /* ==========================================
+       CREATE IMAGE
+    ========================================== */
+
+    const imageData =
+      canvas.toDataURL(
+        "image/png",
+        1.0
+      );
+
+
+    /* ==========================================
+       ADD COMPLETE CHART
+    ========================================== */
+
+    pdf.addImage(
+
+      imageData,
+
+      "PNG",
+
+      margin,
+
+      margin,
+
+      imageWidth,
+
+      imageHeight,
+
+      undefined,
+
+      "FAST"
+
+    );
+
+
+    /* ==========================================
+       FILE NAME
+    ========================================== */
+
+    const chartName =
+
+      variant === "jodi"
+
+        ? "Jodi-Chart"
+
+        : "Panel-Chart";
+
+
+    /* ==========================================
+       SAVE PDF
+    ========================================== */
+
+    pdf.save(
+
+      `${chartName}-${months[selectedMonth]}-${selectedYear}.pdf`
+
+    );
+
+
+  } catch (error) {
+
+    console.error(
+
+      "PDF download failed:",
+
+      error
+
+    );
+
+
+  } finally {
+
+
+    /* ==========================================
+       CLEANUP TEMP ELEMENT
+    ========================================== */
+
+    if (
+      tempContainer &&
+      tempContainer.parentNode
+    ) {
+
+      tempContainer.parentNode.removeChild(
+        tempContainer
+      );
+
+    }
+
+
+    setDownloading(false);
 
   }
 
 };
 
-const nextMonth = () => {
+  /* ==========================================
+      LOADING AFTER ALL HOOKS
+  ========================================== */
 
-  if (selectedMonth === 11) {
+  if (loading) {
 
-    setSelectedMonth(0);
-
-    setSelectedYear((year) => year + 1);
-
-  } else {
-
-    setSelectedMonth((month) => month + 1);
+    return null;
 
   }
 
-};
 
-/* ==========================================
-    JSX
-========================================== */
+  /* ==========================================
+      JSX
+  ========================================== */
 
-return (
+  return (
 
-  <section className="monthly-chart-table">
+    <section className="monthly-chart-table">
 
-    <div className="monthly-chart-header">
 
-      <div>
+      {/* ==========================================
+          HEADER
+      ========================================== */}
 
-        <span className="monthly-tag">
+      <div className="monthly-chart-header">
 
-          {variant === "jodi"
 
-            ? "🎯 MONTHLY JODI CHART"
+        <div>
 
-            : "📊 MONTHLY PANEL CHART"}
+          <span className="monthly-tag">
 
-        </span>
+            {variant === "jodi"
 
-        <h2>
+              ? "🎯 MONTHLY JODI CHART"
 
-          {months[selectedMonth]} {selectedYear}
+              : "📊 MONTHLY PANEL CHART"
 
-        </h2>
+            }
 
-        <p>
+          </span>
 
-          Browse complete monthly historical charts.
 
-        </p>
+          <h2>
 
-      </div>
+            {months[selectedMonth]} {selectedYear}
 
-      <div className="monthly-filters">
+          </h2>
 
-        <button
 
-          className="month-nav"
+          <p>
 
-          onClick={previousMonth}
+            Browse complete monthly historical charts.
 
-        >
+          </p>
 
-          ←
+        </div>
 
-        </button>
 
-        <select
+        <div className="monthly-filters">
 
-          value={selectedMonth}
 
-          onChange={(e) =>
+          <button
 
-            setSelectedMonth(
+            className="month-nav"
 
-              Number(e.target.value)
+            onClick={previousMonth}
 
-            )
+          >
 
-          }
+            ←
 
-        >
+          </button>
 
-          {months.map((month, index) => (
 
-            <option
+          <select
 
-              key={month}
+            value={selectedMonth}
 
-              value={index}
+            onChange={(e) =>
 
-            >
+              setSelectedMonth(
+                Number(e.target.value)
+              )
 
-              {month}
+            }
 
-            </option>
+          >
 
-          ))}
+            {months.map((month, index) => (
 
-        </select>
+              <option
 
-        <select
+                key={month}
 
-          value={selectedYear}
+                value={index}
 
-          onChange={(e) =>
+              >
 
-            setSelectedYear(
+                {month}
 
-              Number(e.target.value)
-
-            )
-
-          }
-
-        >
-
-          {availableYears.map((year) => (
-
-            <option
-
-              key={year}
-
-              value={year}
-
-            >
-
-              {year}
-
-            </option>
-
-          ))}
-
-        </select>
-
-        <button
-
-          className="month-nav"
-
-          onClick={nextMonth}
-
-        >
-
-          →
-
-        </button>
-
-      </div>
-
-    </div>
-        {/* ==========================================
-        TABLE
-    ========================================== */}
-
-    <div className="monthly-table-wrapper">
-
-      <table className="monthly-table">
-
-        <thead>
-
-          <tr>
-
-            <th>Week</th>
-
-            {weekDays.map((day) => (
-
-              <th key={day}>
-
-                {day}
-
-              </th>
+              </option>
 
             ))}
 
-          </tr>
+          </select>
 
-        </thead>
 
-        <tbody>
+          <select
 
-          {monthWeeks.length === 0 && (
+            value={selectedYear}
+
+            onChange={(e) =>
+
+              setSelectedYear(
+                Number(e.target.value)
+              )
+
+            }
+
+          >
+
+            {availableYears.map((year) => (
+
+              <option
+
+                key={year}
+
+                value={year}
+
+              >
+
+                {year}
+
+              </option>
+
+            ))}
+
+          </select>
+
+
+          <button
+
+            className="month-nav"
+
+            onClick={nextMonth}
+
+          >
+
+            →
+
+          </button>
+
+
+
+
+        </div>
+
+          <button
+
+            className="download-chart-btn"
+
+            onClick={downloadPDF}
+
+            disabled={downloading}
+
+          >
+
+            {downloading
+
+              ? "⏳ Preparing..."
+
+              : "📥 Download PDF"
+
+            }
+
+          </button>
+      </div>
+
+
+      {/* ==========================================
+          TABLE
+      ========================================== */}
+
+      <div className="monthly-table-wrapper">
+
+
+        <table
+
+          ref={chartRef}
+
+          className="monthly-table"
+
+        >
+
+
+          <thead>
 
             <tr>
 
-              <td
-                colSpan={8}
-                className="monthly-empty"
-              >
+              <th>
 
-                No chart available for this month.
+                Week
 
-              </td>
+              </th>
 
-            </tr>
 
-          )}
+              {weekDays.map((day) => (
 
-          {monthWeeks.map((week) => (
+                <th key={day}>
 
-            <tr key={week.id}>
+                  {day}
 
-              <td className="week-number">
+                </th>
 
-  <strong>
-
-    Week {week.week}
-
-  </strong>
-
-  <small>
-
-    {(() => {
-
-      const start = week.startDate?.toDate
-        ? week.startDate.toDate()
-        : new Date(week.startDate);
-
-      const end = week.endDate?.toDate
-        ? week.endDate.toDate()
-        : new Date(week.endDate);
-
-      return `${start.toLocaleDateString("en-GB")} - ${end.toLocaleDateString("en-GB")}`;
-
-    })()}
-
-  </small>
-
-</td>
-
-              {weekDays.map((dayName) => {
-
-                const day = (week.days || []).find((item) => {
-
-  const currentDay =
-
-    item.day
-
-      ?.toLowerCase()
-
-      .substring(0, 3);
-
-  return currentDay ===
-
-    dayName.toLowerCase();
-
-});
-
-                return (
-
-                  <td
-                    key={dayName}
-                    className="monthly-cell"
-                  >
-
-                    {!day && (
-
-                      <span className="empty-cell">
-
-                        --
-
-                      </span>
-
-                    )}
-
-                    {day && variant === "jodi" && (
-<div className="jodi-pill">
-
-  <strong>
-
-    {day.jodi}
-
-  </strong>
-
-</div>
-
-                    )}
-
-                    {day && variant === "panel" && (
-
-            <div className="panel-chart-values">
-
-    <div className="panel-open">
-        {day.open}
-    </div>
-
-    <div className="panel-jodii">
-        {day.jodi}
-    </div>
-
-    <div className="panel-close">
-        {day.close}
-    </div>
-
-</div>
-
-                    )}
-
-                  </td>
-
-                );
-
-              })}
+              ))}
 
             </tr>
 
-          ))}
+          </thead>
 
-        </tbody>
 
-      </table>
+          <tbody>
 
-    </div>
-      </section>
 
-);
+            {monthWeeks.length === 0 && (
+
+              <tr>
+
+                <td
+
+                  colSpan={8}
+
+                  className="monthly-empty"
+
+                >
+
+                  No chart available for this month.
+
+                </td>
+
+              </tr>
+
+            )}
+
+
+            {monthWeeks.map((week) => (
+
+              <tr key={week.id}>
+
+
+                {/* WEEK */}
+
+                <td className="week-number">
+
+                  <strong>
+
+                    Week {week.week}
+
+                  </strong>
+
+
+                  <small>
+
+                    {(() => {
+
+                      const start =
+
+                        week.startDate?.toDate
+
+                          ? week.startDate.toDate()
+
+                          : new Date(
+                              week.startDate
+                            );
+
+
+                      const end =
+
+                        week.endDate?.toDate
+
+                          ? week.endDate.toDate()
+
+                          : new Date(
+                              week.endDate
+                            );
+
+
+                      return `${start.toLocaleDateString("en-GB")} - ${end.toLocaleDateString("en-GB")}`;
+
+                    })()}
+
+                  </small>
+
+                </td>
+
+
+                {/* DAYS */}
+
+                {weekDays.map((dayName) => {
+
+
+                  const day =
+
+                    (week.days || []).find((item) => {
+
+
+                      const currentDay =
+
+                        item.day
+
+                          ?.toLowerCase()
+
+                          .substring(0, 3);
+
+
+                      return (
+
+                        currentDay ===
+
+                        dayName.toLowerCase()
+
+                      );
+
+                    });
+
+
+                  return (
+
+                    <td
+
+                      key={dayName}
+
+                      className="monthly-cell"
+
+                    >
+
+
+                      {!day && (
+
+                        <span className="empty-cell">
+
+                          --
+
+                        </span>
+
+                      )}
+
+
+                      {/* JODI */}
+
+                      {day &&
+
+                        variant === "jodi" && (
+
+                          <div className="jodi-pill">
+
+                            <strong>
+
+                              {day.jodi}
+
+                            </strong>
+
+                          </div>
+
+                        )}
+
+
+                      {/* PANEL */}
+
+                      {day &&
+
+                        variant === "panel" && (
+
+                          <div className="panel-chart-values">
+
+
+                            <div className="panel-open">
+
+                              {day.open}
+
+                            </div>
+
+
+                            <div className="panel-jodii">
+
+                              {day.jodi}
+
+                            </div>
+
+
+                            <div className="panel-close">
+
+                              {day.close}
+
+                            </div>
+
+
+                          </div>
+
+                        )}
+
+                    </td>
+
+                  );
+
+                })}
+
+
+              </tr>
+
+            ))}
+
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+    </section>
+
+  );
 
 }
+
 
 export default MonthlyChartTable;

@@ -4,7 +4,7 @@
   position:fixed;
 
   right:0;          /* 🔥 FULL RIGHT EDGE */
-  bottom:50px;
+  bottom:180px;
 
   display:flex;
   flex-direction:column;
@@ -111,7 +111,7 @@
 @media (max-width:600px){
 
   .bmm-float{
-    bottom:16px;
+    bottom:180px;
     padding-right:10px;
   }
 

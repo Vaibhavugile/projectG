@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+>
+
+
+
+  <url>
+
+    <loc>https://matka.news/</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>1.0</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/kalyan</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.9</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/kalyan/jodi-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/kalyan/panel-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/time-bazar</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.9</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/time-bazar/jodi-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/time-bazar/panel-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/main-bazar</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.9</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/main-bazar/jodi-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/main-bazar/panel-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/madhur-day</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.9</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/madhur-day/jodi-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/madhur-day/panel-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/madhur-night</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.9</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/madhur-night/jodi-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/madhur-night/panel-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/madhur-morning</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.9</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/madhur-morning/jodi-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/madhur-morning/panel-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/milan-day</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.9</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/milan-day/jodi-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/milan-day/panel-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/milan-night</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.9</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/milan-night/jodi-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/milan-night/panel-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/sridevi</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.9</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/sridevi/jodi-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/sridevi/panel-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/kamdhenu</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.9</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/kamdhenu/jodi-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/kamdhenu/panel-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/rose-bazar-day</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.9</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/rose-bazar-day/jodi-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/rose-bazar-day/panel-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/rose-bazar-night</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.9</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/rose-bazar-night/jodi-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+  <url>
+
+    <loc>https://matka.news/market/rose-bazar-night/panel-chart</loc>
+
+    <changefreq>daily</changefreq>
+
+    <priority>0.8</priority>
+
+  </url>
+
+</urlset>

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /admindashboard
+Disallow: /admin/
+
+Sitemap: https://matka.news/sitemap.xml

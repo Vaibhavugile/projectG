@@ -12,6 +12,7 @@ function AdminDashboard() {
 
       <div className="admin-grid">
 
+        {/* Markets */}
         <Link
           to="/admin/markets"
           className="admin-card"
@@ -25,6 +26,7 @@ function AdminDashboard() {
           </p>
         </Link>
 
+        {/* Results */}
         <Link
           to="/admin/results"
           className="admin-card"
@@ -38,6 +40,7 @@ function AdminDashboard() {
           </p>
         </Link>
 
+        {/* Import Panel Charts */}
         <Link
           to="/admin/import-panel-chart"
           className="admin-card"
@@ -48,6 +51,20 @@ function AdminDashboard() {
 
           <p>
             Upload Excel and import historical panel charts.
+          </p>
+        </Link>
+
+        {/* Breaking News */}
+        <Link
+          to="/admin/breaking-news"
+          className="admin-card"
+        >
+          <div className="admin-icon">🔴</div>
+
+          <h2>Breaking News</h2>
+
+          <p>
+            Add and update the breaking news displayed on the website.
           </p>
         </Link>
 

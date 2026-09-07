@@ -8,6 +8,8 @@ import RecentWinningBar from "../components/RecentWinningBar";
 import TodaysResultCard from "../components/TodaysResultCard";
 import RecentlyViewed from "../components/RecentlyViewed";
 import LiveMarkets from "../components/LiveMarkets";
+import ContactUs from "../components/ContactUs";
+import CornerUpdate from "../components/CornerUpdate";
 const MarketTimings = React.lazy(() => import("../components/MarketTimings"));
 const PopularMarkets = React.lazy(() => import("../components/PopularMarkets"));
 const TrendingJodi = React.lazy(() => import("../components/TrendingJodi"));
@@ -119,7 +121,9 @@ const {
 <LiveMarkets
   markets={markets}
 />
+<ContactUs/>
 <Suspense fallback={null}>
+  
   <MarketTimings />
   <PopularMarkets />
   <TrendingJodi />
@@ -131,6 +135,8 @@ const {
   <PopularResultsToday />
   <FooterLinks />
   <SEOContentBlock />
+  <FloatingContact/>
+   <CornerUpdate />
 </Suspense>
         {/* Latest Results */}
 
